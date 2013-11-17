@@ -18,19 +18,19 @@
 		
 		<!-- mybatis generator -->
 		<mybatis.generator.outputDirectory>${basedir}/src/main/java</mybatis.generator.outputDirectory>
-		<mybatis.generator.configurationFile>${basedir}/support/mybatis.generator.config.xml</mybatis.generator.configurationFile>
+		<mybatis.generator.configurationFile>${basedir}/mybatis.generator.config.xml</mybatis.generator.configurationFile>
 		<mybatis.generator.overwrite>true</mybatis.generator.overwrite>
 		<mybatis.generator.verbose>true</mybatis.generator.verbose>
 	</properties>
 	
 	<dependencies>
 		<!-- ===JEE=== -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.apache.openejb</groupId>
 			<artifactId>javaee-api</artifactId>
 			<version>6.0-4</version>
 			<scope>provided</scope>
-		</dependency>
+		</dependency> -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
@@ -147,6 +147,11 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-expression</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
 		<!-- CGLIB, only required and used for @Configuration usage -->
