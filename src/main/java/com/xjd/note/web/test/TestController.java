@@ -1,4 +1,4 @@
-package com.xjd.note.web.controller;
+package com.xjd.note.web.test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.xjd.note.web.model.TestVo;
 
 @Controller
 @RequestMapping("/test")

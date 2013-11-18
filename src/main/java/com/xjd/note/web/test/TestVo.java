@@ -1,4 +1,4 @@
-package com.xjd.note.web.model;
+package com.xjd.note.web.test;
 
 import javax.xml.bind.annotation.XmlRootElement;
 

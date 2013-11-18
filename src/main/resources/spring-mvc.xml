@@ -23,21 +23,19 @@
 	</mvc:interceptors> -->
 
 	<!-- 扫描注解类 -->
-	<!-- <context:component-scan base-package="com.xjd.note.web.controller">
-		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
-	</context:component-scan> -->
 	<context:component-scan base-package="com.xjd.note.web" />
 
 	<!-- 映射静态资源 -->
-	<!-- <mvc:resources mapping="/js/**" location="/js/" />
+	<mvc:resources mapping="/js/**" location="/js/" />
 	<mvc:resources mapping="/img/**" location="/img/" />
-	<mvc:resources mapping="/css/**" location="/css/" /> -->
+	<mvc:resources mapping="/css/**" location="/css/" />
+	<mvc:resources mapping="/assets/**" location="/assets/" />
 
 	<!-- 默认访问index -->
 	<mvc:view-controller path="/" view-name="redirect:/test/test" />
 	
 	<bean id="defaultViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:order="2">
-		<property name="prefix" value="/WEB-INF/jsp" />
+		<property name="prefix" value="/WEB-INF/page" />
 		<property name="suffix" value=".jsp" />
 	</bean>
 	

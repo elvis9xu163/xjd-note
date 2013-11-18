@@ -1,7 +1,8 @@
 package com.xjd.note.dao.model;
 
-import com.xjd.note.dao.model.custom.BaseDo;
 import java.util.Date;
+
+import com.xjd.note.dao.model.custom.BaseDo;
 
 public class TagDo extends BaseDo {
     private String tagName;
