@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xjd.note.dao.mapper.custom.AuthMapper" >
+
+  <select id="queryAuthoritiesForUser" resultMap="com.xjd.note.dao.mapper.AuthorityDoMapper.BaseResultMap">
+  	select <include refid="com.xjd.note.dao.mapper.AuthorityDoMapper.Base_Column_List"/>
+  	from authority a inner join user_authority ua on a.id = ua.authority_id
+  	where ua.user_id = #{userId}
+  	<if test="authType == 1">
+  	and a.is_group = 0
+  	</if>
+  	<if test="authType == 2">
+  	and a.is_group = 1
+  	</if>
+  </select>
+
+  <select id="queryAuthoritiesForAuthGroup" resultMap="com.xjd.note.dao.mapper.AuthorityDoMapper.BaseResultMap">
+  	select <include refid="com.xjd.note.dao.mapper.AuthorityDoMapper.Base_Column_List"/>
+  	from authority a inner join authority_group ag on a.id = ag.authority_id
+  	where ag.group_id = #{groupId}
+  	<if test="authType == 1">
+  	and a.is_group = 0
+  	</if>
+  	<if test="authType == 2">
+  	and a.is_group = 1
+  	</if>
+  </select>
+  
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<users id="1" username="xjd" email="xjd@163.com" password="pass" enabled="0" locked="0"/>
+	<users id="2" username="txy" email="txy@163.com" password="pass" enabled="0" locked="0"/>
+	<users id="3" username="zzz" email="zzz@163.com" password="pass" enabled="0" locked="0"/>
+	
+	<authority id="1" authority_code="read" authority_name="read" is_group="0" />
+	<authority id="2" authority_code="write" authority_name="write" is_group="0" />
+	<authority id="3" authority_code="admin" authority_name="admin" is_group="1" />
+	<authority id="4" authority_code="xjd" authority_name="xjd" is_group="1" />
+	
+	<user_authority user_id="1" authority_id="1" />
+	<user_authority user_id="1" authority_id="2" />
+	<user_authority user_id="1" authority_id="3" />
+	<user_authority user_id="2" authority_id="4" />
+	
+	<authority_group group_id="3" authority_id="1" />
+	<authority_group group_id="3" authority_id="2" />
+	<authority_group group_id="4" authority_id="1" />
+	<authority_group group_id="4" authority_id="2" />
+	<authority_group group_id="4" authority_id="3" />
+</dataset>

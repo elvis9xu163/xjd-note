@@ -9,13 +9,15 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.ApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.support.WebApplicationContextUtils;
+
+import com.xjd.note.biz.service.CryptService;
 
 
 
@@ -32,7 +34,9 @@ public class AuthFilter implements Filter {
 	protected String[] ignoreUrlPatterns;
 	protected String authCookieName = DEFAULT_AUTH_COOKIE_NAME;
 	protected String authVarName = DEFAULT_AUTH_VAR_NAME;
-	protected ApplicationContext springContext;
+	
+	@Autowired
+	protected CryptService cryptService;
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -57,12 +61,19 @@ public class AuthFilter implements Filter {
 			authVarName = authVarNameStr.trim();
 		}
 		
-		springContext = WebApplicationContextUtils.getRequiredWebApplicationContext(filterConfig.getServletContext());
 	}
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		
+		Object auth = httpRequest.getAttribute(authVarName);
+		if (auth != null) { //授权成功
+			chain.doFilter(httpRequest, response);
+			
+		} else {
+			
+		}
 	}
 
 	@Override
