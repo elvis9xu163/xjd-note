@@ -1,4 +1,4 @@
-package com.xjd.note.util;
+package com.xjd.note.dao;
 
 /**
  * <pre>

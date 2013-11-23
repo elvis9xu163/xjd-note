@@ -20,7 +20,7 @@ public interface AuthMapper {
 	 * 查询用户的权限
 	 * </pre>
 	 * @param userId
-	 * @param authType see {@link com.xjd.note.util.AuthTypeEnum#getCode() AuthTypeEnum.getCode()}
+	 * @param authType see {@link com.xjd.note.dao.AuthTypeEnum#getCode() AuthTypeEnum.getCode()}
 	 * @return
 	 * @author elvis.xu
 	 * @since 2013-11-19
@@ -33,7 +33,7 @@ public interface AuthMapper {
 	 * 注意子权限组
 	 * </pre>
 	 * @param groupId
-	 * @param authType see {@link com.xjd.note.util.AuthTypeEnum#getCode() AuthTypeEnum.getCode()}
+	 * @param authType see {@link com.xjd.note.dao.AuthTypeEnum#getCode() AuthTypeEnum.getCode()}
 	 * @return
 	 * @author elvis.xu
 	 * @since 2013-11-19

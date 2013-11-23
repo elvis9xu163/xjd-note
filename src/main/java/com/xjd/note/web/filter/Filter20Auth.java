@@ -1,4 +1,4 @@
-package com.xjd.note.web.auth;
+package com.xjd.note.web.filter;
 
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebInitParam;
@@ -11,6 +11,6 @@ import org.springframework.web.filter.DelegatingFilterProxy;
 ,@WebInitParam(name="ignoreUrlPattern", value="/auth/**, /css/**, /img/**, /js/**")
 ,@WebInitParam(name="authCookieName", value="xjd.note.auth")
 ,@WebInitParam(name="authVarName", value="user")})
-public class AuthWebFilter extends DelegatingFilterProxy {
+public class Filter20Auth extends DelegatingFilterProxy {
 
 }

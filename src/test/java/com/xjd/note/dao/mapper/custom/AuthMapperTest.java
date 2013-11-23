@@ -11,9 +11,9 @@ import org.unitils.database.util.TransactionMode;
 import org.unitils.dbunit.annotation.DataSet;
 import org.unitils.spring.annotation.SpringBeanByType;
 
+import com.xjd.note.dao.AuthTypeEnum;
 import com.xjd.note.dao.mapper.DaoBaseTest;
 import com.xjd.note.dao.model.AuthorityDo;
-import com.xjd.note.util.AuthTypeEnum;
 
 @DataSet("AuthMapperTest.xml")
 @Transactional(value=TransactionMode.ROLLBACK)

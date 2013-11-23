@@ -40,6 +40,8 @@ public class AuthFilter implements Filter {
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
+		log.info("initializing...");
+		
 		String ignoreUrlPatternStr = filterConfig.getInitParameter(IGNORE_URL_PATTERN_KEY);
 		log.info("读取到初始参数: {}='{}'", IGNORE_URL_PATTERN_KEY, ignoreUrlPatternStr);
 		if (!StringUtils.isBlank(ignoreUrlPatternStr)) {
@@ -65,6 +67,7 @@ public class AuthFilter implements Filter {
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+		log.debug("");
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		
 		Object auth = httpRequest.getAttribute(authVarName);
