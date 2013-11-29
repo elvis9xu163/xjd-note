@@ -10,12 +10,15 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.AntPathMatcher;
+import org.springframework.util.PathMatcher;
 
 import com.xjd.note.biz.service.CryptService;
 
@@ -28,12 +31,15 @@ public class AuthFilter implements Filter {
 	public static final String IGNORE_URL_PATTERN_KEY = "ignoreUrlPattern";
 	public static final String AUTH_COOKIE_NAME_KEY = "authCookieName";
 	public static final String AUTH_VAR_NAME_KEY = "authVarName";
+	public static final String AUTH_FAIL_URL_KEY = "authFailUrl";
 	public static final String DEFAULT_AUTH_COOKIE_NAME = "authCookie";
 	public static final String DEFAULT_AUTH_VAR_NAME = "auth";
 	
 	protected String[] ignoreUrlPatterns;
 	protected String authCookieName = DEFAULT_AUTH_COOKIE_NAME;
 	protected String authVarName = DEFAULT_AUTH_VAR_NAME;
+	protected String authFailUrl;
+	protected PathMatcher pathMatcher = new AntPathMatcher();
 	
 	@Autowired
 	protected CryptService cryptService;
@@ -68,14 +74,29 @@ public class AuthFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		log.debug("");
-		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		
-		Object auth = httpRequest.getAttribute(authVarName);
-		if (auth != null) { //授权成功
+		HttpServletRequest httpRequest = (HttpServletRequest) request;
+		HttpSession session = httpRequest.getSession(false);
+		
+		if (session != null && session.getAttribute(authVarName) != null) { //授权成功
 			chain.doFilter(httpRequest, response);
 			
-		} else {
-			
+		} else { //无授权信息
+			String path = request.getServletContext().getContextPath();//TODO
+			boolean ignore = false;
+			if (ignoreUrlPatterns != null) {
+				for (String ignoreUrlPatt : ignoreUrlPatterns) {
+					if (pathMatcher.match(ignoreUrlPatt, path)) { //无需授权
+						ignore = true;
+						break;
+					}
+				}
+			}
+			if (ignore) { //无需授权
+				chain.doFilter(httpRequest, response);
+			} else { //需要授权
+				//TODO
+			}
 		}
 	}
 
