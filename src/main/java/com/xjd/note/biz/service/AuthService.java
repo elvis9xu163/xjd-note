@@ -1,5 +1,6 @@
 package com.xjd.note.biz.service;
 
+import com.xjd.note.biz.exception.AuthException;
 import com.xjd.note.biz.model.Auth;
 
 /**
@@ -34,5 +35,5 @@ public interface AuthService {
 	 * @author elvis.xu
 	 * @since 2013-11-20
 	 */
-	public Auth login(String nameOrMail, String password);
+	public Auth login(String nameOrMail, String password) throws AuthException;
 }

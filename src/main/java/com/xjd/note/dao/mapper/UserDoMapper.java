@@ -1,11 +1,9 @@
 package com.xjd.note.dao.mapper;
 
-import java.util.List;
-
-import org.apache.ibatis.annotations.Param;
-
 import com.xjd.note.dao.model.UserDo;
 import com.xjd.note.dao.model.UserDoExample;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface UserDoMapper {
     int countByExample(UserDoExample example);

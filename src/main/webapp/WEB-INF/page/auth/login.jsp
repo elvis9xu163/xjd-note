@@ -76,6 +76,13 @@ body {
 			<div class="row-fluid">
 				<button class="btn btn-primary btn-large span6 offset3" type="submit">登&nbsp;&nbsp;&nbsp;录</button>
 			</div>
+			<c:if test="${requestScope.errorCode != null}">
+			<div class="row-fluid">
+				<h2 class="form-signin-heading text-center text-info">
+					${requestScope.errorCode}
+				</h2>
+			</div>
+			</c:if>
 		</form>
 	</div>
 

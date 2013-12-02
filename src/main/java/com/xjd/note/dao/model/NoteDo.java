@@ -1,10 +1,11 @@
 package com.xjd.note.dao.model;
 
+import com.xjd.note.dao.model.custom.BaseDo;
 import java.util.Date;
 
-import com.xjd.note.dao.model.custom.BaseDo;
-
 public class NoteDo extends BaseDo {
+    private Long id;
+
     private String noteName;
 
     private Boolean isDir;
@@ -16,6 +17,14 @@ public class NoteDo extends BaseDo {
     private Date createTimestamp;
 
     private Date lastModifyTimestamp;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getNoteName() {
         return noteName;

@@ -1,11 +1,9 @@
 package com.xjd.note.dao.mapper;
 
-import java.util.List;
-
-import org.apache.ibatis.annotations.Param;
-
 import com.xjd.note.dao.model.TagDo;
 import com.xjd.note.dao.model.TagDoExample;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface TagDoMapper {
     int countByExample(TagDoExample example);

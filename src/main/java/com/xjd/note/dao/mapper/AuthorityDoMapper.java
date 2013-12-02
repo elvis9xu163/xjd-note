@@ -1,11 +1,9 @@
 package com.xjd.note.dao.mapper;
 
-import java.util.List;
-
-import org.apache.ibatis.annotations.Param;
-
 import com.xjd.note.dao.model.AuthorityDo;
 import com.xjd.note.dao.model.AuthorityDoExample;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface AuthorityDoMapper {
     int countByExample(AuthorityDoExample example);

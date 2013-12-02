@@ -1,15 +1,8 @@
 package com.xjd.note.dao.model.custom;
 
+import java.io.Serializable;
 
-public abstract class BaseDo {
-	protected Long id;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
+public abstract class BaseDo implements Serializable {
+    private static final long serialVersionUID = -6576363721143090362L;
 
 }

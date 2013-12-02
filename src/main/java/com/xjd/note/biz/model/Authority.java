@@ -2,15 +2,25 @@ package com.xjd.note.biz.model;
 
 
 public class Authority extends BaseModel {
-	private static final long serialVersionUID = -2333991283348334168L;
+    private static final long serialVersionUID = -5079494170901822135L;
 
-	private String authorityCode;
+    private Long id;
+
+    private String authorityCode;
 
     private String authorityName;
 
     private Boolean isGroup;
 
     private String comment;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getAuthorityCode() {
         return authorityCode;

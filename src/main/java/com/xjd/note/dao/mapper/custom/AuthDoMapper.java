@@ -13,7 +13,7 @@ import com.xjd.note.dao.model.AuthorityDo;
  * @author elvis.xu
  * @since 2013-11-19
  */
-public interface AuthMapper {
+public interface AuthDoMapper {
 	
 	/**
 	 * <pre>

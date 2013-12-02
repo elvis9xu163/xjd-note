@@ -3,9 +3,11 @@ package com.xjd.note.biz.model;
 import java.util.Date;
 
 public class User extends BaseModel {
-	private static final long serialVersionUID = 958003323254914820L;
+    private static final long serialVersionUID = -5240177501600899799L;
 
-	private String username;
+    private Long id;
+
+    private String username;
 
     private String email;
 
@@ -26,6 +28,14 @@ public class User extends BaseModel {
     private Date createTimestamp;
 
     private String resetPwdToken;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;

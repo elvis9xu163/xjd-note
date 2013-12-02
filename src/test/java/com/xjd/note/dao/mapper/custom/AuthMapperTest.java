@@ -21,7 +21,7 @@ public class AuthMapperTest extends DaoBaseTest {
 	private static Logger log = LoggerFactory.getLogger(AuthMapperTest.class);
 	
 	@SpringBeanByType
-	AuthMapper authMapper;
+	AuthDoMapper authMapper;
 
 	@Test
 	public void testQueryAuthoritiesForUser() {

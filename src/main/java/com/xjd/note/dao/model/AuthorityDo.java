@@ -3,6 +3,8 @@ package com.xjd.note.dao.model;
 import com.xjd.note.dao.model.custom.BaseDo;
 
 public class AuthorityDo extends BaseDo {
+    private Long id;
+
     private String authorityCode;
 
     private String authorityName;
@@ -10,6 +12,14 @@ public class AuthorityDo extends BaseDo {
     private Boolean isGroup;
 
     private String comment;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getAuthorityCode() {
         return authorityCode;

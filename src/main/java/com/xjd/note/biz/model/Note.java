@@ -3,9 +3,11 @@ package com.xjd.note.biz.model;
 import java.util.Date;
 
 public class Note extends BaseModel {
-	private static final long serialVersionUID = 5935064717956047425L;
+    private static final long serialVersionUID = 5406793622767103652L;
 
-	private String noteName;
+    private Long id;
+
+    private String noteName;
 
     private Boolean isDir;
 
@@ -16,6 +18,14 @@ public class Note extends BaseModel {
     private Date createTimestamp;
 
     private Date lastModifyTimestamp;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getNoteName() {
         return noteName;
