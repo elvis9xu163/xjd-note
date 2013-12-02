@@ -32,7 +32,7 @@
 	<mvc:resources mapping="/assets/**" location="/assets/" />
 
 	<!-- 默认访问index -->
-	<mvc:view-controller path="/" view-name="redirect:/test/test" />
+	<mvc:view-controller path="/" view-name="redirect:/main" />
 	
 	<bean id="defaultViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:order="2">
 		<property name="prefix" value="/WEB-INF/page" />
@@ -48,7 +48,7 @@
 	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 		<property name="exceptionMappings">
 			<props>
-				<prop key="java.lang.Exception">/error_all</prop>
+				<prop key="java.lang.Exception">forward:/error/all</prop>
 			</props>
 		</property>
 	</bean>

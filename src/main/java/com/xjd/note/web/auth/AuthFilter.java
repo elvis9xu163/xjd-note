@@ -1,8 +1,10 @@
 package com.xjd.note.web.auth;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.Arrays;
 
+import javax.resource.spi.AuthenticationMechanism;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -10,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
@@ -28,47 +31,15 @@ import com.xjd.note.biz.service.CryptService;
 public class AuthFilter implements Filter {
 	private static Logger log = LoggerFactory.getLogger(AuthFilter.class);
 	
-	public static final String IGNORE_URL_PATTERN_KEY = "ignoreUrlPattern";
-	public static final String AUTH_COOKIE_NAME_KEY = "authCookieName";
-	public static final String AUTH_VAR_NAME_KEY = "authVarName";
-	public static final String AUTH_FAIL_URL_KEY = "authFailUrl";
-	public static final String DEFAULT_AUTH_COOKIE_NAME = "authCookie";
-	public static final String DEFAULT_AUTH_VAR_NAME = "auth";
-	
-	protected String[] ignoreUrlPatterns;
-	protected String authCookieName = DEFAULT_AUTH_COOKIE_NAME;
-	protected String authVarName = DEFAULT_AUTH_VAR_NAME;
-	protected String authFailUrl;
-	protected PathMatcher pathMatcher = new AntPathMatcher();
+	@Autowired
+	AuthConfig authConfig;
 	
 	@Autowired
 	protected CryptService cryptService;
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
-		log.info("initializing...");
-		
-		String ignoreUrlPatternStr = filterConfig.getInitParameter(IGNORE_URL_PATTERN_KEY);
-		log.info("读取到初始参数: {}='{}'", IGNORE_URL_PATTERN_KEY, ignoreUrlPatternStr);
-		if (!StringUtils.isBlank(ignoreUrlPatternStr)) {
-			ignoreUrlPatterns = ignoreUrlPatternStr.trim().split("[,\\s]+");
-			if (log.isDebugEnabled()) {
-				log.debug("解析初始参数: {}={}", IGNORE_URL_PATTERN_KEY, Arrays.toString(ignoreUrlPatterns));
-			}
-		}
-		
-		String authCookieNameStr = filterConfig.getInitParameter(AUTH_COOKIE_NAME_KEY);
-		log.info("读取到初始参数: {}='{}'", AUTH_COOKIE_NAME_KEY, authCookieNameStr);
-		if (!StringUtils.isBlank(authCookieNameStr)) {
-			authCookieName = authCookieNameStr.trim();
-		}
-		
-		String authVarNameStr = filterConfig.getInitParameter(AUTH_VAR_NAME_KEY);
-		log.info("读取到初始参数: {}='{}'", AUTH_VAR_NAME_KEY, authVarNameStr);
-		if (!StringUtils.isBlank(authVarNameStr)) {
-			authVarName = authVarNameStr.trim();
-		}
-		
+		// Do-Nothing
 	}
 
 	@Override
@@ -78,26 +49,43 @@ public class AuthFilter implements Filter {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpSession session = httpRequest.getSession(false);
 		
-		if (session != null && session.getAttribute(authVarName) != null) { //授权成功
+		if (session != null && session.getAttribute(authConfig.getAuthVarName()) != null) { //授权成功
+			log.debug("已授权.");
 			chain.doFilter(httpRequest, response);
 			
 		} else { //无授权信息
-			String path = request.getServletContext().getContextPath();//TODO
-			boolean ignore = false;
-			if (ignoreUrlPatterns != null) {
-				for (String ignoreUrlPatt : ignoreUrlPatterns) {
-					if (pathMatcher.match(ignoreUrlPatt, path)) { //无需授权
-						ignore = true;
-						break;
-					}
-				}
-			}
-			if (ignore) { //无需授权
+			String path = getRequestPath(httpRequest);
+			String patt = authConfig.findMatchIgnorePattern(path);
+			if (patt == null) {
+				//需要授权
+				log.debug("需要授权: path={}", path);
+				path = URLEncoder.encode(path, "UTF-8"); //中文转码
+				((HttpServletResponse) response).sendRedirect(getAuthFailPath(httpRequest, authConfig.getAuthFailPath(), path));
+			} else {
+				log.debug("无需授权: path={}, pattern={}", path, patt);
 				chain.doFilter(httpRequest, response);
-			} else { //需要授权
-				//TODO
 			}
 		}
+	}
+	
+	protected String getRequestPath(HttpServletRequest req) {
+		String servletPath = req.getServletPath();
+		String pathInfo = req.getPathInfo();
+		StringBuilder reqPath = new StringBuilder();
+		if (!"".equals(servletPath) && !"/".equals(servletPath)) {
+			reqPath.append(servletPath);
+		}
+		if (pathInfo != null) {
+			reqPath.append(pathInfo);
+		}
+		if ("".equals(reqPath.toString())) { //如果没有任何路径则是根路径
+			reqPath.append("/");
+		}
+		return reqPath.toString();
+	}
+	
+	protected String getAuthFailPath(HttpServletRequest req, String authFailPath, String targetPath) {
+		return req.getContextPath() + authFailPath + "?targetPath=" + targetPath;
 	}
 
 	@Override

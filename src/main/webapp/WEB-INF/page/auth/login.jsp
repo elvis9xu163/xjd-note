@@ -53,7 +53,12 @@ body {
 		<form class="form-signin" action="<c:url value='/auth/login'/>" method="post">
 			<div class="row-fluid">
 				<h2 class="form-signin-heading text-center text-info">
+					<c:if test="${param.targetPath == null || param.targetPath == ''}">
 					XJD日志系统
+					</c:if>
+					<c:if test="${param.targetPath != null && param.targetPath != ''}">
+					请先登录
+					</c:if>
 				</h2>
 			</div>
 			<div class="input-prepend">
@@ -67,7 +72,7 @@ body {
 			<label class="checkbox muted">
 				<input type="checkbox" name="rememberme" value="remember-me"/>记住密码
 			</label>
-			<input type="hidden" name="targetUrl" value="${param.targetUrl }"/>
+			<input type="hidden" name="targetPath" value="${param.targetPath }"/>
 			<div class="row-fluid">
 				<button class="btn btn-primary btn-large span6 offset3" type="submit">登&nbsp;&nbsp;&nbsp;录</button>
 			</div>

@@ -5,12 +5,14 @@ import javax.servlet.annotation.WebInitParam;
 
 import org.springframework.web.filter.DelegatingFilterProxy;
 
-@WebFilter(filterName="authFilter", urlPatterns={"/*"}, initParams=
+/*@WebFilter(filterName="authFilter", urlPatterns={"/*"}, initParams=
 {@WebInitParam(name="targetBeanName", value="authFilter")
 ,@WebInitParam(name="targetFilterLifecycle", value="true")
 ,@WebInitParam(name="ignoreUrlPattern", value="/auth/**, /css/**, /img/**, /js/**")
 ,@WebInitParam(name="authCookieName", value="xjd.note.auth")
-,@WebInitParam(name="authVarName", value="user")})
+,@WebInitParam(name="authFailUrl", value="/auth/login/input")
+,@WebInitParam(name="authVarName", value="user")})*/
+@WebFilter(filterName="authFilter", urlPatterns={"/*"})
 public class Filter20Auth extends DelegatingFilterProxy {
 
 }

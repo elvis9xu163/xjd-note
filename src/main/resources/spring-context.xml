@@ -20,7 +20,8 @@
 		<property name="fileEncoding" value="UTF-8" />
 		<property name="locations">
 			<array>
-				<value>classpath:app.properties</value>
+				<value>classpath:mvc.properties</value>
+				<value>classpath:context.properties</value>
 				<value>classpath:data.properties</value>
 			</array>
 		</property>

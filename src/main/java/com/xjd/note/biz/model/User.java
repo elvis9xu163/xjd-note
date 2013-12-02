@@ -3,7 +3,9 @@ package com.xjd.note.biz.model;
 import java.util.Date;
 
 public class User extends BaseModel {
-    private String username;
+	private static final long serialVersionUID = 958003323254914820L;
+
+	private String username;
 
     private String email;
 

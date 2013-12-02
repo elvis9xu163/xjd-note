@@ -3,7 +3,9 @@ package com.xjd.note.biz.model;
 import java.util.Date;
 
 public class Tag extends BaseModel {
-    private String tagName;
+	private static final long serialVersionUID = -2216025513926840867L;
+
+	private String tagName;
 
     private Date createTimestamp;
 

@@ -2,7 +2,9 @@ package com.xjd.note.biz.model;
 
 
 public class Authority extends BaseModel {
-    private String authorityCode;
+	private static final long serialVersionUID = -2333991283348334168L;
+
+	private String authorityCode;
 
     private String authorityName;
 

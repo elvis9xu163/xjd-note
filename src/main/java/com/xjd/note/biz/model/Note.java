@@ -3,7 +3,9 @@ package com.xjd.note.biz.model;
 import java.util.Date;
 
 public class Note extends BaseModel {
-    private String noteName;
+	private static final long serialVersionUID = 5935064717956047425L;
+
+	private String noteName;
 
     private Boolean isDir;
 
