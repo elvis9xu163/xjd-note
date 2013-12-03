@@ -18,10 +18,12 @@
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 	
-	<!-- <mvc:interceptors>
-		<bean class="com.chinapnr.trs.web.spring.TimeInterceptor"/>
-	</mvc:interceptors> -->
-
+	<mvc:interceptors>
+		<!-- <bean class="com.chinapnr.trs.web.spring.TimeInterceptor"/> -->
+		<!-- 国际化Locale拦截器 -->
+		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"/>
+	</mvc:interceptors>
+	
 	<!-- 扫描注解类 -->
 	<context:component-scan base-package="com.xjd.note.web" />
 
@@ -34,12 +36,13 @@
 	<!-- 默认访问index -->
 	<mvc:view-controller path="/" view-name="redirect:/main" />
 	
+	<!-- 视图解析 -->
 	<bean id="defaultViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:order="2">
 		<property name="prefix" value="/WEB-INF/page" />
 		<property name="suffix" value=".jsp" />
 	</bean>
 	
-	<!-- file upload -->
+	<!-- 文件上传 -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="500000000"/>
 	</bean>
@@ -52,5 +55,12 @@
 			</props>
 		</property>
 	</bean>
+	
+	<!-- 国际化 -->
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="i18n.message"/>
+	</bean>
+	<!-- 国际化Locale解析 -->
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"/>
 
 </beans>

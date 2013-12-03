@@ -1,9 +1,10 @@
 <%@ page language="java" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
-<title>欢迎登录XJD Note</title>
+<title><fmt:message key="welcome_to_xjd_note"/></title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" href="<c:url value='/assets/ico/favicon.png'/>" />
@@ -11,37 +12,9 @@
 <!-- css -->
 <link href="<c:url value='/css/bootstrap.min.css'/>" rel="stylesheet" media="screen">
 <link href="<c:url value='/css/bootstrap-responsive.min.css'/>" rel="stylesheet" media="screen">
+<link href="<c:url value='/assets/css/login.css'/>" rel="stylesheet" media="screen">
 <style>
-body {
-	padding-top: 40px;
-	padding-bottom: 40px;
-	background-color: #f5f5f5;
-}
-.form-signin {
-	max-width: 300px;
-	padding: 19px 29px 29px;
-	margin: 0 auto 20px;
-	background-color: #fff;
-	border: 1px solid #e5e5e5;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
-	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
-	box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
-}
-.form-signin .row-fluid:first-child,
-.form-signin .checkbox {
-	margin-bottom: 10px;
-}
-.form-signin .add-on,
-.form-signin input[type="text"],
-.form-signin input[type="password"] {
-	font-size:16px;
-	height: auto;
-	margin-bottom: 15px;
-	padding: 7px 9px;
-}
+
 </style>
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
@@ -49,41 +22,89 @@ body {
 <![endif]-->
 </head>
 <body>
+	<div style="display: none">
+		<form action="">
+			<input>
+		</form>
+	</div>
+	<div class="navbar navbar-static-top">
+		<div class="navbar-inner">
+			<a class="brand" href="#"><fmt:message key="xjd_note" /></a>
+			<div class="btn-group pull-right">
+				<a class="btn btn-success dropdown-toggle" data-toggle="dropdown" href="#"> <fmt:message key="language_select"/> <span class="caret"></span> </a>
+				<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+					<li class="disabled"><a tabindex="-1" href="#"><img width="32" src='<c:url value="/assets/img/flags/cn_46.png"/>' />中文</a></li>
+					<li><a tabindex="-1" href="#"><img width="32" src='<c:url value="/assets/img/flags/us_46.png"/>' />English(US)</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
 	<div class="container">
-		<form class="form-signin" action="<c:url value='/auth/login'/>" method="post">
-			<div class="row-fluid">
-				<h2 class="form-signin-heading text-center text-info">
+		<div class="wrapper">
+			<div class="main">
+				<div style="font-size: 26px;">
 					<c:if test="${param.targetPath == null || param.targetPath == ''}">
-					XJD日志系统
+						<fmt:message key="welcome_back"/>
 					</c:if>
 					<c:if test="${param.targetPath != null && param.targetPath != ''}">
-					请先登录
+						<fmt:message key="please_login_first"/>
 					</c:if>
-				</h2>
+				</div>
+				<hr/>
+				<div class="row-fluid">
+					<div class="span6">
+						<div style="width: 100%; padding-top: 150px; font-size: 26px; color: gray;">
+							记录您想法的点点滴滴
+						</div>
+					</div>
+					<div class="span6 form-wrapper" style="background-color: rgb(245, 245, 245);">
+						<form action="<c:url value='/auth/login'/>" method="post">
+							<div class="row-fluid">
+								<div id="login-div" class="span10 offset1">
+									<c:if test="${requestScope.errorCode != null}">
+									<div>
+										<h3 class="form-signin-heading text-center text-error">
+											${requestScope.errorCode}
+										</h3>
+									</div>
+									</c:if>
+									<div class="input-append">
+										<input type="text" name="username" required placeholder='<fmt:message key="username_or_mail"/>'/>
+										<span class="add-on"><fmt:message key="account"/></span>
+									</div>
+									<div class="input-append">
+										<input type="password" name="password" required placeholder='<fmt:message key="password"/>'/>
+										<span class="add-on"><fmt:message key="password"/></span>
+									</div>
+									<div class="row-fluid">
+										<span class="span7 checkbox muted">
+											<input type="checkbox" name="rememberme" value="remember-me"/><fmt:message key="remember_me"/>
+										</span>
+										<span class="span5 text-right">
+											<a href="">忘记密码</a>
+										</span>
+									</div>
+									<div class="row-fluid">
+										<button class="btn btn-success btn-large span6" type="submit"><fmt:message key="login"/></button>
+										<button class="btn btn-info btn-large span6"><fmt:message key="register"/></button>
+									</div>
+								</div>
+							</div>
+							<input type="hidden" name="targetPath" value="${param.targetPath }"/>
+						</form>
+					</div>
+				</div>
 			</div>
-			<div class="input-prepend">
-				<span class="add-on">用户名:</span>
-				<input type="text" name="username" required placeholder="用户名"/>
+			<div class="shadow">
 			</div>
-			<div class="input-prepend">
-				<span class="add-on">密&nbsp;&nbsp;&nbsp;码:</span>
-				<input type="password" name="password" required placeholder="密码"/>
+			<div class="footer">
+				<a target="_blank" class="footer-entry" href=""><fmt:message key="service_terms"/></a>
+				<a target="_blank" class="footer-entry" href=""><fmt:message key="privacy_statement"/></a>
+				<span class="footer-entry last">
+    				<fmt:message key="copyright_announcement"/>
+    			</span>
 			</div>
-			<label class="checkbox muted">
-				<input type="checkbox" name="rememberme" value="remember-me"/>记住密码
-			</label>
-			<input type="hidden" name="targetPath" value="${param.targetPath }"/>
-			<div class="row-fluid">
-				<button class="btn btn-primary btn-large span6 offset3" type="submit">登&nbsp;&nbsp;&nbsp;录</button>
-			</div>
-			<c:if test="${requestScope.errorCode != null}">
-			<div class="row-fluid">
-				<h2 class="form-signin-heading text-center text-info">
-					${requestScope.errorCode}
-				</h2>
-			</div>
-			</c:if>
-		</form>
+		</div>
 	</div>
 
 	<!-- Placed at the end of the document so the pages load faster -->

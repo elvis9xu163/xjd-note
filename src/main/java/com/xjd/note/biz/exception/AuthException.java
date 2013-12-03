@@ -18,7 +18,7 @@ public class AuthException extends Exception {
     public static final String WRONG_USERNAME_OR_PASSWORD_MSG = "Wrong username or password.";
 
     public static final String UNEXPECTED_EXCEPTION_CODE = "99";
-    public static final String UNEXPECTED_EXCEPTION_MSG = "Unexpected exception";
+    public static final String UNEXPECTED_EXCEPTION_MSG = "Unexpected exception.";
 
     private String code;
     private String msg;
