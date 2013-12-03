@@ -23,8 +23,8 @@
 </head>
 <body>
 	<div style="display: none">
-		<form action="">
-			<input>
+		<form id="language_select_form" method="post">
+			<input name="locale" />
 		</form>
 	</div>
 	<div class="navbar navbar-static-top">
@@ -33,8 +33,8 @@
 			<div class="btn-group pull-right">
 				<a class="btn btn-success dropdown-toggle" data-toggle="dropdown" href="#"> <fmt:message key="language_select"/> <span class="caret"></span> </a>
 				<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-					<li class="disabled"><a tabindex="-1" href="#"><img width="32" src='<c:url value="/assets/img/flags/cn_46.png"/>' />中文</a></li>
-					<li><a tabindex="-1" href="#"><img width="32" src='<c:url value="/assets/img/flags/us_46.png"/>' />English(US)</a></li>
+					<li><a tabindex="-1" href="javascript:changeLanguage('zh_CN');"><img width="32" src='<c:url value="/assets/img/flags/cn_46.png"/>' />中文</a></li>
+					<li><a tabindex="-1" href="javascript:changeLanguage('en_US');"><img width="32" src='<c:url value="/assets/img/flags/us_46.png"/>' />English(US)</a></li>
 				</ul>
 			</div>
 		</div>
@@ -54,7 +54,7 @@
 				<div class="row-fluid">
 					<div class="span6">
 						<div style="width: 100%; padding-top: 150px; font-size: 26px; color: gray;">
-							记录您想法的点点滴滴
+							<fmt:message key="advertisement"/>
 						</div>
 					</div>
 					<div class="span6 form-wrapper" style="background-color: rgb(245, 245, 245);">
@@ -81,7 +81,7 @@
 											<input type="checkbox" name="rememberme" value="remember-me"/><fmt:message key="remember_me"/>
 										</span>
 										<span class="span5 text-right">
-											<a href="">忘记密码</a>
+											<a href=""><fmt:message key="forget_password"/></a>
 										</span>
 									</div>
 									<div class="row-fluid">
@@ -110,5 +110,6 @@
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script type="text/javascript" src="<c:url value='/js/jquery-1.9.1.min.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/js/bootstrap.min.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/assets/js/login.js'/>"></script>
 </body>
 </html>

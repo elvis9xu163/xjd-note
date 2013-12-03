@@ -162,15 +162,14 @@ hr {
 }
 
 .input-append .add-on {
-	width: 20%;
+	width: 30%;
 	height: 40px;
 	line-height: 40px;
-	letter-spacing:5px;
 }
 
 .input-append input {
 	height: 40px;
-	width: 70%;
+	width: 60%;
 }
 
 #login-div div {
