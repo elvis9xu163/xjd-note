@@ -1,5 +1,7 @@
 package com.xjd.note.biz.service;
 
+import org.springframework.cache.annotation.Cacheable;
+
 import com.xjd.note.biz.exception.AuthException;
 import com.xjd.note.biz.model.Auth;
 
@@ -22,6 +24,7 @@ public interface AuthService {
 	 * @author elvis.xu
 	 * @since 2013-11-20
 	 */
+	@Cacheable(value="auth")
 	public boolean existsUsernameOrEmail(String nameOrMail);
 	
 	
@@ -35,5 +38,6 @@ public interface AuthService {
 	 * @author elvis.xu
 	 * @since 2013-11-20
 	 */
+	@Cacheable(value="auth")
 	public Auth login(String nameOrMail, String password) throws AuthException;
 }

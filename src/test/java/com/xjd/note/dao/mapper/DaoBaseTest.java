@@ -8,7 +8,7 @@ import org.unitils.spring.annotation.SpringApplicationContext;
 @RunWith(UnitilsJUnit4TestClassRunner.class)
 public class DaoBaseTest {
 
-	@SpringApplicationContext({"classpath:spring-context-test.xml", "classpath:spring-data.xml"})
+	@SpringApplicationContext({"classpath:spring-test.xml", "classpath:spring-data.xml"})
 	ApplicationContext applicationContext;
 	
 }

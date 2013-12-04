@@ -1,9 +1,15 @@
 package com.xjd.note.web.auth;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.Charset;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,47 +26,57 @@ import com.xjd.note.biz.service.AuthService;
 @RequestMapping("/auth")
 @SessionAttributes("user")
 public class AuthController {
+	private static final Logger log = LoggerFactory.getLogger(AuthController.class);
 
-    @Autowired
-    AuthConfig authConfig;
+	@Autowired
+	AuthConfig authConfig;
 
-    @Autowired
-    AuthService authService;
+	@Autowired
+	AuthService authService;
 
-    @RequestMapping("/input")
-    public String input(@RequestParam(value = "targetPath", required = false) String targetPath, Map<String, Object> model) {
-	model.put("targetPath", targetPath);
-	return "/auth/login";
-    }
+	@Autowired
+	MessageSourceAccessor messageSourceAccessor;
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(@RequestParam("username") String username, @RequestParam("password") String password,
-	    @RequestParam(value = "rememberme", required = false) String rememberme,
-	    @ModelAttribute("targetPath") String targetPath,
-	    Map<String, Object> model) {
-
-	Auth auth = null;
-	try {
-	    auth = authService.login(username, password);
-	} catch (AuthException e) {
-	    model.put("errorCode", e.getCode());
-	    model.put("targetPath", targetPath);
-	    return "forward:/auth/input";
+	@RequestMapping("/input")
+	public String input() {
+		return "/auth/login";
 	}
 
-	model.put(authConfig.getAuthVarName(), auth); // 授权
-	
-	if (!StringUtils.isBlank(targetPath)) {
-	    return "redirect:" + targetPath;
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String login(@RequestParam("username") String username, @RequestParam("password") String password,
+			@RequestParam(value = "rememberme", required = false) String rememberme, @ModelAttribute("targetPath") String targetPath,
+			Map<String, Object> model) throws UnsupportedEncodingException {
 
-	} else {
-	    return "forward:/main";
+		Auth auth = null;
+		try {
+			auth = authService.login(username, password);
+		} catch (AuthException e) {
+			if (AuthException.USER_NOT_EXISTS_CODE.equals(e.getCode())) {
+				model.put("errorMsg", messageSourceAccessor.getMessage("user_not_exists"));
+
+			} else if (AuthException.WRONG_USERNAME_OR_PASSWORD_CODE.equals(e.getCode())) {
+				model.put("errorMsg", messageSourceAccessor.getMessage("wrong_username_or_password"));
+
+			} else if (AuthException.UNEXPECTED_EXCEPTION_CODE.equals(e.getCode())) {
+				model.put("errorMsg", messageSourceAccessor.getMessage("unexpected_exception"));
+				log.error("", e);
+			}
+			return "forward:/auth/input";
+		}
+
+		model.put(authConfig.getAuthVarName(), auth); // 授权
+
+		if (!StringUtils.isBlank(targetPath)) {
+			return "redirect:" + targetPath;
+
+		} else {
+			return "forward:/main";
+		}
 	}
-    }
 
-    @RequestMapping("/logout")
-    public String logout(SessionStatus status) {
-	status.setComplete();
-	return "/auth/login";
-    }
+	@RequestMapping("/logout")
+	public String logout(SessionStatus status) {
+		status.setComplete();
+		return "/auth/login";
+	}
 }

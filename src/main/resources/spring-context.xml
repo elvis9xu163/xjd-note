@@ -43,7 +43,7 @@
 	
 	<!-- 激活cache -->
 	<!-- 在Run的VM参数中加入: -javaagent:D:/360/库-软件-绿色/apache-maven/repository/org/aspectj/aspectjweaver/1.7.2/aspectjweaver.jar -->
-	<cache:annotation-driven mode="aspectj"/>
+	<cache:annotation-driven />
 	
 	<bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
 		<property name="caches">

@@ -23,8 +23,10 @@
 </head>
 <body>
 	<div style="display: none">
-		<form id="language_select_form" method="post">
+		<form id="language_select_form" method="post" action="<c:url value='/auth/input'/>">
 			<input name="locale" />
+			<input name="targetPath" value="${param.targetPath }"/>
+			<input name="username" value="${param.username }" />
 		</form>
 	</div>
 	<div class="navbar navbar-static-top">
@@ -61,15 +63,15 @@
 						<form action="<c:url value='/auth/login'/>" method="post">
 							<div class="row-fluid">
 								<div id="login-div" class="span10 offset1">
-									<c:if test="${requestScope.errorCode != null}">
+									<c:if test="${requestScope.errorMsg != null}">
 									<div>
-										<h3 class="form-signin-heading text-center text-error">
-											${requestScope.errorCode}
-										</h3>
+										<h5 class="form-signin-heading text-center text-error">
+											${requestScope.errorMsg}
+										</h5>
 									</div>
 									</c:if>
 									<div class="input-append">
-										<input type="text" name="username" required placeholder='<fmt:message key="username_or_mail"/>'/>
+										<input type="text" name="username" required placeholder='<fmt:message key="username_or_mail"/>' value="${param.username }"/>
 										<span class="add-on"><fmt:message key="account"/></span>
 									</div>
 									<div class="input-append">
@@ -78,7 +80,7 @@
 									</div>
 									<div class="row-fluid">
 										<span class="span7 checkbox muted">
-											<input type="checkbox" name="rememberme" value="remember-me"/><fmt:message key="remember_me"/>
+											<input type="checkbox" name="rememberme" value="remember-me"/><fmt:message key="remember_me_one_week"/>
 										</span>
 										<span class="span5 text-right">
 											<a href=""><fmt:message key="forget_password"/></a>

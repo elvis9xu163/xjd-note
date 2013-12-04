@@ -17,8 +17,8 @@ import com.xjd.note.dao.model.AuthorityDo;
 
 @DataSet("AuthMapperTest.xml")
 @Transactional(value=TransactionMode.ROLLBACK)
-public class AuthMapperTest extends DaoBaseTest {
-	private static Logger log = LoggerFactory.getLogger(AuthMapperTest.class);
+public class AuthDoMapperTest extends DaoBaseTest {
+	private static Logger log = LoggerFactory.getLogger(AuthDoMapperTest.class);
 	
 	@SpringBeanByType
 	AuthDoMapper authMapper;

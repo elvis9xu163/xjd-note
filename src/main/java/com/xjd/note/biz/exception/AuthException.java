@@ -44,4 +44,12 @@ public class AuthException extends Exception {
 	this.msg = msg;
     }
 
+	public static class Builder{
+	}
+
+	@Override
+	public String toString() {
+		return "AuthException [code=" + code + ", msg=" + msg + "]";
+	}
+    
 }

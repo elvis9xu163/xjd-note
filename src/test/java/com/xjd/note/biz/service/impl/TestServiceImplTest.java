@@ -14,11 +14,9 @@ public class TestServiceImplTest extends ServiceBaseTest {
 	public void testTestAnnotation() throws SecurityException, NoSuchMethodException {
 		testServiceImpl.testAnnotation("A");
 		testServiceImpl.testAnnotation("A");
-		testServiceImpl.testAnnotation("A");
-		testServiceImpl.testAnnotation("A");
-		testServiceImpl.testAnnotation("A");
-		testServiceImpl.testAnnotation("A");
 		
+		testServiceImpl.testAny("A");
+		testServiceImpl.testAny("A");
 	}
 
 }

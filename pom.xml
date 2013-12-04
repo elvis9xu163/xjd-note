@@ -198,11 +198,11 @@
 			<version>2.2</version>
 		</dependency>
 		<!-- spring aop required -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
 			<version>1.5.4</version>
-		</dependency>
+		</dependency> -->
 		
 		<!-- ===DAO=== -->
 		<!-- Spring JDBC -->
