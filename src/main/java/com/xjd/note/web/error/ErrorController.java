@@ -11,4 +11,9 @@ public class ErrorController {
 	public String all() {
 		return "/error_all";
 	}
+	
+	@RequestMapping("/auth")
+	public String auth() {
+		return "/auth/not_auth";
+	}
 }

@@ -1,7 +1,6 @@
 package com.xjd.note.biz.exception;
 
 import java.text.MessageFormat;
-import java.util.Arrays;
 
 /**
  * <pre>
@@ -11,18 +10,18 @@ import java.util.Arrays;
  * @author elvis.xu
  * @since 2013-11-20
  */
-public class AuthException extends Exception {
+public class AuthRuntimeException extends RuntimeException {
 	private static final long serialVersionUID = 7542582358375230857L;
 	
 	protected AuthExceptionType eType;
 	private String[] args;
 	private MessageFormat format;
 
-	public AuthException(AuthExceptionType eType) {
+	public AuthRuntimeException(AuthExceptionType eType) {
 		this.eType = eType;
 	}
 
-	public AuthException(AuthExceptionType eType, String... args) {
+	public AuthRuntimeException(AuthExceptionType eType, String... args) {
 		this(eType);
 		this.args = args;
 	}
@@ -45,6 +44,7 @@ public class AuthException extends Exception {
 		if (format == null) {
 			format = new MessageFormat(getOriginalMsg());
 		}
+		
 		return format.format(args);
 	}
 
@@ -54,6 +54,6 @@ public class AuthException extends Exception {
 
 	@Override
 	public String toString() {
-		return "AuthException [code=" + getCode() + ", msg=" + getMsg() + "]";
+		return "AuthRuntimeException [code=" + getCode() + ", msg=" + getMsg() + "]";
 	}
 }

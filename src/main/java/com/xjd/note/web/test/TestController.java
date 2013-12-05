@@ -5,9 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.xjd.note.biz.service.TestService;
 
 
 @Controller
@@ -50,5 +53,29 @@ public class TestController {
 		testVo.setAge(300);
 		testVo.setMsg("爱你");
 		return testVo;
+	}
+	
+	@Autowired
+	TestService testService;
+	
+	@RequestMapping("/auth")
+	@ResponseBody
+	public boolean testAuth() {
+		testService.testAuth();
+		return true;
+	}
+	
+	@RequestMapping("/authAny")
+	@ResponseBody
+	public boolean testAuthAny() {
+		testService.testAuthAny();
+		return true;
+	}
+	
+	@RequestMapping("/authAll")
+	@ResponseBody
+	public boolean testAuthAll() {
+		testService.testAuthAll();
+		return true;
 	}
 }

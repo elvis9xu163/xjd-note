@@ -1,8 +1,6 @@
 package com.xjd.note.web.auth;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.nio.charset.Charset;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
@@ -19,6 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.xjd.note.biz.exception.AuthException;
+import com.xjd.note.biz.exception.AuthExceptionType;
 import com.xjd.note.biz.model.Auth;
 import com.xjd.note.biz.service.AuthService;
 
@@ -51,13 +50,13 @@ public class AuthController {
 		try {
 			auth = authService.login(username, password);
 		} catch (AuthException e) {
-			if (AuthException.USER_NOT_EXISTS_CODE.equals(e.getCode())) {
+			if (AuthExceptionType.USER_NOT_EXISTS == e.getType()) {
 				model.put("errorMsg", messageSourceAccessor.getMessage("user_not_exists"));
 
-			} else if (AuthException.WRONG_USERNAME_OR_PASSWORD_CODE.equals(e.getCode())) {
+			} else if (AuthExceptionType.WRONG_USERNAME_OR_PASSWORD == e.getType()) {
 				model.put("errorMsg", messageSourceAccessor.getMessage("wrong_username_or_password"));
 
-			} else if (AuthException.UNEXPECTED_EXCEPTION_CODE.equals(e.getCode())) {
+			} else if (AuthExceptionType.UNEXPECTED_EXCEPTION == e.getType()) {
 				model.put("errorMsg", messageSourceAccessor.getMessage("unexpected_exception"));
 				log.error("", e);
 			}

@@ -1,8 +1,10 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2013/11/17 10:24:18                          */
+/* Created on:     2013/12/5 16:21:23                           */
 /*==============================================================*/
 
+
+drop index INDEX_UNIQUE_AUTHORITY_CODE on authority;
 
 drop index INDEX_UNIQUE_AUTHORITY_AUTHORITYNAME on authority;
 
@@ -31,17 +33,17 @@ drop table if exists users;
 /*==============================================================*/
 create table authority
 (
-   id                   bigint(11) not null auto_increment comment 'Ö÷¼ü',
-   authority_code       varchar(20) not null comment 'È¨ÏŞ´úÂë',
-   authority_name       varchar(30) comment 'È¨ÏŞÃû',
-   is_group             tinyint(1) not null default 0 comment 'ÊÇ·ñÎªÈ¨ÏŞ×é:
-            0--·ÇÈ¨ÏŞ×é
-            1--È¨ÏŞ×é',
-   comment              varchar(100) comment 'ËµÃ÷',
+   id                   bigint(11) not null auto_increment comment 'ä¸»é”®',
+   authority_code       varchar(20) not null comment 'æƒé™ä»£ç ',
+   authority_name       varchar(30) comment 'æƒé™å',
+   is_group             tinyint(1) not null default 0 comment 'æ˜¯å¦ä¸ºæƒé™ç»„:
+            0--éæƒé™ç»„
+            1--æƒé™ç»„',
+   comment              varchar(100) comment 'è¯´æ˜',
    primary key (id)
 );
 
-alter table authority comment 'È¨ÏŞºÍÈ¨ÏŞ×é±í';
+alter table authority comment 'æƒé™å’Œæƒé™ç»„è¡¨';
 
 /*==============================================================*/
 /* Index: INDEX_UNIQUE_AUTHORITY_AUTHORITYNAME                  */
@@ -52,47 +54,55 @@ create unique index INDEX_UNIQUE_AUTHORITY_AUTHORITYNAME on authority
 );
 
 /*==============================================================*/
+/* Index: INDEX_UNIQUE_AUTHORITY_CODE                           */
+/*==============================================================*/
+create index INDEX_UNIQUE_AUTHORITY_CODE on authority
+(
+   authority_code
+);
+
+/*==============================================================*/
 /* Table: authority_group                                       */
 /*==============================================================*/
 create table authority_group
 (
-   group_id             bigint(11) not null comment 'È¨ÏŞ×éµÄID',
-   authority_id         bigint(11) not null comment 'È¨ÏŞID',
+   group_id             bigint(11) not null comment 'æƒé™ç»„çš„ID',
+   authority_id         bigint(11) not null comment 'æƒé™ID',
    primary key (group_id, authority_id)
 );
 
-alter table authority_group comment 'È¨ÏŞ×é Óë È¨ÏŞµÄ¹ØÏµ±í';
+alter table authority_group comment 'æƒé™ç»„ ä¸ æƒé™çš„å…³ç³»è¡¨';
 
 /*==============================================================*/
 /* Table: note                                                  */
 /*==============================================================*/
 create table note
 (
-   id                   bigint(11) not null auto_increment comment 'Ö÷¼ü',
-   note_name            varchar(30) not null comment '±Ê¼ÇÃû»ò±Ê¼ÇÄ¿Â¼Ãû',
-   is_dir               tinyint(1) not null default 0 comment 'ÊÇ·ñÎª±Ê¼ÇÄ¿Â¼:
-            0--·ÇÄ¿Â¼
-            1--Ä¿Â¼',
-   parent_id            bigint(11) comment '¸¸Ä¿Â¼, ÎªnullÊ±±íµ±Ç°±Ê¼ÇÔÚ¸ùÄ¿Â¼',
-   file_key             varchar(50) comment '±Ê¼Ç¶ÔÓ¦µÄÎÄ¼ş',
-   create_timestamp     timestamp comment '´´½¨Ê±¼ä',
-   last_modify_timestamp timestamp comment 'ÉÏÒ»´ÎĞŞ¸ÄµÄÊ±¼ä',
+   id                   bigint(11) not null auto_increment comment 'ä¸»é”®',
+   note_name            varchar(30) not null comment 'ç¬”è®°åæˆ–ç¬”è®°ç›®å½•å',
+   is_dir               tinyint(1) not null default 0 comment 'æ˜¯å¦ä¸ºç¬”è®°ç›®å½•:
+            0--éç›®å½•
+            1--ç›®å½•',
+   parent_id            bigint(11) comment 'çˆ¶ç›®å½•, ä¸ºnullæ—¶è¡¨å½“å‰ç¬”è®°åœ¨æ ¹ç›®å½•',
+   file_key             varchar(50) comment 'ç¬”è®°å¯¹åº”çš„æ–‡ä»¶',
+   create_timestamp     timestamp comment 'åˆ›å»ºæ—¶é—´',
+   last_modify_timestamp timestamp comment 'ä¸Šä¸€æ¬¡ä¿®æ”¹çš„æ—¶é—´',
    primary key (id)
 );
 
-alter table note comment '±Ê¼ÇºÍ±Ê¼ÇÄ¿Â¼±í';
+alter table note comment 'ç¬”è®°å’Œç¬”è®°ç›®å½•è¡¨';
 
 /*==============================================================*/
 /* Table: note_tag                                              */
 /*==============================================================*/
 create table note_tag
 (
-   note_id              bigint(11) not null comment '±Ê¼ÇID',
-   tag_id               bigint(11) not null comment '±êÇ©ID',
+   note_id              bigint(11) not null comment 'ç¬”è®°ID',
+   tag_id               bigint(11) not null comment 'æ ‡ç­¾ID',
    primary key (note_id, tag_id)
 );
 
-alter table note_tag comment '±Ê¼ÇºÍ±êÇ©¹ØÏµ±í';
+alter table note_tag comment 'ç¬”è®°å’Œæ ‡ç­¾å…³ç³»è¡¨';
 
 /*==============================================================*/
 /* Table: tags                                                  */
@@ -101,11 +111,11 @@ create table tags
 (
    id                   bigint(11) not null auto_increment,
    tag_name             varchar(30) not null,
-   create_timestamp     timestamp comment '´´½¨Ê±¼ä',
+   create_timestamp     timestamp comment 'åˆ›å»ºæ—¶é—´',
    primary key (id)
 );
 
-alter table tags comment '±Ê¼Ç±êÇ©';
+alter table tags comment 'ç¬”è®°æ ‡ç­¾';
 
 /*==============================================================*/
 /* Index: INDEX_UNIQUE_TAGS_TAGNAME                             */
@@ -120,38 +130,38 @@ create unique index INDEX_UNIQUE_TAGS_TAGNAME on tags
 /*==============================================================*/
 create table user_authority
 (
-   user_id              bigint(11) not null comment 'ÓÃ»§ID',
-   authority_id         bigint(11) not null comment 'È¨ÏŞID»òÕßÈ¨ÏŞ×éID',
+   user_id              bigint(11) not null comment 'ç”¨æˆ·ID',
+   authority_id         bigint(11) not null comment 'æƒé™IDæˆ–è€…æƒé™ç»„ID',
    primary key (user_id, authority_id)
 );
 
-alter table user_authority comment 'ÓÃ»§È¨ÏŞ±í';
+alter table user_authority comment 'ç”¨æˆ·æƒé™è¡¨';
 
 /*==============================================================*/
 /* Table: users                                                 */
 /*==============================================================*/
 create table users
 (
-   id                   bigint(11) not null auto_increment comment 'idÖ÷¼ü',
-   username             varchar(30) not null comment 'ÓÃ»§Ãû',
-   email                varchar(30) not null comment 'µç×ÓÓÊ¼ş',
-   password             varchar(40) not null comment '¼ÓÃÜºóµÄÃÜÂë',
-   enabled              tinyint(1) not null default 0 comment '¼¤»î×´Ì¬:
-            1--¼¤»î×´Ì¬
-            0--·Ç¼¤»î×´Ì¬',
-   locked               tinyint(1) not null default 0 comment 'Ëø¶¨×´Ì¬:
-            1--Ëø¶¨×´Ì¬
-            0--·ÇËø¶¨×´Ì¬',
-   pwd_error_times      numeric(3) not null default 0 comment '´ÓÉÏÒ»´ÎµÇÂ¼µ½Ä¿Ç°ÃÜÂëÊäÈë´íÎó´ÎÊı',
-   last_login_timestamp timestamp comment 'ÉÏÒ»´ÎµÇÂ¼µÄÊ±¼ä',
-   last_login_ip        varchar(23) comment 'ÉÏÒ»´ÎµÇÂ¼µÄIP',
-   last_modify_timestamp timestamp not null comment 'ÉÏÒ»´ÎÓÃ»§ĞŞ¸ÄÊ±¼ä',
-   create_timestamp     timestamp not null comment 'Êı¾İ´´½¨Ê±¼ä',
-   reset_pwd_token      varchar(30) comment 'ÖØÖÃÃÜÂëÇëÇóµÄÁîÅÆ',
+   id                   bigint(11) not null auto_increment comment 'idä¸»é”®',
+   username             varchar(30) not null comment 'ç”¨æˆ·å',
+   email                varchar(30) not null comment 'ç”µå­é‚®ä»¶',
+   password             varchar(50) not null comment 'åŠ å¯†åçš„å¯†ç ',
+   enabled              tinyint(1) not null default 0 comment 'æ¿€æ´»çŠ¶æ€:
+            1--æ¿€æ´»çŠ¶æ€
+            0--éæ¿€æ´»çŠ¶æ€',
+   locked               tinyint(1) not null default 0 comment 'é”å®šçŠ¶æ€:
+            1--é”å®šçŠ¶æ€
+            0--éé”å®šçŠ¶æ€',
+   pwd_error_times      numeric(3) not null default 0 comment 'ä»ä¸Šä¸€æ¬¡ç™»å½•åˆ°ç›®å‰å¯†ç è¾“å…¥é”™è¯¯æ¬¡æ•°',
+   last_login_timestamp timestamp comment 'ä¸Šä¸€æ¬¡ç™»å½•çš„æ—¶é—´',
+   last_login_ip        varchar(23) comment 'ä¸Šä¸€æ¬¡ç™»å½•çš„IP',
+   last_modify_timestamp timestamp not null comment 'ä¸Šä¸€æ¬¡ç”¨æˆ·ä¿®æ”¹æ—¶é—´',
+   create_timestamp     timestamp not null comment 'æ•°æ®åˆ›å»ºæ—¶é—´',
+   reset_pwd_token      varchar(30) comment 'é‡ç½®å¯†ç è¯·æ±‚çš„ä»¤ç‰Œ',
    primary key (id)
 );
 
-alter table users comment 'ÓÃ»§±í';
+alter table users comment 'ç”¨æˆ·è¡¨';
 
 /*==============================================================*/
 /* Index: INDEX_UNIQUE_USERS_USERNAME                           */

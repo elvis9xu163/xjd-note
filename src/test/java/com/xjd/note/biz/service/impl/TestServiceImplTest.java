@@ -8,15 +8,25 @@ import com.xjd.note.biz.service.TestService;
 public class TestServiceImplTest extends ServiceBaseTest {
 
 	@Autowired
-	TestService testServiceImpl;
+	TestService testService;
 	
 	@Test
 	public void testTestAnnotation() throws SecurityException, NoSuchMethodException {
-		testServiceImpl.testAnnotation("A");
-		testServiceImpl.testAnnotation("A");
+		testService.testAnnotation("A");
+		testService.testAnnotation("A");
 		
-		testServiceImpl.testAny("A");
-		testServiceImpl.testAny("A");
+		testService.testAny("A");
+		testService.testAny("A");
 	}
 
+	@Test
+	public void testAuth() {
+		try {
+			testService.testAuth();
+			testService.testAuthAny();
+			testService.testAuthAll();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
 }

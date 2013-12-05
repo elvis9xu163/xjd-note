@@ -54,6 +54,9 @@
 				<bean id="test" class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean">
 					<!-- 可以自定义ConcurrentMap -->
 				</bean>
+				<bean id="auth" class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean">
+					<!-- 可以自定义ConcurrentMap -->
+				</bean>
 			</set>
 		</property>
 	</bean>

@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import com.xjd.note.biz.component.TestAnnotation;
+import com.xjd.note.biz.component.test.TestAnnotation;
 import com.xjd.note.biz.service.TestService;
 
 @Service
@@ -35,6 +35,23 @@ public class TestServiceImpl implements TestService {
 	public String testAny(String s) {
 		log.debug("called!");
 		return null;
+	}
+
+	@Override
+	public void testAuth() {
+
+	}
+
+	@Override
+	public void testAuthAny() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void testAuthAll() {
+		// TODO Auto-generated method stub
+
 	}
 
 }

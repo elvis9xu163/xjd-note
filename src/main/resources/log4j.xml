@@ -18,7 +18,7 @@
 	</appender> -->
 	
 	<logger name="com.xjd.note" additivity="true">
-		<level value="DEBUG" />
+		<level value="TRACE" />
 	</logger>
 
 	<root>

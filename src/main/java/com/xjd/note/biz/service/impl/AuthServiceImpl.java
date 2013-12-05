@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.xjd.note.biz.exception.AuthException;
+import com.xjd.note.biz.exception.AuthExceptionType;
 import com.xjd.note.biz.model.Auth;
 import com.xjd.note.biz.model.Authority;
 import com.xjd.note.biz.model.User;
@@ -62,11 +63,11 @@ public class AuthServiceImpl implements AuthService {
 		List<UserDo> userDos = userDoMapper.selectByExample(exp);
 		
 		if (userDos.size() > 1) {
-		    throw new AuthException(AuthException.UNEXPECTED_EXCEPTION_CODE, AuthException.UNEXPECTED_EXCEPTION_MSG);
+		    throw new AuthException(AuthExceptionType.UNEXPECTED_EXCEPTION);
 		}
 		
 		if (userDos.size() < 1) {
-		    throw new AuthException(AuthException.WRONG_USERNAME_OR_PASSWORD_CODE, AuthException.WRONG_USERNAME_OR_PASSWORD_MSG);
+		    throw new AuthException(AuthExceptionType.WRONG_USERNAME_OR_PASSWORD);
 		}
 		
 		Auth auth = new Auth();

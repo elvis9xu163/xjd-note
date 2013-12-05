@@ -1,4 +1,4 @@
-package com.xjd.note.biz.component;
+package com.xjd.note.biz.component.test;
 
 import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;

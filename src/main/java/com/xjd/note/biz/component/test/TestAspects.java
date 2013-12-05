@@ -1,4 +1,4 @@
-package com.xjd.note.biz.component;
+package com.xjd.note.biz.component.test;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 public class TestAspects {
 	private static final Logger log = LoggerFactory.getLogger(TestAspects.class);
 	
-	@Pointcut("@annotation(com.xjd.note.biz.component.TestAnnotation)")
+	@Pointcut("@annotation(com.xjd.note.biz.component.test.TestAnnotation)")
 	public void testAnnotation(){};
 	
 	@Pointcut("execution(* com.xjd.note.biz.service.TestService.*(..))")

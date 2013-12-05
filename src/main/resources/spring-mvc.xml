@@ -23,6 +23,9 @@
 		<!-- 国际化Locale拦截器 -->
 		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
 		<bean class="com.xjd.note.web.locale.LocaleContextChangeInterceptor" />
+		
+		<!-- Auth拦截器 -->
+		<bean class="com.xjd.note.web.auth.AuthInterceptor"/>
 	</mvc:interceptors>
 	
 	<!-- 扫描注解类 -->
@@ -53,6 +56,7 @@
 		<property name="exceptionMappings">
 			<props>
 				<prop key="java.lang.Exception">forward:/error/all</prop>
+				<prop key="com.xjd.note.biz.exception.AuthRuntimeException">forward:/error/auth</prop>
 			</props>
 		</property>
 	</bean>
