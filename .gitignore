@@ -222,3 +222,6 @@ target
 .classpath
 .project
 .mymetadata
+
+#checkstyle
+.checkstyle
