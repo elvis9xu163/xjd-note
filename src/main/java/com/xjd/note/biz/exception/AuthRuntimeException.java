@@ -39,8 +39,9 @@ public class AuthRuntimeException extends RuntimeException {
 	}
 
 	public String getMsg() {
-		if (args == null || args.length == 0)
+		if (args == null || args.length == 0) {
 			return getOriginalMsg();
+		}
 		if (format == null) {
 			format = new MessageFormat(getOriginalMsg());
 		}

@@ -25,7 +25,7 @@ public interface AuthService {
 	 * @since 2013-11-20
 	 */
 	@Cacheable(value="auth")
-	public boolean existsUsernameOrEmail(String nameOrMail);
+	boolean existsUsernameOrEmail(String nameOrMail);
 	
 	
 	/**
@@ -39,5 +39,5 @@ public interface AuthService {
 	 * @since 2013-11-20
 	 */
 	@Cacheable(value="auth")
-	public Auth login(String nameOrMail, String password) throws AuthException;
+	Auth login(String nameOrMail, String password) throws AuthException;
 }

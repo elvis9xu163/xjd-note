@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xjd.note.biz.service.TestService;
 
-
 @Controller
 @RequestMapping("/test")
 public class TestController {
@@ -21,13 +20,13 @@ public class TestController {
 	public String test() {
 		return "/test";
 	}
-	
+
 	@RequestMapping("/string")
 	@ResponseBody
 	public String testString() {
 		return "这是String测试";
 	}
-	
+
 	@RequestMapping("/json")
 	@ResponseBody
 	public Object testJson() {
@@ -35,7 +34,15 @@ public class TestController {
 		map.put("HELLO", "您好!");
 		return map;
 	}
-	
+
+	/**
+	 * <pre>
+	 * 
+	 * </pre>
+	 * @return
+	 * @author elvis.xu
+	 * @since Dec 16, 2013
+	 */
 	@RequestMapping("/json2")
 	@ResponseBody
 	public Object testJson2() {
@@ -44,34 +51,34 @@ public class TestController {
 		list.add("您好!");
 		return list;
 	}
-	
+
 	@RequestMapping("/xml")
 	@ResponseBody
 	public Object testXml() {
 		TestVo testVo = new TestVo();
-		testVo.setName("我");
+		testVo.setName("I");
 		testVo.setAge(300);
 		testVo.setMsg("爱你");
 		return testVo;
 	}
-	
+
 	@Autowired
 	TestService testService;
-	
+
 	@RequestMapping("/auth")
 	@ResponseBody
 	public boolean testAuth() {
 		testService.testAuth();
 		return true;
 	}
-	
+
 	@RequestMapping("/authAny")
 	@ResponseBody
 	public boolean testAuthAny() {
 		testService.testAuthAny();
 		return true;
 	}
-	
+
 	@RequestMapping("/authAll")
 	@ResponseBody
 	public boolean testAuthAll() {

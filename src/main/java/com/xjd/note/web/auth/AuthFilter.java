@@ -2,9 +2,6 @@ package com.xjd.note.web.auth;
 
 import java.io.IOException;
 import java.net.URLEncoder;
-import java.util.Arrays;
-
-import javax.resource.spi.AuthenticationMechanism;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -15,14 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.util.AntPathMatcher;
-import org.springframework.util.PathMatcher;
-
 import com.xjd.note.biz.service.CryptService;
 
 

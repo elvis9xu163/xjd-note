@@ -1,5 +1,12 @@
 package com.xjd.note.biz.exception;
 
+/**
+ * <pre>
+ * TODO
+ * </pre>
+ * @author elvis.xu
+ * @since Dec 17, 2013 1:57:16 PM
+ */
 public enum AuthExceptionType {
 	USER_NOT_EXISTS(10, "User not exists."),
 	

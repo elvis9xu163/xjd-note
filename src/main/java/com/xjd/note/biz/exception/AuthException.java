@@ -1,7 +1,6 @@
 package com.xjd.note.biz.exception;
 
 import java.text.MessageFormat;
-import java.util.Arrays;
 
 /**
  * <pre>
@@ -40,8 +39,9 @@ public class AuthException extends Exception {
 	}
 
 	public String getMsg() {
-		if (args == null || args.length == 0)
+		if (args == null || args.length == 0) {
 			return getOriginalMsg();
+		}
 		if (format == null) {
 			format = new MessageFormat(getOriginalMsg());
 		}

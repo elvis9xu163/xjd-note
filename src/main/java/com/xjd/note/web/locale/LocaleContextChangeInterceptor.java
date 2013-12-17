@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.context.i18n.SimpleLocaleContext;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 

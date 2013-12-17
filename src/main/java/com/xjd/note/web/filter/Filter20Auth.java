@@ -1,8 +1,6 @@
 package com.xjd.note.web.filter;
 
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.annotation.WebInitParam;
-
 import org.springframework.web.filter.DelegatingFilterProxy;
 
 /*@WebFilter(filterName="authFilter", urlPatterns={"/*"}, initParams=
