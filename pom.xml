@@ -8,6 +8,20 @@
 	<version>1.0.0</version>
 	<packaging>war</packaging>
 	<name>XJD Note</name>
+	
+	<url>//none</url>
+	<description>XJD Note System</description>
+	
+	<developers>
+		<developer>
+			<name>elvis.xu</name>
+			<email>elvis9xu@163.com</email>
+			<roles>
+				<role>admin</role>
+				<role>developer</role>
+			</roles>
+		</developer>
+	</developers>
 
 	<properties>
 		<java-version>1.6</java-version>
@@ -21,7 +35,7 @@
 		<mybatis.generator.configurationFile>${basedir}/mybatis.generator.config.xml</mybatis.generator.configurationFile>
 		<mybatis.generator.overwrite>true</mybatis.generator.overwrite>
 		<mybatis.generator.verbose>true</mybatis.generator.verbose>
-		
+
 		<!-- checkstyle -->
 		<checkstyle.config.location>mycheckstyle.xml</checkstyle.config.location>
 		<checkstyle.excludes>**/mapper/*, **/dao/model/*</checkstyle.excludes>
@@ -278,6 +292,18 @@
 
 	</dependencies>
 	<build>
+		<resources>
+			<resource>
+				<directory>${basedir}/src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+			<resource>
+				<directory>${basedir}/src/main/java</directory>
+				<includes>
+					<include>*.xml</include>
+				</includes>
+			</resource>
+		</resources>
 		<plugins>
 			<!-- 配置编译器 -->
 			<plugin>
@@ -301,6 +327,20 @@
 			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<id>local</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<data.jdbc.driverClass>com.mysql.jdbc.Driver</data.jdbc.driverClass>
+				<data.jdbc.url>jdbc:mysql://localhost/xjd_note</data.jdbc.url>
+				<data.jdbc.username>xjd</data.jdbc.username>
+				<data.jdbc.password>xjd</data.jdbc.password>
+			</properties>
+		</profile>
+	</profiles>
 	<reporting>
 		<plugins>
 			<plugin>

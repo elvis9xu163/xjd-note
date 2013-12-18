@@ -8,15 +8,15 @@ package com.xjd.note.biz.service;
  * @since 2013-11-19
  */
 public interface CryptService {
-	public static final String CODE_BASE64 = "BASE64";
-	public static final String CODE_HEX = "HEX";
+	String CODE_BASE64 = "BASE64";
+	String CODE_HEX = "HEX";
 	
-	public static final String CIPHER_DES = "DES";
-	public static final String CIPHER_DESede = "DESede";
-	public static final String CIPHER_AES = "AES";
+	String CIPHER_DES = "DES";
+	String CIPHER_DESEDE = "DESede";
+	String CIPHER_AES = "AES";
 	
-	public static final String DIGEST_MD5 = "MD5";
-	public static final String DIGEST_SHA1 = "SHA-1";
+	String DIGEST_MD5 = "MD5";
+	String DIGEST_SHA1 = "SHA-1";
 
 	/**
 	 * <pre>

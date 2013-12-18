@@ -18,7 +18,7 @@ import com.xjd.util.crypt.DigestUtil;
 
 /**
  * <pre>
- * 
+ * 默认CryptService实现
  * </pre>
  * @author elvis.xu
  * @since 2013-11-19
@@ -29,7 +29,7 @@ public class CryptServiceImpl implements CryptService {
 	
 	public static final String DEFAULT_CODE_STRING = CryptService.CODE_BASE64;
 	public static final String DEFAULT_CODE_ALGORITHM = CryptService.CODE_BASE64;
-	public static final String DEFAULT_CIPHER_ALGORITHM = CryptService.CIPHER_DESede;
+	public static final String DEFAULT_CIPHER_ALGORITHM = CryptService.CIPHER_DESEDE;
 	public static final String DEFAULT_DIGEST_ALGORITHM = CryptService.DIGEST_SHA1;
 	
 	@Value("#{properties['crypt.charset']}")
@@ -61,6 +61,13 @@ public class CryptServiceImpl implements CryptService {
 	protected byte[] desedeKeyBytes;
 	protected byte[] aesKeyBytes;
 
+	/**
+	 * <pre>
+	 * 初始化
+	 * </pre>
+	 * @author elvis.xu
+	 * @since Dec 18, 2013 3:19:37 PM
+	 */
 	@PostConstruct
 	public void init() {
 		if (StringUtils.isBlank(charsetName)) {
@@ -108,6 +115,15 @@ public class CryptServiceImpl implements CryptService {
 		aesKeyBytes = encodedString2Bytes(aesKey);
 	}
 
+	/**
+	 * <pre>
+	 * 根据加密算法获取Key
+	 * </pre>
+	 * @param algorithm
+	 * @return
+	 * @author elvis.xu
+	 * @since Dec 18, 2013 3:20:16 PM
+	 */
 	public byte[] getKey(String algorithm) {
 		byte[] key = null;
 		if (CipherUtil.DES.equalsIgnoreCase(algorithm)) {

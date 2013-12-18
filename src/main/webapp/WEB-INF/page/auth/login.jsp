@@ -7,7 +7,7 @@
 <title><fmt:message key="welcome_to_xjd_note"/></title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="shortcut icon" href="<c:url value='/assets/ico/favicon.png'/>" />
+<link rel="shortcut icon" href="<c:url value='/assets/ico/logo-32.png'/>" />
 
 <!-- css -->
 <link href="<c:url value='/css/bootstrap.min.css'/>" rel="stylesheet" media="screen">

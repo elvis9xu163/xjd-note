@@ -11,6 +11,13 @@ import org.springframework.stereotype.Service;
 import com.xjd.note.biz.component.test.TestAnnotation;
 import com.xjd.note.biz.service.TestService;
 
+/**
+ * <pre>
+ * 
+ * </pre>
+ * @author elvis.xu
+ * @since Dec 18, 2013 3:20:58 PM
+ */
 @Service
 public class TestServiceImpl implements TestService {
 	private static final Logger log = LoggerFactory.getLogger(TestServiceImpl.class);
@@ -18,6 +25,13 @@ public class TestServiceImpl implements TestService {
 	@Autowired
 	protected Validator validator;
 
+	/**
+	 * <pre>
+	 * 
+	 * </pre>
+	 * @author elvis.xu
+	 * @since Dec 18, 2013 3:21:01 PM
+	 */
 	@PostConstruct
 	protected void print() {
 		log.debug("" + validator);

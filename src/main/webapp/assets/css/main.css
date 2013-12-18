@@ -1,0 +1,6 @@
+.navbar-inner {
+	background-image: linear-gradient(rgb(94,202,80), rgb(84,169,84));
+}
+.navbar .brand {
+	color: #fff;
+}

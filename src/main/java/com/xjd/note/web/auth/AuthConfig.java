@@ -11,6 +11,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.util.PathMatcher;
 
+/**
+ * <pre>
+ * 授权相关配置类
+ * </pre>
+ * @author elvis.xu
+ * @since Dec 18, 2013 3:24:56 PM
+ */
 @Component
 public class AuthConfig {
 	private static final Logger log = LoggerFactory.getLogger(AuthConfig.class);
@@ -38,6 +45,13 @@ public class AuthConfig {
 	
 	protected PathMatcher pathMatcher = new AntPathMatcher();
 	
+	/**
+	 * <pre>
+	 * 初始化
+	 * </pre>
+	 * @author elvis.xu
+	 * @since Dec 18, 2013 3:25:39 PM
+	 */
 	@PostConstruct
 	public void init() {
 		log.info("initializing...");
@@ -80,6 +94,15 @@ public class AuthConfig {
 		return authFailPath;
 	}
 	
+	/**
+	 * <pre>
+	 * 判断给定的路径是否在忽略路径内
+	 * </pre>
+	 * @param path
+	 * @return
+	 * @author elvis.xu
+	 * @since Dec 18, 2013 3:25:57 PM
+	 */
 	public String findMatchIgnorePattern(String path) {
 		if (ignorePathPatterns != null) {
 			for (String ignorePathPatt : ignorePathPatterns) {

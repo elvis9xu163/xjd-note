@@ -4,7 +4,8 @@
 	
 	<appender name="console" class="org.apache.log4j.ConsoleAppender">
 		<layout class="org.apache.log4j.PatternLayout">
-			<param name="conversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %5p %l: %L - %m%n"/>
+			<!-- <param name="conversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %5p %l: %L - %m%n"/> -->
+			<param name="conversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %5p (%F:%M:%L) - %m%n"/>
 		</layout>
 	</appender>
 	
@@ -19,6 +20,14 @@
 	
 	<logger name="com.xjd.note" additivity="true">
 		<level value="TRACE" />
+	</logger>
+	
+	<logger name="com.xjd.note.web.auth.AuthFilter" additivity="true">
+		<level value="info" />
+	</logger>
+	
+	<logger name="com.xjd.note.web.session.SessionFilter" additivity="true">
+		<level value="info" />
 	</logger>
 
 	<root>

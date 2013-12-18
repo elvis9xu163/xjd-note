@@ -24,10 +24,10 @@ import com.xjd.note.dao.model.UserDoExample;
 
 /**
  * <pre>
- * 
+ * 默认权限服务实现
  * </pre>
  * @author elvis.xu
- * @since 2013-12-2
+ * @since Dec 18, 2013 3:18:17 PM
  */
 @Service
 public class AuthServiceImpl implements AuthService {
@@ -89,6 +89,15 @@ public class AuthServiceImpl implements AuthService {
 		return auth;
 	}
 
+	/**
+	 * <pre>
+	 * 加密密码
+	 * </pre>
+	 * @param password
+	 * @return
+	 * @author elvis.xu
+	 * @since Dec 18, 2013 3:18:47 PM
+	 */
 	protected String encodePassword(String password) {
 		return cryptService.bytes2EncodedString(cryptService.digest(password.getBytes(charset)));
 	}

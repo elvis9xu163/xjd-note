@@ -64,7 +64,8 @@
 		<mime-type>text/html;charset=UTF-8</mime-type>
 	</mime-mapping>
 
-	<security-constraint>
+	<!-- 强制使用SSL/TLS -->
+	<!-- <security-constraint>
 		<web-resource-collection>
 			<web-resource-name>SSL</web-resource-name>
 			<url-pattern>/test/*</url-pattern>
@@ -72,5 +73,5 @@
 		<user-data-constraint>
 			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
 		</user-data-constraint>
-	</security-constraint>
+	</security-constraint> -->
 </web-app>

@@ -21,6 +21,13 @@ import com.xjd.note.biz.exception.AuthExceptionType;
 import com.xjd.note.biz.model.Auth;
 import com.xjd.note.biz.service.AuthService;
 
+/**
+ * <pre>
+ * 权限相关Controller
+ * </pre>
+ * @author elvis.xu
+ * @since Dec 18, 2013 3:26:42 PM
+ */
 @Controller
 @RequestMapping("/auth")
 @SessionAttributes("user")
@@ -36,15 +43,38 @@ public class AuthController {
 	@Autowired
 	MessageSourceAccessor messageSourceAccessor;
 
+	/**
+	 * <pre>
+	 * 登录入口
+	 * </pre>
+	 * @return
+	 * @author elvis.xu
+	 * @since Dec 18, 2013 3:26:57 PM
+	 */
 	@RequestMapping("/input")
 	public String input() {
 		return "/auth/login";
 	}
 
+	/**
+	 * <pre>
+	 * 登录动作
+	 * </pre>
+	 * @param username
+	 * @param password
+	 * @param rememberme
+	 * @param targetPath
+	 * @param model
+	 * @return
+	 * @throws UnsupportedEncodingException
+	 * @author elvis.xu
+	 * @since Dec 18, 2013 3:27:17 PM
+	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(@RequestParam("username") String username, @RequestParam("password") String password,
-			@RequestParam(value = "rememberme", required = false) String rememberme, @ModelAttribute("targetPath") String targetPath,
-			Map<String, Object> model) throws UnsupportedEncodingException {
+			@RequestParam(value = "rememberme", required = false) String rememberme,
+			@ModelAttribute("targetPath") String targetPath, Map<String, Object> model)
+			throws UnsupportedEncodingException {
 
 		Auth auth = null;
 		try {
@@ -69,10 +99,19 @@ public class AuthController {
 			return "redirect:" + targetPath;
 
 		} else {
-			return "forward:/main";
+			return "redirect:/";
 		}
 	}
 
+	/**
+	 * <pre>
+	 * 登出
+	 * </pre>
+	 * @param status
+	 * @return
+	 * @author elvis.xu
+	 * @since Dec 18, 2013 3:27:29 PM
+	 */
 	@RequestMapping("/logout")
 	public String logout(SessionStatus status) {
 		status.setComplete();

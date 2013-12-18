@@ -26,19 +26,21 @@ public class LocaleContextChangeInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		Locale locale;
 		HttpSession session = request.getSession(false);
-		
-		locale = session == null ? null : (Locale) session.getAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME);
+
+		locale = session == null ? null : (Locale) session
+				.getAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME);
 		locale = locale == null ? request.getLocale() : locale;
-		
+
 		if (locale != null) {
 			LocaleContextHolder.setLocale(locale);
 		}
-		
+
 		return true;
 	}
 
 	@Override
-	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
+			throws Exception {
 		LocaleContextHolder.resetLocaleContext();
 	}
 

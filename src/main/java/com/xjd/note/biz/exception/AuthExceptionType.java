@@ -2,7 +2,7 @@ package com.xjd.note.biz.exception;
 
 /**
  * <pre>
- * TODO
+ * 授权异常种类枚举
  * </pre>
  * @author elvis.xu
  * @since Dec 17, 2013 1:57:16 PM
@@ -21,22 +21,29 @@ public enum AuthExceptionType {
 	NO_AUTH_EXPRESSION_SET(41, "Need authorizing, but no auth-expression set."),
 	
 	UNEXPECTED_EXCEPTION(90, "Unexpected exception.")
-	
 	;
 	
+	/**
+	 * 代码
+	 * @author elvis.xu
+	 */
 	int code;
-	String msg;
+	/**
+	 * 消息模板
+	 * @author elvis.xu
+	 */
+	String msgTemplate;
 	
-	AuthExceptionType(int code, String msg) {
+	AuthExceptionType(int code, String msgTemplate) {
 		this.code = code;
-		this.msg = msg;
+		this.msgTemplate = msgTemplate;
 	}
 
 	public int getCode() {
 		return code;
 	}
 
-	public String getMsg() {
-		return msg;
+	public String getMsgTemplate() {
+		return msgTemplate;
 	}
 }

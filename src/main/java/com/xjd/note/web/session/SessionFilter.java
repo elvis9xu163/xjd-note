@@ -15,6 +15,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+/**
+ * <pre>
+ * Session相关的Filter
+ * </pre>
+ * @author elvis.xu
+ * @since Dec 18, 2013 3:37:49 PM
+ */
 @Component("sessionFilter")
 public class SessionFilter implements Filter {
 	private static Logger log = LoggerFactory.getLogger(SessionFilter.class);
@@ -25,9 +32,10 @@ public class SessionFilter implements Filter {
 	}
 
 	@Override
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException,
+			ServletException {
 		if (request instanceof HttpServletRequest && response instanceof HttpServletResponse) {
-			request = new CacheHttpServletRequestWrapper((HttpServletRequest)request, (HttpServletResponse)response);
+			request = new CacheHttpServletRequestWrapper((HttpServletRequest) request, (HttpServletResponse) response);
 			log.debug("The request has been wrapped.");
 		} else {
 			log.warn("Can not wrap request! Be sure the request/response is instance of HttpServletRequest/HttpServletResponse.");

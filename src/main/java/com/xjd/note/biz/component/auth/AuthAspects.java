@@ -24,6 +24,14 @@ import org.springframework.stereotype.Component;
 import com.xjd.note.biz.exception.AuthExceptionType;
 import com.xjd.note.biz.exception.AuthRuntimeException;
 
+/**
+ * <pre>
+ * 授权检查切面类
+ * 为添加注释的服务自动检查授权信息
+ * </pre>
+ * @author elvis.xu
+ * @since Dec 18, 2013 2:52:22 PM
+ */
 @Component
 @Aspect
 @Order(10)
@@ -37,15 +45,37 @@ public class AuthAspects {
 	
 	EvaluationContext evaluationContext;
 	
+	/**
+	 * <pre>
+	 * 初始化
+	 * </pre>
+	 * @author elvis.xu
+	 * @since Dec 18, 2013 2:53:30 PM
+	 */
 	@PostConstruct
 	public void init() {
 		parser = new SpelExpressionParser();
 		evaluationContext = new StandardEvaluationContext(authDecider);
 	}
 
+	/**
+	 * <pre>
+	 * 切面
+	 * </pre>
+	 * @author elvis.xu
+	 * @since Dec 18, 2013 2:53:50 PM
+	 */
 	@Pointcut("execution(* com.xjd.note.biz.service.*.*(..))")
 	public void authPointcut(){}
 	
+	/**
+	 * <pre>
+	 * 切面方法
+	 * </pre>
+	 * @param jp
+	 * @author elvis.xu
+	 * @since Dec 18, 2013 2:54:18 PM
+	 */
 	@Before("authPointcut()")
 	public void before(JoinPoint jp) {
 		if (jp.getSignature() instanceof MethodSignature) {

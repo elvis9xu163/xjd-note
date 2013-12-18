@@ -5,6 +5,13 @@ import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ * <pre>
+ * 分布式Session的RequestWrapper
+ * </pre>
+ * @author elvis.xu
+ * @since Dec 18, 2013 3:37:07 PM
+ */
 public class CacheHttpServletRequestWrapper extends HttpServletRequestWrapper {
 	private HttpServletResponse httpServletResponse;
 	

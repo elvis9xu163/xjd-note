@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * <pre>
- * TODO
+ * 授权对象
  * </pre>
  * @author elvis.xu
  * @since Dec 17, 2013 1:58:09 PM
