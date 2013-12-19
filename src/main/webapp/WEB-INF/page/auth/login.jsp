@@ -10,8 +10,7 @@
 <link rel="shortcut icon" href="<c:url value='/assets/ico/logo-32.png'/>" />
 
 <!-- css -->
-<link href="<c:url value='/css/bootstrap.min.css'/>" rel="stylesheet" media="screen">
-<link href="<c:url value='/css/bootstrap-responsive.min.css'/>" rel="stylesheet" media="screen">
+<jsp:include page="../common/css-common.jsp" />
 <link href="<c:url value='/assets/css/login.css'/>" rel="stylesheet" media="screen">
 <style>
 
@@ -87,8 +86,8 @@
 										</span>
 									</div>
 									<div class="row-fluid">
-										<button class="btn btn-success btn-large span6" type="submit"><fmt:message key="login"/></button>
-										<button class="btn btn-info btn-large span6"><fmt:message key="register"/></button>
+										<button class="btn btn-success btn-large span6" type="submit"><i class="fa fa-sign-in"></i><fmt:message key="login"/></button>
+										<button class="btn btn-info btn-large span6"><i class="fa fa-pencil-square-o"></i><fmt:message key="register"/></button>
 									</div>
 								</div>
 							</div>

@@ -1,6 +1,30 @@
-.navbar-inner {
+.nav-top .navbar-inner {
+	background-image: linear-gradient(rgb(94,202,80), rgb(84,169,84));
+	min-height: 30px;
+	border-bottom: 0px;	
+}
+
+.margin-right-fw {
+	margin-right: 10px
+}
+
+.nav-top .dropdown-menu {
+	min-width: 0px;
 	background-image: linear-gradient(rgb(94,202,80), rgb(84,169,84));
 }
-.navbar .brand {
+
+.nav-top .dropdown-menu>li>a {
+	line-height: 20px;
 	color: #fff;
+	padding: 3px 20px;
+}
+
+.nav-top .dropdown-menu .divider {
+	margin: 2px 1px;
+	opacity: .65;
+	background-color: #b3b3b3;
+}
+
+.container {
+	width: 100%;
 }

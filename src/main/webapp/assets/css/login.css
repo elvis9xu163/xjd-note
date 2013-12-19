@@ -187,3 +187,12 @@ hr {
 .dropdown-menu {
 	background-color: #eaeeef;
 }
+
+.btn {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.btn i {
+	margin-right: 5px;
+}
