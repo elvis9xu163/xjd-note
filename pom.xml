@@ -300,7 +300,7 @@
 			<resource>
 				<directory>${basedir}/src/main/java</directory>
 				<includes>
-					<include>*.xml</include>
+					<include>**/*.xml</include>
 				</includes>
 			</resource>
 		</resources>

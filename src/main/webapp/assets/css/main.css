@@ -28,3 +28,13 @@
 .container {
 	width: 100%;
 }
+
+.row-fluid .span9 {
+	margin-left: 10px;
+}
+.v-divider {
+	float:left;
+	width: 1px;
+	min-height: 100px;
+	background-color: black;
+}
