@@ -35,4 +35,17 @@ public class MainController {
 		}
 		return "/main";
 	}
+	
+	/**
+	 * <pre>
+	 * 打开编辑窗口
+	 * </pre>
+	 * @return
+	 * @author elvis.xu
+	 * @since Dec 20, 2013 5:20:02 PM
+	 */
+	@RequestMapping("/editor")
+	public String editor() {
+		return "/editor";
+	}
 }

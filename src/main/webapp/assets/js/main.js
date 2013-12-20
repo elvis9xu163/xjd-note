@@ -9,6 +9,10 @@ $(function() {
 		$(".main-body .body-tree").height(mainbodyhight);
 		$(".main-body .body-body").height(mainbodyhight);
 		$(".ztree").height(mainbodyhight - 10);
+		$("iframe").height(mainbodyhight);
+		$("iframe").contents().find("body").height(mainbodyhight);
+		alert($("iframe").contents().find("body"));
+//		$("#editor").height(mainbodyhight);
 	}
 	//自适应宽度
 	function adjustUIWidth() {
@@ -98,7 +102,7 @@ $(function() {
 		draging = false;
 	});
 	
-	//=============Data============
+	//=============Tree============
 	var zTree;
 	var demoIframe;
 	var setting = {
@@ -134,8 +138,7 @@ $(function() {
 //		var zTree = $.fn.zTree.getZTreeObj("tree");
 //		zTree.selectNode(zTree.getNodeByParam("id", 101));
 
-	demoIframe = $("#testIframe");
-	demoIframe.attr("src", "http://www.baidu.com");
-	demoIframe.bind("load", loadReady);
-
+	//=============Editor=============
+	//实例化编辑器
+//    var ue = UE.getEditor('editor');
 });
