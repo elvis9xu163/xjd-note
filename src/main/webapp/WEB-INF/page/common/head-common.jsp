@@ -3,7 +3,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div class="navbar navbar-static-top nav-top">
 	<div class="navbar-inner">
-		
 		<div class="btn-group pull-right">
 			<a class="btn btn-mini btn-success disabled">
 				<i class="fa fa-user"></i>
@@ -13,14 +12,18 @@
 				<span class="fa fa-angle-down"></span>
 			</a>
 			<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-				<li><a tabindex="-1" href="javascript:changeLanguage('zh_CN');">
+				<li><a tabindex="-1" href="javascript:doSetting();">
 					<i class="fa fa-cogs margin-right-fw"></i><fmt:message key="settings" />
 				</a></li>
 				<li class="divider"></li>
-				<li><a tabindex="-1" href="javascript:changeLanguage('en_US');">
+				<li><a tabindex="-1" href="javascript:doLogout();">
 					<i class="fa fa-sign-out margin-right-fw"></i><fmt:message key="quit" />
 				</a></li>
 			</ul>
 		</div>
 	</div>
 </div>
+<form id="headForm" style="display: none;"></form>
+<script type="text/javascript">
+	var quitUrl = '<c:url value="/auth/logout"/>';
+</script>

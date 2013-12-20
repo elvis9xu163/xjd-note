@@ -24,6 +24,9 @@
 		<div class="navbar navbar-static-top nav-head">
 			<div class="navbar-inner">
 				<a class="brand" href="#"><fmt:message key="xjd_note" /></a>
+				<ul class="nav">
+					<li class="divider-vertical"></li>
+				</ul>
 				<form class="navbar-form">
 					<div class="input-append">
 						<input class="input-large" type="text" placeholder=""/>
@@ -33,18 +36,28 @@
 			</div>
 		</div>
 		<div class="row-fluid main-body">
-			<div class="span3">
-				<ul id="tree" class="ztree" style="width:260px; overflow:auto;"></ul>
+			<div class="span3 body-tree">
+				<ul id="tree" class="ztree" style="overflow: auto;"></ul>
 			</div>
-			<div class="v-divider"></div>
-			<div class="span9" style="border: ">
-				<IFRAME ID="testIframe" Name="testIframe" FRAMEBORDER=0 SCROLLING=AUTO width=100%  height=100% SRC=""></IFRAME>
+			<div class="v-divider">
+				<i class="fa fa-angle-left"></i>
+			</div>
+			<div class="span9 body-body">
+				<iframe id="testIframe" name="testIframe"></iframe>
 			</div>
 		</div>
+		<div class="navbar nav-footer navbar-static-top">
+			<div class="navbar-inner">
+			</div>
+		</div>
+	</div>
+	<div id="debug" style="position: absolute; left: 10px; top: 10px; width: 100px; height: 20px; z-index: 100">
 	</div>
 	<!-- Placed at the end of the document so the pages load faster -->
 	<jsp:include page="common/js-common.jsp" />
 	<script type="text/javascript" src="<c:url value='/assets/zTreeStyle/jquery.ztree.core-3.5.min.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/assets/js/head.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/assets/js/json-data.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/assets/js/main.js'/>"></script>
 </body>
 </html>

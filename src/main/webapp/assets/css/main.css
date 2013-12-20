@@ -25,16 +25,72 @@
 	background-color: #b3b3b3;
 }
 
-.container {
-	width: 100%;
+.navbar-form .input-append {
+	height: 25px;
 }
 
-.row-fluid .span9 {
-	margin-left: 10px;
+.nav-footer {
+	
 }
-.v-divider {
+
+.nav-footer .navbar-inner {
+	min-height: 20px;
+	background-image: linear-gradient(rgb(255, 255, 255), rgb(242, 242, 242));
+	border-bottom-width: 0px;
+	border-top: 1px solid rgb(212, 212, 212);
+}
+
+.container {
+	width: 100%;
+	height: 100%;
+}
+
+.main-body {
+	height: 100%;
+}
+
+.row-fluid .body-tree {
+	overflow: auto;
+	width: 23%;
+	margin-left: 0px;
+	margin-right: 0px;
+	background-image: linear-gradient(90deg, rgb(242, 242, 242), rgb(255, 255, 255), rgb(242, 242, 242));
+}
+
+.row-fluid .body-body {
+	margin-left: 5px;
+	margin-right: 0px;
+}
+
+.row-fluid .v-divider {
+	margin-left: 0px;
+	margin-right: 0px;
 	float:left;
-	width: 1px;
-	min-height: 100px;
-	background-color: black;
+	background-image: url(http://ynif.v099.10000net.cn/qui/system/layout_modern/skin/bs_arrbg.jpg);
+	background-repeat: repeat-y;
+	background-image: linear-gradient(90deg, rgb(242, 242, 242), rgb(255, 255, 255), rgb(242, 242, 242));
+	border-collapse: separate;
+	border-left: 1px solid rgb(212, 212, 212);
+	border-right: 1px solid rgb(212, 212, 212);
+	cursor: e-resize;
+	display: block;
+	width: 5px;
+}
+
+.row-fluid .v-divider i {
+	cursor: pointer;
+	color: gray;
+	background-color: white;
+}
+
+.row-fluid .v-divider i:hover {
+	color: white;
+	background-color: gray;
+}
+
+iframe {
+	width: 100%;
+	height: 100%;
+	border: 0px;
+	overflow: auto;
 }

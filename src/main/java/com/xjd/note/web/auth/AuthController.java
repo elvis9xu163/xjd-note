@@ -115,6 +115,6 @@ public class AuthController {
 	@RequestMapping("/logout")
 	public String logout(SessionStatus status) {
 		status.setComplete();
-		return "/auth/login";
+		return "redirect:/auth/input";
 	}
 }
