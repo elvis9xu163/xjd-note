@@ -12,7 +12,6 @@
 <!-- css -->
 <jsp:include page="common/css-common.jsp" />
 <link href="<c:url value='/assets/zTreeStyle/zTreeStyle.css'/>" rel="stylesheet" media="screen">
-<%-- <link href="<c:url value='/assets/ueditor/themes/default/css/ueditor.min.css'/>" rel="stylesheet" media="screen"> --%>
 <link href="<c:url value='/assets/css/main.css'/>" rel="stylesheet" media="screen">
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
@@ -45,7 +44,6 @@
 			</div>
 			<div class="span9 body-body">
 				<iframe id="testIframe" name="testIframe" src="<c:url value='/editor'/>"></iframe>
-				<!-- <script id="editor" type="text/plain" style="width:100%;height:100%;overflow:auto;"></script> -->
 			</div>
 		</div>
 		<div class="navbar nav-footer navbar-static-top">
@@ -58,9 +56,6 @@
 	<!-- Placed at the end of the document so the pages load faster -->
 	<jsp:include page="common/js-common.jsp" />
 	<script type="text/javascript" src="<c:url value='/assets/zTreeStyle/jquery.ztree.core-3.5.min.js'/>"></script>
-	<script type="text/javascript" src="<c:url value='/assets/ueditor/ueditor.config.js'/>"></script>
-	<script type="text/javascript" src="<c:url value='/assets/ueditor/ueditor.all.min.js'/>"></script>
-	<script type="text/javascript" src="<c:url value='/assets/lang/zh-cn/zh-cn.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/assets/js/head.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/assets/js/json-data.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/assets/js/main.js'/>"></script>

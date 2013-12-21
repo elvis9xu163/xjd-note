@@ -1,7 +1,13 @@
 $(function() {
+	window.frameLoaded = false;
+	window.eidtorReady = false;
+	$("iframe").load(function() {
+		frameLoaded = true;
+		adjustUIHight();
+	});
 	//=============UI==============
 	//自适应高度
-	function adjustUIHight() {
+	window.adjustUIHight = function () {
 		var mainbodyhight = $(window).height() - $(".nav-head").height() - $(".nav-top").height() - $(".nav-footer").height();
 		$(".main-body").height(mainbodyhight);
 		$(".main-body .v-divider").height(mainbodyhight);
@@ -10,13 +16,18 @@ $(function() {
 		$(".main-body .body-body").height(mainbodyhight);
 		$(".ztree").height(mainbodyhight - 10);
 		$("iframe").height(mainbodyhight);
-		$("iframe").contents().find("body").height(mainbodyhight);
-		alert($("iframe").contents().find("body"));
-//		$("#editor").height(mainbodyhight);
+		if (frameLoaded && eidtorReady) {
+			var iframebody = $("iframe").contents().find("body");
+			iframebody.height(mainbodyhight);
+			$("iframe")[0].contentWindow.adjustUIHeight(); 
+		}
 	}
 	//自适应宽度
 	function adjustUIWidth() {
-		$(".main-body .body-body").width($(".main-body").width() - $(".main-body .v-divider").width() - $(".main-body .body-tree").width() - 25);
+		$(".main-body .body-body").width($(".main-body").width() - $(".main-body .v-divider").width() - $(".main-body .body-tree").width() - 8);
+		if (frameLoaded && eidtorReady) {
+			$("iframe")[0].contentWindow.adjustUISize();
+		}
 	}
 	
 	//window resize事件

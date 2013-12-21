@@ -19,8 +19,8 @@
 </head>
 <body>
 	
-	<div style="width:100%;height:100%;overflow:auto;">
-		<script id="editor" type="text/plain" style="width:100%;height:100%;overflow:auto;"></script>
+	<div id="editorDiv" style="width:100%; height:100%; overflow: auto; ">
+		<script id="editor" type="text/plain" style="width:99%; height:100%;overflow:visible"></script>
 	</div>
 	
 	<!-- Placed at the end of the document so the pages load faster -->
@@ -29,8 +29,28 @@
 	<script type="text/javascript" src="<c:url value='/assets/ueditor/ueditor.all.min.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/assets/lang/zh-cn/zh-cn.js'/>"></script>
 	<script type="text/javascript">
-		var ue = UE.getEditor('editor');
+		window.ue = UE.getEditor('editor');
 		
+		//set editor height
+		window.adjustUIHeight = function() {
+			ue.setHeight($("body").height() - $("#edui1_toolbarbox").height() - $("#edui1_bottombar").height() - 2);
+		}
+		
+		window.adjustUIWidth = function() {
+			var w = $("#editor").width();
+			$("#edui1").width(w);
+			$("#edui1_iframeholder").width(w - 2);
+		}
+		
+		window.adjustUISize = function() {
+			adjustUIWidth();
+			adjustUIHeight();
+		}
+		
+		ue.addListener("ready", function() {
+			window.parent.eidtorReady = true;
+			window.parent.adjustUIHight();
+		});
 	</script>	
 </body>
 </html>
