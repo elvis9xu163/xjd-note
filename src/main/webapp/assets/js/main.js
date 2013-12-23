@@ -8,13 +8,15 @@ $(function() {
 	//=============UI==============
 	//自适应高度
 	window.adjustUIHight = function () {
-		var mainbodyhight = $(window).height() - $(".nav-head").height() - $(".nav-top").height() - $(".nav-footer").height();
+		//var mainbodyhight = $(window).height() - $(".nav-head").height() - $(".nav-top").height() - $(".nav-footer").height() - 2;
+		var mainbodyhight = $(window).height() - $(".nav-top").height() - 10;
 		$(".main-body").height(mainbodyhight);
 		$(".main-body .v-divider").height(mainbodyhight);
 		$(".main-body .v-divider i").css("margin-top", mainbodyhight/2 - 5);
 		$(".main-body .body-tree").height(mainbodyhight);
+//		$(".main-body .body-tree #tree").height(mainbodyhight - $(".main-body .body-tree .navbar-inner").height());
 		$(".main-body .body-body").height(mainbodyhight);
-		$(".ztree").height(mainbodyhight - 10);
+		$(".ztree").height(mainbodyhight - $(".main-body .body-tree .navbar-inner").height() - 10 - 5);
 		$("iframe").height(mainbodyhight);
 		if (frameLoaded && eidtorReady) {
 			var iframebody = $("iframe").contents().find("body");
@@ -24,7 +26,7 @@ $(function() {
 	}
 	//自适应宽度
 	function adjustUIWidth() {
-		$(".main-body .body-body").width($(".main-body").width() - $(".main-body .v-divider").width() - $(".main-body .body-tree").width() - 8);
+		$(".main-body .body-body").width($(".main-body").width() - $(".main-body .v-divider").width() - $(".main-body .body-tree").width() - 2);
 		if (frameLoaded && eidtorReady) {
 			$("iframe")[0].contentWindow.adjustUISize();
 		}
@@ -117,6 +119,12 @@ $(function() {
 	var zTree;
 	var demoIframe;
 	var setting = {
+		async: {
+			enable: true,
+			url: listNodesUrl,
+			autoParam: ["id", "name", "level"],
+			type: "post"
+		},
 		view: {
 			dblClickExpand: false,
 			showLine: false,
@@ -126,30 +134,11 @@ $(function() {
 			simpleData: {
 				enable:true,
 				idKey: "id",
-				pIdKey: "pId",
-				rootPId: ""
-			}
-		},
-		callback: {
-			beforeClick: function(treeId, treeNode) {
-				var zTree = $.fn.zTree.getZTreeObj("tree");
-				if (treeNode.isParent) {
-					zTree.expandNode(treeNode);
-					return false;
-				} else {
-					demoIframe.attr("src",treeNode.file + ".html");
-					return true;
-				}
+				pIdKey: "parentId"
 			}
 		}
 	};
 	
 	var t = $("#tree");
-	t = $.fn.zTree.init(t, setting, zNodes);
-//		var zTree = $.fn.zTree.getZTreeObj("tree");
-//		zTree.selectNode(zTree.getNodeByParam("id", 101));
-
-	//=============Editor=============
-	//实例化编辑器
-//    var ue = UE.getEditor('editor');
+	t = $.fn.zTree.init(t, setting);
 });

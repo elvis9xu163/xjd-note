@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div class="navbar navbar-static-top nav-top">
 	<div class="navbar-inner">
+		<a class="brand" href="#"><fmt:message key="xjd_note" /></a>
 		<div class="btn-group pull-right">
 			<a class="btn btn-mini btn-success disabled">
 				<i class="fa fa-user"></i>
