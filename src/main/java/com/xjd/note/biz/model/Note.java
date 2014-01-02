@@ -2,6 +2,9 @@ package com.xjd.note.biz.model;
 
 import java.util.Date;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
+
 public class Note extends BaseModel {
     private static final long serialVersionUID = 5406793622767103652L;
 
@@ -74,4 +77,6 @@ public class Note extends BaseModel {
     public void setLastModifyTimestamp(Date lastModifyTimestamp) {
         this.lastModifyTimestamp = lastModifyTimestamp;
     }
+
+    
 }

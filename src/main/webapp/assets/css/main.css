@@ -1,96 +1,36 @@
-.nav-top .navbar-inner {
-	background-image: linear-gradient(rgb(94,202,80), rgb(84,169,84));
-	min-height: 30px;
-	border-bottom: 0px;	
-}
-
-.margin-right-fw {
-	margin-right: 10px
-}
-
-.nav-top .dropdown-menu {
-	min-width: 0px;
-	background-image: linear-gradient(rgb(94,202,80), rgb(84,169,84));
-}
-
-.nav-top .dropdown-menu>li>a {
-	line-height: 20px;
-	color: #fff;
-	padding: 3px 20px;
-}
-
-.nav-top .dropdown-menu .divider {
-	margin: 2px 1px;
-	opacity: .65;
-	background-color: #b3b3b3;
-}
-
-.navbar-form .input-append {
-	height: 25px;
-}
-
-.nav-footer {
-	height: 20px;
-}
-
-.nav-footer .navbar-inner {
-	min-height: 20px;
-	background-image: linear-gradient(rgb(255, 255, 255), rgb(242, 242, 242));
-	border-bottom-width: 0px;
-	border-top: 1px solid rgb(212, 212, 212);
-}
-
-.container {
+.content {
+	margin-top: 34px;
 	width: 100%;
+	height: 500px;
+	background-color: #000;
+	border-top: 1px #D4D4D4 solid;
+}
+
+.content-item {
+	float: left;
 	height: 100%;
 }
 
-.main-body {
-	height: 100%;
+.content-nav {
+	background-color: blue;
+	width: 30%;
+	border-right: 1px #D4D4D4 solid;
 }
 
-.row-fluid .body-tree {
-	overflow: auto;
-	width: 23%;
-	margin-left: 0px;
-	margin-right: 0px;
-	background-image: linear-gradient(90deg, rgb(242, 242, 242), rgb(255, 255, 255), rgb(242, 242, 242));
-}
-
-.row-fluid .body-body {
-	margin-left: 5px;
-	margin-right: 0px;
-}
-
-.row-fluid .v-divider {
-	margin-left: 0px;
-	margin-right: 0px;
-	float:left;
-	background-image: url(http://ynif.v099.10000net.cn/qui/system/layout_modern/skin/bs_arrbg.jpg);
-	background-repeat: repeat-y;
-	background-image: linear-gradient(90deg, rgb(242, 242, 242), rgb(255, 255, 255), rgb(242, 242, 242));
-	border-collapse: separate;
-	border-left: 1px solid rgb(212, 212, 212);
-	border-right: 1px solid rgb(212, 212, 212);
-	cursor: e-resize;
-	display: block;
-	width: 5px;
-}
-
-.row-fluid .v-divider i {
-	cursor: pointer;
-	color: gray;
-	background-color: white;
-}
-
-.row-fluid .v-divider i:hover {
-	color: white;
-	background-color: gray;
+.content-body {
+	background-color: red;
+	width: 70%;
 }
 
 iframe {
 	width: 100%;
 	height: 100%;
 	border: 0px;
-	overflow: auto;
+}
+
+.content-divider {
+	background-color: yellow;
+	width: 0;
+	border-right: 1px #D4D4D4 solid;
+	cursor: e-resize;
 }

@@ -1,115 +1,127 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Bootstrap 101 Template</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<!-- fav and apple icons -->
-		<link rel="shortcut icon" href="../assets/ico/favicon.png"/>
-		<link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png"/>
-		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png"/>
-		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png"/>
-		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png"/>
-		
-		<!-- css -->
-		<link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
-		<link href="../css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
-		<style>
-			body {
-			  padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-			  padding-bottom: 40px;
-			}
-		</style>
-		<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-		<!--[if lt IE 9]>
-			<script type="text/javascript" src="../js/html5shiv.js"></script>
-		<![endif]-->
-	</head>
-	<body>
-		<div class="navbar navbar-inverse navbar-fixed-top">
-			<div class="navbar-inner">
-				<div class="container">
-					<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="brand" href="#">Project name</a>
-					<div class="nav-collapse collapse">
-						<ul class="nav">
-							<li class="active"><a href="#">Home</a></li>
-							<li><a href="#">About</a></li>
-							<li><a href="#">Contact</a></li>
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-									Dropdown<b class="caret"></b>
-								</a>
-								<ul class="dropdown-menu">
-									<li><a href="#">Action</a></li>
-									<li><a href="#">Another action</a></li>
-									<li><a href="#">Something else here</a></li>
-									<li class="divider"></li>
-									<li class="nav-header">Nav Header</li>
-									<li><a href="#">Separated link</a></li>
-									<li><a href="#">One more separated link</a></li>
-								</ul>
-							</li><!-- dropdown -->
-						</ul><!-- nav -->
-						<form class="navbar-form pull-right">
-							<input class="span2" type="text" placeholder="Email"/>
-							<input class="span2" type="password" placeholder="Password"/>
-							<button type="submit" class="btn">Sign in</button>
-						</form>
-					</div>
-				</div><!-- container -->
-			</div><!-- navbar-inner -->
-		</div>
-		
-		<div class="container">
-			<div class="hero-unit">
-				<h1>Hello, world!</h1>
-				<p>This is a template for a simple marketing or information website. 
-				It includes a large callout called the hero unit and three supporting pieces of content.
-				Use it as a starting point to create something more unique.</p>
-				<p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+  <head>
+    <title>Bootstrap 101 Template</title>
+   	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../assets/ico/favicon.png">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
+	<style type="text/css">
+		body {
+		  padding-top: 50px;
+		}
+		.starter-template {
+		  padding: 40px 15px;
+		  text-align: center;
+		}
+		[class*="col-"] {
+		  padding-top: 15px;
+		  padding-bottom: 15px;
+		  background-color: #eee;
+		  border: 1px solid #ddd;
+		  background-color: rgba(86,61,124,.15);
+		  border: 1px solid rgba(86,61,124,.2);
+		}
+	</style>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+        <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    	<div class="container">
+    		<div class="navbar-header">
+    			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+    				<span class="sr-only">Toggle navigation</span>
+    				<span class="icon-bar"></span>
+    				<span class="icon-bar"></span>
+    				<span class="icon-bar"></span>
+    			</button>
+    			<a class="navbar-brand" href="#">Project name</a>
+    		</div>
+    		<div class="collapse navbar-collapse">
+    			<ul class="nav navbar-nav">
+    				<li class="active"><a href="#">Home</a></li>
+    				<li><a href="#about">About</a></li>
+    				<li><a href="#contact">Contact</a></li>
+    			</ul>
+    		</div>
+    	</div>
+    </div>
+   
+   <div class="container">
+	<div class="starter-template">
+		<h1>Grid Examples</h1>
+	</div>
+	<h3>Desktop Three</h3>
+	<div class="row">
+		<div class="col-md-4">.col-md-4</div>
+		<div class="col-md-4">.col-md-4</div>
+		<div class="col-md-4">.col-md-4</div>
+	</div>
+	
+	<h3>Desktop Two columns with two nested columns</h3>
+	<div class="row">
+		<div class="col-md-8">.col-md-8
+			<div class="row">
+				<div class="col-md-12">.col-md-12</div>
 			</div>
 			<div class="row">
-				<div class="span4">
-					<h2>Heading</h2>
-					<p>Donec id elit non mi porta gravida at eget metus. 
-					Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, 
-					ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. 
-					Donec sed odio dui.</p>
-					<p><a href="#" class="btn">View details &raquo;</a></p>
-				</div>
-				<div class="span4">
-					<h2>Heading</h2>
-					<p>Donec id elit non mi porta gravida at eget metus. 
-					Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, 
-					ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. 
-					Donec sed odio dui.</p>
-					<p><a href="#" class="btn">View details &raquo;</a></p>
-				</div>
-				<div class="span4">
-					<h2>Heading</h2>
-					<p>Donec id elit non mi porta gravida at eget metus. 
-					Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, 
-					ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. 
-					Donec sed odio dui.</p>
-					<p><a href="#" class="btn">View details &raquo;</a></p>
-				</div>
+				<div class="col-md-6">.col-md-6</div>
+				<div class="col-md-6">.col-md-6</div>
 			</div>
-			
-			<hr/>
-			
-			<footer>
-				<p>&copy; Company 2013</p>
-			</footer>
-			
-		</div><!-- container -->
+		</div>
+		<div class="col-md-4">.col-md-4</div>
+	</div>
+	
+	<h3>Desktop offset</h3>
+	<div class="row">
+		<div class="col-md-8">.col-md-8
+			<div class="row">
+				<div class="col-md-12">.col-md-12</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 col-md-offset-1">.col-md-6</div>
+				<div class="col-md-5">.col-md-6</div>
+			</div>
+		</div>
+		<div class="col-md-4">.col-md-4</div>
+	</div>
+	
+	<h3>Mixed: mobile, tablet, desktop</h3>
+	<div class="row">
+		<div class="col-lg-8 col-xs-12 col-sm-6">col-lg-8 col-xs-12 col-sm-6</div>
+		<div class="col-lg-4 col-xs-6 col-sm-6">col-lg-4 col-xs-6 col-sm-6</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-6 col-sm-4">col-xs-6 col-sm-4</div>
+		<div class="col-xs-6 col-sm-4">col-xs-6 col-sm-4</div>
+		<div class="col-xs-6 col-sm-4">col-xs-6 col-sm-4</div>
+	</div>
+	
+	<h3>Column clearing</h3>
+	<div class="row">
+		<div class="col-xs-6 col-sm-3">col-xs-6 col-sm-3</div>
+		<div class="col-xs-6 col-sm-3">col-xs-6 col-sm-3</div>
 		
-		<!-- js -->
-		<!-- Placed at the end of the document so the pages load faster -->
-		<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
-		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
-	</body>
+		<div class="clearfix visible-xs"></div>
+		
+		<div class="col-xs-6 col-sm-3">col-xs-6 col-sm-3</div>
+		<div class="col-xs-6 col-sm-3">col-xs-6 col-sm-3</div>
+	</div>	
+   </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+  </body>
 </html>
