@@ -1,5 +1,64 @@
+<<<<<<< HEAD
 .content {
 	margin-top: 34px;
+=======
+.nav-top .navbar-inner {
+	background-image: linear-gradient(rgb(94,202,80), rgb(84,169,84));
+	min-height: 30px;
+	border-bottom: 0px;	
+}
+
+.nav-top .navbar-inner .brand {
+	font-size: 14px;
+	padding: 5px 20px;
+	color: #fff;
+	text-shadow: rgba(0, 0, 0, 0.247059) 0px -1px 0px;
+}
+
+.navbar .btn, .navbar .btn-group {
+	margin-top: 1px;
+	line-height: 25px;
+}
+
+.margin-right-fw {
+	margin-right: 10px
+}
+
+.nav-top .dropdown-menu {
+	min-width: 0px;
+	background-image: linear-gradient(rgb(94,202,80), rgb(84,169,84));
+}
+
+.nav-top .dropdown-menu>li>a {
+	line-height: 20px;
+	color: #fff;
+	padding: 3px 20px;
+}
+
+.nav-top .dropdown-menu .divider {
+	margin: 2px 1px;
+	opacity: .65;
+	background-color: #b3b3b3;
+}
+
+.navbar-form .input-append {
+	height: 25px;
+}
+
+.nav-footer {
+	height: 20px;
+}
+
+.nav-footer .navbar-inner {
+	min-height: 20px;
+	/* background-image: linear-gradient(rgb(255, 255, 255), rgb(242, 242, 242)); */
+	background-image: linear-gradient(rgb(94,202,80), rgb(84,169,84));
+	border-bottom-width: 0px;
+	border-top: 1px solid rgb(212, 212, 212);
+}
+
+.container {
+>>>>>>> 8a7d8c9e96f7dc0b008948bd7e66d65012b199ec
 	width: 100%;
 	height: 500px;
 	background-color: #000;
@@ -11,6 +70,7 @@
 	height: 100%;
 }
 
+<<<<<<< HEAD
 .content-nav {
 	background-color: blue;
 	width: 30%;
@@ -20,6 +80,51 @@
 .content-body {
 	background-color: red;
 	width: 70%;
+=======
+.row-fluid .body-tree {
+	overflow: auto;
+	width: 23%;
+	margin-left: 0px;
+	margin-right: 0px;
+	background-color: #EAEDEF;
+}
+
+.row-fluid .body-body {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.row-fluid .v-divider {
+	margin-left: 0px;
+	margin-right: 0px;
+	float:left;
+	background-color: #F3F5F7;
+	/* background-image: url(http://ynif.v099.10000net.cn/qui/system/layout_modern/skin/bs_arrbg.jpg); */
+	background-repeat: repeat-y;
+	/* background-image: linear-gradient(90deg, rgb(242, 242, 242), rgb(255, 255, 255), rgb(242, 242, 242)); */
+	/* background-image: linear-gradient(90deg, rgb(242, 242, 242), rgb(255, 255, 255), rgb(242, 242, 242)); */
+	border-collapse: separate;
+	border-left: 1px solid rgb(212, 212, 212);
+	/*border-right: 1px solid rgb(212, 212, 212);*/
+	cursor: e-resize;
+	display: block;
+	width: 0px;
+}
+
+.row-fluid .v-divider:hover {
+	background-color: #D1D2D4;
+}
+
+.row-fluid .v-divider i {
+	cursor: pointer;
+	color: gray;
+	background-color: white;
+}
+
+.row-fluid .v-divider i:hover {
+	color: white;
+	background-color: gray;
+>>>>>>> 8a7d8c9e96f7dc0b008948bd7e66d65012b199ec
 }
 
 iframe {
