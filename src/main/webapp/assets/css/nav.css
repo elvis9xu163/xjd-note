@@ -9,14 +9,19 @@ body {
 }
 
 .nav-item {
-	background-color: #DADDDF;
+	background-image: linear-gradient(#E3E7E9, #E0E5E7);
+	border-top: 1px solid #D4D4D4;
 	border-bottom: 1px solid #D4D4D4;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 	width: 100%;
 	padding: 5px 10px;
 	cursor: pointer;
+	font-size: 14px;
 	-moz-user-select: none;
 	-webkit-user-select: none;
+}
+
+.nav-item-ind {
+	font-size: 8px !important;
 }
 
 .nav-item-title {
@@ -29,45 +34,38 @@ body {
 	margin: 3px 0px;
 }
 
-.caret-right {
-	display: inline-block;
-	width: 0;
-	height: 0;
-	vertical-align: middle;
-	border-left: 6px solid;
-	border-bottom: 3px solid transparent;
-	border-top: 3px solid transparent;
-}
-
-.caret-down {
-	display: inline-block;
-	width: 0;
-	height: 0;
-	vertical-align: middle;
-	border-top: 6px solid;
-	border-left: 3px solid transparent;
-	border-right: 3px solid transparent;
-}
-
 .nav-item-body {
+	width: 100%;
+	padding-bottom: 15px;
+}
+
+.tree-item {
+	padding: 2px 10px 2px 0px;
+	color: #EAEDEF;
+	font-size: 11px;
+	white-space: nowrap;
 	width: 100%;
 }
 
-.dir,.file {
-	padding: 5px 5px 5px 0px;
+.tree-item:hover {
+	background-color: #D1D4D7;
+	color: #555E64;
+	cursor: pointer;
 }
 
-.dir:hover,.file:hover {
-	background-color: gray;
+.tree-item-selected {
+	background-color: #C2C9CE;
 }
 
-.dir-ind {
-	line-height: 2px;
-	height: 2px;
-	display: inline-block;
+.tree-item-ind {
 	font-size: 8px !important;
+	width: 0px;
 }
 
-.fa-fw {
-	width: 10px;
+.tree-item-icon, .tree-item-title {
+	color: #555E64;
+}
+
+.tree-item-body {
+	width: 100%;
 }

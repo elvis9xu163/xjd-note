@@ -16,7 +16,7 @@
 </head>
 <body>
 	<div class="nav-item">
-		<span class="nav-item-icon caret-right"></span>
+		<span class="nav-item-ind glyphicon glyphicon-chevron-down"></span>
 		<span class="nav-item-title">笔记本</span>
 		<div class="btn-group pull-right nav-item-oper">
 		  <button type="button" class="btn btn-default btn-xs btn-xxs dropdown-toggle" data-toggle="dropdown">
@@ -32,53 +32,48 @@
 		</div>
 	</div>
 	<div class="nav-item-body">
-		<div class="dir">
-			<span class="dir-ind caret-down"></span>
-			<span class="dir-icon glyphicon glyphicon-book"></span>
-			<span class="dir-title">图片</span>
-			<div class="btn-group pull-right dir-oper">
-			  <button type="button" class="btn btn-default btn-xs btn-xxs dropdown-toggle" data-toggle="dropdown">
-			    <span class="caret"></span>
-			  </button>
-			  <ul class="dropdown-menu" role="menu">
-			    <li><a href="#">新建笔记本</a></li>
-			    <li><a href="#">新建笔记</a></li>
-			    <li><a href="#">重命名</a></li>
-			    <li class="divider"></li>
-			    <li><a href="#">删除</a></li>
-			  </ul>
-			</div>
+		<div class="tree-item node">
+			<span class="tree-item-ind glyphicon glyphicon-chevron-down"></span>
+			<span class="tree-item-icon glyphicon glyphicon-book"></span>
+			<span class="tree-item-title">图片</span>
 		</div>
-		<div class="dir-body">
-			<div class="dir" style="padding-left: 15px">
-				<i class="dir-ind caret-right"></i>
-				<span class="dir-icon glyphicon glyphicon-book"></span>
-				<span class="dir-title">美女</span>
+		<div class="tree-item-body">
+			<div class="tree-item node" style="padding-left: 10px">
+				<span class="tree-item-ind glyphicon glyphicon-chevron-right"></span>
+				<span class="tree-item-icon glyphicon glyphicon-book"></span>
+				<span class="tree-item-title">图片</span>
 			</div>
-			<div class="dir" style="padding-left: 15px">
-				<i class="dir-ind caret-down"></i>
-				<span class="glyphicon glyphicon-book"></span>
-				<span>美女</span>
+			<div class="tree-item node" style="padding-left: 10px">
+				<span class="tree-item-ind glyphicon glyphicon-chevron-down"></span>
+				<span class="tree-item-icon glyphicon glyphicon-book"></span>
+				<span class="tree-item-title">图片</span>
 			</div>
-			<div class="dir-body">
-				<div class="file" style="padding-left: 30px"><span class="glyphicon glyphicon-file"></span> 图片1</div>
-				<div class="file" style="padding-left: 30px"><span class="glyphicon glyphicon-file"></span> 图片1</div>
-				<div class="file" style="padding-left: 30px"><span class="glyphicon glyphicon-file"></span> 图片1</div>
-			</div>
-			<div class="dir" style="padding-left: 15px">
-				<i class="dir-ind fa fa-angle-down fa-fw"></i>
-				<span class="dir-icon glyphicon glyphicon-book"></span>
-				<span class="dir-title">美女</span>
-			</div>
-			<div class="dir" style="padding-left: 15px">
-				<i class="fa fa-angle-right fa-fw"></i>
-				<span class="glyphicon glyphicon-book"></span>
-				<span>美女</span>
+			<div class="tree-item-body">
+				<div class="tree-item leaf" style="padding-left: 20px">
+					<span class="tree-item-ind glyphicon glyphicon-text-width"></span>
+					<span class="tree-item-icon glyphicon glyphicon-file"></span>
+					<span class="tree-item-title">图片</span>
+				</div>
+				<div class="tree-item leaf" style="padding-left: 20px">
+					<span class="tree-item-ind glyphicon glyphicon-text-width"></span>
+					<span class="tree-item-icon glyphicon glyphicon-file"></span>
+					<span class="tree-item-title">图片</span>
+				</div>
+				<div class="tree-item leaf" style="padding-left: 20px">
+					<span class="tree-item-ind glyphicon glyphicon-text-width"></span>
+					<span class="tree-item-icon glyphicon glyphicon-file"></span>
+					<span class="tree-item-title">图片</span>
+				</div>
+				<div class="tree-item leaf" style="padding-left: 20px">
+					<span class="tree-item-ind glyphicon glyphicon-text-width"></span>
+					<span class="tree-item-icon glyphicon glyphicon-file"></span>
+					<span class="tree-item-title">图片</span>
+				</div>
 			</div>
 		</div>
 	</div>
 	<div class="nav-item">
-		<span class="nav-item-icon caret-right"></span>
+		<span class="nav-item-ind glyphicon glyphicon-chevron-down"></span>
 		<span class="nav-item-title">标签</span>
 		<div class="btn-group pull-right nav-item-oper">
 		  <button type="button" class="btn btn-default btn-xs btn-xxs dropdown-toggle" data-toggle="dropdown">
@@ -93,9 +88,8 @@
 		  </ul>
 		</div>
 	</div>
-	<!-- <div class="nav-item-body">
-		hello
-	</div> -->
+	<div class="nav-item-body">
+	</div>
 
 	<%-- js --%>
 	<jsp:include page="../common/js-common.jsp" />

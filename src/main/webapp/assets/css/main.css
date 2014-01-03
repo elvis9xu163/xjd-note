@@ -1,9 +1,8 @@
 .content {
 	margin-top: 34px;
 	width: 100%;
-	height: 500px;
 	background-color: #000;
-	border-top: 1px #D4D4D4 solid;
+	border: 0px;
 }
 
 .content-item {
@@ -12,14 +11,12 @@
 }
 
 .content-nav {
-	background-color: blue;
-	width: 30%;
+	width: 25%;
 	border-right: 1px #D4D4D4 solid;
 }
 
 .content-body {
-	background-color: red;
-	width: 70%;
+	width: 75%;
 }
 
 iframe {
@@ -29,8 +26,38 @@ iframe {
 }
 
 .content-divider {
-	background-color: yellow;
-	width: 0;
-	border-right: 1px #D4D4D4 solid;
+	width: 6px;
 	cursor: e-resize;
+	position: absolute;
+	left: 0px;
+	top: 34px;
+	z-index: 999;
+}
+
+.content-divider:hover, .content-divider-hover {
+	border-right: 1px #AAB2B8 solid;
+	border-left: 1px #AAB2B8 solid;
+	background-color: #CED3D6;
+	/* opacity: 0.4;
+	filter: alpha(opacity =   40); */
+}
+
+.content-divider-cover {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 1000;
+	display: none;
+	z-index: 1000;
+}
+
+.debug {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100px;
+	height: 30px;
+	z-index: 9999;
 }

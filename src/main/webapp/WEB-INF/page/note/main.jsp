@@ -26,7 +26,11 @@
 			<iframe id="nav" src="<c:url value='/note/body'/>"></iframe>
 		</div>
 	</div>
+	<div class="content-divider"></div>
+	<div class="content-divider-cover"></div>
+	<div class="debug"></div>
 	<%-- js --%>
 	<jsp:include page="../common/js-common.jsp" />
+	<script type="text/javascript" src="<c:url value='/assets/js/main.js'/>"></script>
 </body>
 </html>
