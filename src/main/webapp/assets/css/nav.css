@@ -1,0 +1,73 @@
+body {
+	background-color: #EAEDEF;
+}
+
+.btn-xxs {
+	line-height: 10px;
+	padding: 1px 2px;
+	background-color: #E8EAEC;
+}
+
+.nav-item {
+	background-color: #DADDDF;
+	border-bottom: 1px solid #D4D4D4;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+	width: 100%;
+	padding: 5px 10px;
+	cursor: pointer;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+}
+
+.nav-item-title {
+	padding-left: 5px;
+	font-weight: bold;
+	font-size: 12px;
+}
+
+.nav-item-oper {
+	margin: 3px 0px;
+}
+
+.caret-right {
+	display: inline-block;
+	width: 0;
+	height: 0;
+	vertical-align: middle;
+	border-left: 6px solid;
+	border-bottom: 3px solid transparent;
+	border-top: 3px solid transparent;
+}
+
+.caret-down {
+	display: inline-block;
+	width: 0;
+	height: 0;
+	vertical-align: middle;
+	border-top: 6px solid;
+	border-left: 3px solid transparent;
+	border-right: 3px solid transparent;
+}
+
+.nav-item-body {
+	width: 100%;
+}
+
+.dir,.file {
+	padding: 5px 5px 5px 0px;
+}
+
+.dir:hover,.file:hover {
+	background-color: gray;
+}
+
+.dir-ind {
+	line-height: 2px;
+	height: 2px;
+	display: inline-block;
+	font-size: 8px !important;
+}
+
+.fa-fw {
+	width: 10px;
+}
