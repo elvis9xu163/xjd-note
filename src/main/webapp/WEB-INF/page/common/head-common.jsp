@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+
 <div class="navbar navbar-static-top nav-top">
 	<div class="navbar-inner">
 		<a class="brand" href="#"><fmt:message key="xjd_note" /></a>
@@ -25,6 +27,7 @@
 	</div>
 </div>
 <form id="headForm" style="display: none;"></form>
+
 <script type="text/javascript">
 	var quitUrl = '<c:url value="/auth/logout"/>';
 </script>

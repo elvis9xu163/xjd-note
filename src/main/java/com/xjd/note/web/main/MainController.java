@@ -33,7 +33,7 @@ public class MainController {
 		if (auth != null && auth.getUser() != null) {
 			map.put("username", auth.getUser().getUsername());
 		}
-		return "/main";
+		return "/note/main";
 	}
 	
 	/**
@@ -47,5 +47,15 @@ public class MainController {
 	@RequestMapping("/editor")
 	public String editor() {
 		return "/editor";
+	}
+	
+	@RequestMapping("/note/nav")
+	public String nav() {
+		return "/note/nav";
+	}
+	
+	@RequestMapping("/note/body")
+	public String body() {
+		return "/note/body";
 	}
 }
