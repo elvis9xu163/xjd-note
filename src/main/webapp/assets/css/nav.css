@@ -20,6 +20,12 @@ body {
 	-webkit-user-select: none;
 }
 
+.nav-item-label {
+	display: inline-block;
+	width: 80%;
+	clear: both;
+}
+
 .nav-item-ind {
 	font-size: 8px !important;
 }
@@ -45,6 +51,8 @@ body {
 	font-size: 11px;
 	white-space: nowrap;
 	width: 100%;
+	-moz-user-select: none;
+	-webkit-user-select: none;
 }
 
 .tree-item:hover {
@@ -66,6 +74,14 @@ body {
 	color: #555E64;
 }
 
+.leaf .tree-item-icon {
+	color: blue;
+}
+
 .tree-item-body {
 	width: 100%;
+}
+
+.for-template {
+	display: none;
 }

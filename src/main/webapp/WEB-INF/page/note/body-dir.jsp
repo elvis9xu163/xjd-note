@@ -12,10 +12,8 @@
 	
 	<%-- css --%>
 	<jsp:include page="../common/css-common.jsp" />
-	<link rel="stylesheet" href="<c:url value='/assets/css/body.css'/>">
 </head>
 <body>
-	
 
 	<%-- js --%>
 	<jsp:include page="../common/js-common.jsp" />

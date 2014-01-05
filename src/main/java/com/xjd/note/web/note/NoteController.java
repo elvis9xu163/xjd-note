@@ -1,34 +1,90 @@
 package com.xjd.note.web.note;
 
+import java.nio.charset.Charset;
+import java.util.Map;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.xjd.note.biz.model.Auth;
 import com.xjd.note.biz.model.Note;
+import com.xjd.note.biz.service.NoteService;
 
 /**
  * <pre>
  * 笔记相关
  * </pre>
+ * 
  * @author elvis.xu
  * @since Dec 23, 2013 10:18:46 AM
  */
 @Controller
+@SessionAttributes("user")
 @RequestMapping("/note")
 public class NoteController {
 
-	@RequestMapping("/listNodes")
-	@ResponseBody
-	public NoteView[] listNodes(@RequestParam(value = "id", required = false) String id,
-			@RequestParam(value = "name", required = false) String name,
-			@RequestParam(value = "level", required = false) String level) {
-		System.out.printf("%s, %s, %s%n", id, name, level);
+    @Autowired
+    NoteService noteService;
 
-		NoteView[] ns = new NoteView[2];
-		ns[0] = new NoteView.Builder().withId(1L).withNoteName("hello").withParentId(0L).withIsDir(true).build();
-		ns[1] = new NoteView.Builder().withId(2L).withNoteName("hello2").withParentId(0L).withIsDir(true).build();
+    @RequestMapping("/listNodes")
+    @ResponseBody
+    public NoteView[] listNodes(@RequestParam(value = "id", required = false) String id,
+	    @RequestParam(value = "name", required = false) String name,
+	    @RequestParam(value = "level", required = false) String level,
+	    @ModelAttribute("user") Auth auth) {
 
-		return ns;
+	Note[] notes = noteService.listNotes(auth.getUser().getId(), StringUtils.isBlank(id) ? null : Long.valueOf(id));
+
+	NoteView[] views = new NoteView[notes.length];
+	for (int i = 0; i < notes.length; i++) {
+	    NoteView view = new NoteView();
+	    BeanUtils.copyProperties(notes[i], view);
+	    views[i] = view;
 	}
+
+	return views;
+    }
+
+    @RequestMapping("/saveNote")
+    public String saveNote(@RequestParam("id") String id, @RequestParam("editorContent") String content, @ModelAttribute("user") Auth auth,
+	    Map<String, Object> map) {
+	if (StringUtils.isBlank(id)) {
+	    map.put("result", false);
+	    //TODO reason
+	} else {
+	    noteService.saveNote(auth.getUser().getId(), Long.valueOf(id), content);
+	    map.put("result", true);
+	}
+	return "/note/save-result";
+    }
+    
+    @RequestMapping("/openNote")
+    public String openNote(@RequestParam("id") String id, @ModelAttribute("user") Auth auth, Map<String, Object> map) {
+	String content = noteService.readNote(auth.getUser().getId(), Long.valueOf(id));
+	map.put("content", content == null ? "" : content);
+	return "/note/body-editor";
+    }
+
+    @RequestMapping("/newNote")
+    @ResponseBody
+    public NoteView newNote(@RequestParam(value = "id", required = false) String id, @RequestParam("value") String value,
+	    @RequestParam("isNoteBook") boolean isNoteBook, @ModelAttribute("user") Auth auth) {
+	value = new String(value.getBytes(Charset.forName("ISO-8859-1")), Charset.forName("UTF-8"));
+	Note note = null;
+	if (isNoteBook) {
+	    note = noteService.createNotebook(auth.getUser().getId(), StringUtils.isBlank(id) ? null : Long.valueOf(id), value);
+	} else {
+	    note = noteService.createNote(auth.getUser().getId(), StringUtils.isBlank(id) ? null : Long.valueOf(id), value);
+	}
+	NoteView view = new NoteView();
+	BeanUtils.copyProperties(note, view);
+	return view;
+    }
 }

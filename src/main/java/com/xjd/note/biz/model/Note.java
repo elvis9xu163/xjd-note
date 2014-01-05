@@ -22,61 +22,70 @@ public class Note extends BaseModel {
 
     private Date lastModifyTimestamp;
 
+    private Long userId;
+
     public Long getId() {
-        return id;
+	return id;
     }
 
     public void setId(Long id) {
-        this.id = id;
+	this.id = id;
     }
 
     public String getNoteName() {
-        return noteName;
+	return noteName;
     }
 
     public void setNoteName(String noteName) {
-        this.noteName = noteName;
+	this.noteName = noteName;
     }
 
     public Boolean getIsDir() {
-        return isDir;
+	return isDir;
     }
 
     public void setIsDir(Boolean isDir) {
-        this.isDir = isDir;
+	this.isDir = isDir;
     }
 
     public Long getParentId() {
-        return parentId;
+	return parentId;
     }
 
     public void setParentId(Long parentId) {
-        this.parentId = parentId;
+	this.parentId = parentId;
     }
 
     public String getFileKey() {
-        return fileKey;
+	return fileKey;
     }
 
     public void setFileKey(String fileKey) {
-        this.fileKey = fileKey;
+	this.fileKey = fileKey;
     }
 
     public Date getCreateTimestamp() {
-        return createTimestamp;
+	return createTimestamp;
     }
 
     public void setCreateTimestamp(Date createTimestamp) {
-        this.createTimestamp = createTimestamp;
+	this.createTimestamp = createTimestamp;
     }
 
     public Date getLastModifyTimestamp() {
-        return lastModifyTimestamp;
+	return lastModifyTimestamp;
     }
 
     public void setLastModifyTimestamp(Date lastModifyTimestamp) {
-        this.lastModifyTimestamp = lastModifyTimestamp;
+	this.lastModifyTimestamp = lastModifyTimestamp;
     }
 
-    
+    public Long getUserId() {
+	return userId;
+    }
+
+    public void setUserId(Long userId) {
+	this.userId = userId;
+    }
+
 }

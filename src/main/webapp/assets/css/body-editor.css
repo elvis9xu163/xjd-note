@@ -1,0 +1,22 @@
+body {
+	background-color: #F3F5F7;
+}
+
+.edui-default .edui-editor {
+	border: 0px !important;
+}
+
+#edui1 {
+	background-color: transparent;
+}
+
+#edui1_toolbarboxouter {
+	border-left: 0px;
+	border-radius: 0;
+}
+
+#edui1_iframeholder {
+	background-color: #fff;
+	border: 1px solid #D1D2D4;
+	margin: 20px 0px;
+}

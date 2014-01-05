@@ -10,6 +10,8 @@ public class TagDo extends BaseDo {
 
     private Date createTimestamp;
 
+    private Long userId;
+
     public Long getId() {
         return id;
     }
@@ -32,5 +34,13 @@ public class TagDo extends BaseDo {
 
     public void setCreateTimestamp(Date createTimestamp) {
         this.createTimestamp = createTimestamp;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

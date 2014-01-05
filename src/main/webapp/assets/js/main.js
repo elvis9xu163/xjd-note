@@ -7,7 +7,7 @@
 //var $contentBody = $(".content-body");
 //var $contentDivider = $(".content-divider");
 
-function debug(msg) {
+window.debug = function(msg) {
 	$(".debug").html(msg);
 }
 //==========================Debug]]
@@ -47,6 +47,8 @@ function contentDividerCoverMouseUp() {
 //==========================拖拽调整大小]]
 
 //[[UI调整===============================
+window.editorReady = false;
+
 window.adjustDividerPosition = function() {
 	$contentNav = $(".content-nav");
 	navOffset = $contentNav.offset();
@@ -58,13 +60,20 @@ window.adjustHeight = function() {
 	contentHeight = $(window).height() - $(".head").height() - 5;
 	$(".content").height(contentHeight);
 	$(".content-divider").height(contentHeight);
+	if (editorReady) {
+		$("#body")[0].contentWindow.adjustUIHeight();
+	}
 }
 
 window.adjustWidth = function() {
 	$(".content-body").width($(window).width() - $(".content-nav").width() - 1);
+	if (editorReady) {
+		$("#body")[0].contentWindow.adjustUIWidth();
+	}
 }
 
 function resize() {
+	debug("")
 	adjustHeight();
 	adjustWidth();
 	adjustDividerPosition();
@@ -73,12 +82,13 @@ function resize() {
 //===============================UI调整]]
 
 $(function() {
-	$(window).resize(resize);
-	$(window).resize();
-	
 	//拖拽调整大小
 	$(".content-divider").mousedown(contentDividerMouseDown);
 	$(".content-divider-cover").mousemove(contentDividerCoverMouseMove);
 	$(".content-divider-cover").mouseup(contentDividerCoverMouseUp);
 
+	$(window).resize(resize);
+	
+	$(".content-nav").width($(".content-nav").width());
+	$(window).resize();
 });

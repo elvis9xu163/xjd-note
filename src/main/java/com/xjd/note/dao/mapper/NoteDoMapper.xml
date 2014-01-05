@@ -9,6 +9,7 @@
     <result column="file_key" property="fileKey" jdbcType="VARCHAR" />
     <result column="create_timestamp" property="createTimestamp" jdbcType="TIMESTAMP" />
     <result column="last_modify_timestamp" property="lastModifyTimestamp" jdbcType="TIMESTAMP" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -69,7 +70,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, note_name, is_dir, parent_id, file_key, create_timestamp, last_modify_timestamp
+    id, note_name, is_dir, parent_id, file_key, create_timestamp, last_modify_timestamp, 
+    user_id
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xjd.note.dao.model.NoteDoExample" >
     select
@@ -106,11 +108,11 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into note (note_name, is_dir, parent_id, 
-      file_key, create_timestamp, last_modify_timestamp
-      )
+      file_key, create_timestamp, last_modify_timestamp, 
+      user_id)
     values (#{noteName,jdbcType=VARCHAR}, #{isDir,jdbcType=BIT}, #{parentId,jdbcType=BIGINT}, 
-      #{fileKey,jdbcType=VARCHAR}, #{createTimestamp,jdbcType=TIMESTAMP}, #{lastModifyTimestamp,jdbcType=TIMESTAMP}
-      )
+      #{fileKey,jdbcType=VARCHAR}, #{createTimestamp,jdbcType=TIMESTAMP}, #{lastModifyTimestamp,jdbcType=TIMESTAMP}, 
+      #{userId,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.xjd.note.dao.model.NoteDo" >
     <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
@@ -136,6 +138,9 @@
       <if test="lastModifyTimestamp != null" >
         last_modify_timestamp,
       </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="noteName != null" >
@@ -155,6 +160,9 @@
       </if>
       <if test="lastModifyTimestamp != null" >
         #{lastModifyTimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
@@ -188,6 +196,9 @@
       <if test="record.lastModifyTimestamp != null" >
         last_modify_timestamp = #{record.lastModifyTimestamp,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -201,7 +212,8 @@
       parent_id = #{record.parentId,jdbcType=BIGINT},
       file_key = #{record.fileKey,jdbcType=VARCHAR},
       create_timestamp = #{record.createTimestamp,jdbcType=TIMESTAMP},
-      last_modify_timestamp = #{record.lastModifyTimestamp,jdbcType=TIMESTAMP}
+      last_modify_timestamp = #{record.lastModifyTimestamp,jdbcType=TIMESTAMP},
+      user_id = #{record.userId,jdbcType=BIGINT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -227,6 +239,9 @@
       <if test="lastModifyTimestamp != null" >
         last_modify_timestamp = #{lastModifyTimestamp,jdbcType=TIMESTAMP},
       </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -237,7 +252,8 @@
       parent_id = #{parentId,jdbcType=BIGINT},
       file_key = #{fileKey,jdbcType=VARCHAR},
       create_timestamp = #{createTimestamp,jdbcType=TIMESTAMP},
-      last_modify_timestamp = #{lastModifyTimestamp,jdbcType=TIMESTAMP}
+      last_modify_timestamp = #{lastModifyTimestamp,jdbcType=TIMESTAMP},
+      user_id = #{userId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

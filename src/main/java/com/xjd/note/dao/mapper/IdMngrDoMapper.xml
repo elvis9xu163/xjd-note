@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xjd.note.dao.mapper.TagDoMapper" >
-  <resultMap id="BaseResultMap" type="com.xjd.note.dao.model.TagDo" >
+<mapper namespace="com.xjd.note.dao.mapper.IdMngrDoMapper" >
+  <resultMap id="BaseResultMap" type="com.xjd.note.dao.model.IdMngrDo" >
     <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="tag_name" property="tagName" jdbcType="VARCHAR" />
-    <result column="create_timestamp" property="createTimestamp" jdbcType="TIMESTAMP" />
-    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="mid" property="mid" jdbcType="BIGINT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -66,15 +65,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, tag_name, create_timestamp, user_id
+    id, name, mid
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xjd.note.dao.model.TagDoExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xjd.note.dao.model.IdMngrDoExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from tags
+    from id_mngr
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -85,76 +84,65 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
-    from tags
+    from id_mngr
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from tags
+    delete from id_mngr
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.xjd.note.dao.model.TagDoExample" >
-    delete from tags
+  <delete id="deleteByExample" parameterType="com.xjd.note.dao.model.IdMngrDoExample" >
+    delete from id_mngr
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.xjd.note.dao.model.TagDo" >
+  <insert id="insert" parameterType="com.xjd.note.dao.model.IdMngrDo" >
     <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into tags (tag_name, create_timestamp, user_id
-      )
-    values (#{tagName,jdbcType=VARCHAR}, #{createTimestamp,jdbcType=TIMESTAMP}, #{userId,jdbcType=BIGINT}
-      )
+    insert into id_mngr (name, mid)
+    values (#{name,jdbcType=VARCHAR}, #{mid,jdbcType=BIGINT})
   </insert>
-  <insert id="insertSelective" parameterType="com.xjd.note.dao.model.TagDo" >
+  <insert id="insertSelective" parameterType="com.xjd.note.dao.model.IdMngrDo" >
     <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into tags
+    insert into id_mngr
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="tagName != null" >
-        tag_name,
+      <if test="name != null" >
+        name,
       </if>
-      <if test="createTimestamp != null" >
-        create_timestamp,
-      </if>
-      <if test="userId != null" >
-        user_id,
+      <if test="mid != null" >
+        mid,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="tagName != null" >
-        #{tagName,jdbcType=VARCHAR},
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
       </if>
-      <if test="createTimestamp != null" >
-        #{createTimestamp,jdbcType=TIMESTAMP},
-      </if>
-      <if test="userId != null" >
-        #{userId,jdbcType=BIGINT},
+      <if test="mid != null" >
+        #{mid,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.xjd.note.dao.model.TagDoExample" resultType="java.lang.Integer" >
-    select count(*) from tags
+  <select id="countByExample" parameterType="com.xjd.note.dao.model.IdMngrDoExample" resultType="java.lang.Integer" >
+    select count(*) from id_mngr
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update tags
+    update id_mngr
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.tagName != null" >
-        tag_name = #{record.tagName,jdbcType=VARCHAR},
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.createTimestamp != null" >
-        create_timestamp = #{record.createTimestamp,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.userId != null" >
-        user_id = #{record.userId,jdbcType=BIGINT},
+      <if test="record.mid != null" >
+        mid = #{record.mid,jdbcType=BIGINT},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -162,35 +150,30 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update tags
+    update id_mngr
     set id = #{record.id,jdbcType=BIGINT},
-      tag_name = #{record.tagName,jdbcType=VARCHAR},
-      create_timestamp = #{record.createTimestamp,jdbcType=TIMESTAMP},
-      user_id = #{record.userId,jdbcType=BIGINT}
+      name = #{record.name,jdbcType=VARCHAR},
+      mid = #{record.mid,jdbcType=BIGINT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xjd.note.dao.model.TagDo" >
-    update tags
+  <update id="updateByPrimaryKeySelective" parameterType="com.xjd.note.dao.model.IdMngrDo" >
+    update id_mngr
     <set >
-      <if test="tagName != null" >
-        tag_name = #{tagName,jdbcType=VARCHAR},
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="createTimestamp != null" >
-        create_timestamp = #{createTimestamp,jdbcType=TIMESTAMP},
-      </if>
-      <if test="userId != null" >
-        user_id = #{userId,jdbcType=BIGINT},
+      <if test="mid != null" >
+        mid = #{mid,jdbcType=BIGINT},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xjd.note.dao.model.TagDo" >
-    update tags
-    set tag_name = #{tagName,jdbcType=VARCHAR},
-      create_timestamp = #{createTimestamp,jdbcType=TIMESTAMP},
-      user_id = #{userId,jdbcType=BIGINT}
+  <update id="updateByPrimaryKey" parameterType="com.xjd.note.dao.model.IdMngrDo" >
+    update id_mngr
+    set name = #{name,jdbcType=VARCHAR},
+      mid = #{mid,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

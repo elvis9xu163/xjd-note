@@ -1,17 +1,16 @@
 package com.xjd.note.dao.model;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-public class TagDoExample {
+public class IdMngrDoExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public TagDoExample() {
+    public IdMngrDoExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -165,193 +164,133 @@ public class TagDoExample {
             return (Criteria) this;
         }
 
-        public Criteria andTagNameIsNull() {
-            addCriterion("tag_name is null");
+        public Criteria andNameIsNull() {
+            addCriterion("name is null");
             return (Criteria) this;
         }
 
-        public Criteria andTagNameIsNotNull() {
-            addCriterion("tag_name is not null");
+        public Criteria andNameIsNotNull() {
+            addCriterion("name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTagNameEqualTo(String value) {
-            addCriterion("tag_name =", value, "tagName");
+        public Criteria andNameEqualTo(String value) {
+            addCriterion("name =", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andTagNameNotEqualTo(String value) {
-            addCriterion("tag_name <>", value, "tagName");
+        public Criteria andNameNotEqualTo(String value) {
+            addCriterion("name <>", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andTagNameGreaterThan(String value) {
-            addCriterion("tag_name >", value, "tagName");
+        public Criteria andNameGreaterThan(String value) {
+            addCriterion("name >", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andTagNameGreaterThanOrEqualTo(String value) {
-            addCriterion("tag_name >=", value, "tagName");
+        public Criteria andNameGreaterThanOrEqualTo(String value) {
+            addCriterion("name >=", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andTagNameLessThan(String value) {
-            addCriterion("tag_name <", value, "tagName");
+        public Criteria andNameLessThan(String value) {
+            addCriterion("name <", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andTagNameLessThanOrEqualTo(String value) {
-            addCriterion("tag_name <=", value, "tagName");
+        public Criteria andNameLessThanOrEqualTo(String value) {
+            addCriterion("name <=", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andTagNameLike(String value) {
-            addCriterion("tag_name like", value, "tagName");
+        public Criteria andNameLike(String value) {
+            addCriterion("name like", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andTagNameNotLike(String value) {
-            addCriterion("tag_name not like", value, "tagName");
+        public Criteria andNameNotLike(String value) {
+            addCriterion("name not like", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andTagNameIn(List<String> values) {
-            addCriterion("tag_name in", values, "tagName");
+        public Criteria andNameIn(List<String> values) {
+            addCriterion("name in", values, "name");
             return (Criteria) this;
         }
 
-        public Criteria andTagNameNotIn(List<String> values) {
-            addCriterion("tag_name not in", values, "tagName");
+        public Criteria andNameNotIn(List<String> values) {
+            addCriterion("name not in", values, "name");
             return (Criteria) this;
         }
 
-        public Criteria andTagNameBetween(String value1, String value2) {
-            addCriterion("tag_name between", value1, value2, "tagName");
+        public Criteria andNameBetween(String value1, String value2) {
+            addCriterion("name between", value1, value2, "name");
             return (Criteria) this;
         }
 
-        public Criteria andTagNameNotBetween(String value1, String value2) {
-            addCriterion("tag_name not between", value1, value2, "tagName");
+        public Criteria andNameNotBetween(String value1, String value2) {
+            addCriterion("name not between", value1, value2, "name");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimestampIsNull() {
-            addCriterion("create_timestamp is null");
+        public Criteria andMidIsNull() {
+            addCriterion("mid is null");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimestampIsNotNull() {
-            addCriterion("create_timestamp is not null");
+        public Criteria andMidIsNotNull() {
+            addCriterion("mid is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimestampEqualTo(Date value) {
-            addCriterion("create_timestamp =", value, "createTimestamp");
+        public Criteria andMidEqualTo(Long value) {
+            addCriterion("mid =", value, "mid");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimestampNotEqualTo(Date value) {
-            addCriterion("create_timestamp <>", value, "createTimestamp");
+        public Criteria andMidNotEqualTo(Long value) {
+            addCriterion("mid <>", value, "mid");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimestampGreaterThan(Date value) {
-            addCriterion("create_timestamp >", value, "createTimestamp");
+        public Criteria andMidGreaterThan(Long value) {
+            addCriterion("mid >", value, "mid");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimestampGreaterThanOrEqualTo(Date value) {
-            addCriterion("create_timestamp >=", value, "createTimestamp");
+        public Criteria andMidGreaterThanOrEqualTo(Long value) {
+            addCriterion("mid >=", value, "mid");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimestampLessThan(Date value) {
-            addCriterion("create_timestamp <", value, "createTimestamp");
+        public Criteria andMidLessThan(Long value) {
+            addCriterion("mid <", value, "mid");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimestampLessThanOrEqualTo(Date value) {
-            addCriterion("create_timestamp <=", value, "createTimestamp");
+        public Criteria andMidLessThanOrEqualTo(Long value) {
+            addCriterion("mid <=", value, "mid");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimestampIn(List<Date> values) {
-            addCriterion("create_timestamp in", values, "createTimestamp");
+        public Criteria andMidIn(List<Long> values) {
+            addCriterion("mid in", values, "mid");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimestampNotIn(List<Date> values) {
-            addCriterion("create_timestamp not in", values, "createTimestamp");
+        public Criteria andMidNotIn(List<Long> values) {
+            addCriterion("mid not in", values, "mid");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimestampBetween(Date value1, Date value2) {
-            addCriterion("create_timestamp between", value1, value2, "createTimestamp");
+        public Criteria andMidBetween(Long value1, Long value2) {
+            addCriterion("mid between", value1, value2, "mid");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimestampNotBetween(Date value1, Date value2) {
-            addCriterion("create_timestamp not between", value1, value2, "createTimestamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdIsNull() {
-            addCriterion("user_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdIsNotNull() {
-            addCriterion("user_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdEqualTo(Long value) {
-            addCriterion("user_id =", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdNotEqualTo(Long value) {
-            addCriterion("user_id <>", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdGreaterThan(Long value) {
-            addCriterion("user_id >", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("user_id >=", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdLessThan(Long value) {
-            addCriterion("user_id <", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdLessThanOrEqualTo(Long value) {
-            addCriterion("user_id <=", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdIn(List<Long> values) {
-            addCriterion("user_id in", values, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdNotIn(List<Long> values) {
-            addCriterion("user_id not in", values, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdBetween(Long value1, Long value2) {
-            addCriterion("user_id between", value1, value2, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdNotBetween(Long value1, Long value2) {
-            addCriterion("user_id not between", value1, value2, "userId");
+        public Criteria andMidNotBetween(Long value1, Long value2) {
+            addCriterion("mid not between", value1, value2, "mid");
             return (Criteria) this;
         }
     }

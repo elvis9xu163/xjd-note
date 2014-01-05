@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2013/12/5 16:21:23                           */
+/* Created on:     2014/1/5 22:59:42                            */
 /*==============================================================*/
 
 
@@ -12,11 +12,15 @@ drop table if exists authority;
 
 drop table if exists authority_group;
 
+drop index Index_1 on id_mngr;
+
+drop table if exists id_mngr;
+
 drop table if exists note;
 
 drop table if exists note_tag;
 
-drop index INDEX_UNIQUE_TAGS_TAGNAME on tags;
+drop index INDEX_UNIQUE_TAGS_TAGNAME_USERNAME on tags;
 
 drop table if exists tags;
 
@@ -74,6 +78,27 @@ create table authority_group
 alter table authority_group comment '权限组 与 权限的关系表';
 
 /*==============================================================*/
+/* Table: id_mngr                                               */
+/*==============================================================*/
+create table id_mngr
+(
+   id                   bigint(11) not null auto_increment,
+   name                 varchar(40) not null,
+   mid                  bigint(11) not null default 1,
+   primary key (id)
+);
+
+alter table id_mngr comment 'id manager';
+
+/*==============================================================*/
+/* Index: Index_1                                               */
+/*==============================================================*/
+create unique index Index_1 on id_mngr
+(
+   name
+);
+
+/*==============================================================*/
 /* Table: note                                                  */
 /*==============================================================*/
 create table note
@@ -87,6 +112,7 @@ create table note
    file_key             varchar(50) comment '笔记对应的文件',
    create_timestamp     timestamp comment '创建时间',
    last_modify_timestamp timestamp comment '上一次修改的时间',
+   user_id              bigint(11) not null,
    primary key (id)
 );
 
@@ -112,17 +138,19 @@ create table tags
    id                   bigint(11) not null auto_increment,
    tag_name             varchar(30) not null,
    create_timestamp     timestamp comment '创建时间',
+   user_id              bigint(11),
    primary key (id)
 );
 
 alter table tags comment '笔记标签';
 
 /*==============================================================*/
-/* Index: INDEX_UNIQUE_TAGS_TAGNAME                             */
+/* Index: INDEX_UNIQUE_TAGS_TAGNAME_USERNAME                    */
 /*==============================================================*/
-create unique index INDEX_UNIQUE_TAGS_TAGNAME on tags
+create unique index INDEX_UNIQUE_TAGS_TAGNAME_USERNAME on tags
 (
-   tag_name
+   tag_name,
+   user_id
 );
 
 /*==============================================================*/
@@ -185,11 +213,17 @@ alter table authority_group add constraint FK_Reference_1 foreign key (group_id)
 alter table authority_group add constraint FK_Reference_2 foreign key (authority_id)
       references authority (id) on delete cascade on update cascade;
 
+alter table note add constraint FK_FK_NOTE_USERID foreign key (user_id)
+      references users (id) on delete restrict on update restrict;
+
 alter table note_tag add constraint FK_Reference_5 foreign key (note_id)
       references note (id) on delete cascade on update cascade;
 
 alter table note_tag add constraint FK_Reference_6 foreign key (tag_id)
       references tags (id) on delete cascade on update cascade;
+
+alter table tags add constraint FK_FK_TAGS_USERID foreign key (user_id)
+      references users (id) on delete restrict on update restrict;
 
 alter table user_authority add constraint FK_Reference_3 foreign key (user_id)
       references users (id) on delete cascade on update cascade;
