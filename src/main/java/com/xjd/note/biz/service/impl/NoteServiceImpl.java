@@ -1,7 +1,6 @@
 package com.xjd.note.biz.service.impl;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -37,131 +36,164 @@ import com.xjd.note.dao.model.NoteDoExample;
  */
 @Service
 public class NoteServiceImpl implements NoteService {
-    private static final Logger log = LoggerFactory.getLogger(NoteServiceImpl.class);
-    
-    protected SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+	private static final Logger log = LoggerFactory.getLogger(NoteServiceImpl.class);
 
-    @Value("#{properties['note.rootDir']}")
-    String noteRootDir;
-    
-    @Autowired
-    NoteDoMapper noteDoMapper;
-    
-    @PostConstruct
-    public void init() {
-	File f = new File(noteRootDir);
-	if (f.exists() && !f.isDirectory()) {
-	    throw new NoteRuntimeException("The note root directory '" + noteRootDir + "' is not a directory!");
-	}
-	if (!f.exists()) {
-	    log.info("The note root directory '{}' does not exist, building...", noteRootDir);
-	    if (!f.mkdirs()) {
-		throw new NoteRuntimeException("The note root directory '" + noteRootDir + "' cannot be built.");
-	    }
-	}
-    }
+	protected SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmssSSS");
 
-    @Override
-    public Note createNote(Long userId, Long parentId, String name) {
-	return createNote(userId, parentId, name, false);
-    }
+	@Value("#{properties['note.rootDir']}")
+	String noteRootDir;
 
-    @Override
-    public Note createNotebook(Long userId, Long parentId, String name) {
-	return createNote(userId, parentId, name, true);
-    }
+	@Autowired
+	NoteDoMapper noteDoMapper;
 
-    protected Note createNote(Long userId, Long parentId, String name, boolean isNotebook) {
-	NoteDo noteDo = new NoteDo();
-	noteDo.setUserId(userId);
-	noteDo.setNoteName(name);
-	noteDo.setIsDir(isNotebook);
-	noteDo.setParentId(parentId);
-	Date date = new Date();
-	noteDo.setFileKey(generateFileKey(name, date));
-	noteDo.setCreateTimestamp(date);
-	noteDo.setLastModifyTimestamp(date);
-	noteDoMapper.insertSelective(noteDo);
-
-	Note note = new Note();
-	BeanUtils.copyProperties(noteDo, note);
-	return note;
-    }
-
-    protected String generateFileKey(String name, Date date) {
-	return name + "_" + format.format(date);
-    }
-
-    @Override
-    public Note[] listNotes(Long userId, Long parentId) {
-	NoteDoExample example = new NoteDoExample();
-	NoteDoExample.Criteria criteria = example.createCriteria().andUserIdEqualTo(userId);
-	if (parentId == null) {
-	    criteria.andParentIdIsNull();
-	} else {
-	    criteria.andParentIdEqualTo(parentId);
-	}
-	List<NoteDo> noteDos = noteDoMapper.selectByExample(example);
-	Note[] notes = new Note[noteDos.size()];
-	for (int i = 0; i < notes.length; i++) {
-	    Note note = new Note();
-	    BeanUtils.copyProperties(noteDos.get(i), note);
-	    notes[i] = note;
+	@PostConstruct
+	public void init() {
+		File f = new File(noteRootDir);
+		if (f.exists() && !f.isDirectory()) {
+			throw new NoteRuntimeException("The note root directory '" + noteRootDir + "' is not a directory!");
+		}
+		if (!f.exists()) {
+			log.info("The note root directory '{}' does not exist, building...", noteRootDir);
+			if (!f.mkdirs()) {
+				throw new NoteRuntimeException("The note root directory '" + noteRootDir + "' cannot be built.");
+			}
+		}
 	}
 
-	return notes;
-    }
+	@Override
+	public Note createNote(Long userId, Long parentId, String name) {
+		return createNote(userId, parentId, name, false);
+	}
 
-    @Override
-    public void saveNote(Long userId, Long noteId, String content) {
-	NoteDo noteDo = noteDoMapper.selectByPrimaryKey(noteId);
-	if (noteDo == null || !noteDo.getUserId().equals(userId)) {
-	    throw new NoteRuntimeException("Cannot find the note for id '" + noteId + "'.");
+	@Override
+	public Note createNotebook(Long userId, Long parentId, String name) {
+		return createNote(userId, parentId, name, true);
+	}
+
+	protected Note createNote(Long userId, Long parentId, String name, boolean isNotebook) {
+		NoteDo noteDo = new NoteDo();
+		noteDo.setUserId(userId);
+		noteDo.setNoteName(name);
+		noteDo.setIsDir(isNotebook);
+		noteDo.setParentId(parentId);
+		Date date = new Date();
+		noteDo.setFileKey(generateFileKey(name, date));
+		noteDo.setCreateTimestamp(date);
+		noteDo.setLastModifyTimestamp(date);
+		noteDoMapper.insertSelective(noteDo);
+
+		Note note = new Note();
+		BeanUtils.copyProperties(noteDo, note);
+		return note;
+	}
+
+	protected String generateFileKey(String name, Date date) {
+		return name + "_" + format.format(date);
+	}
+
+	@Override
+	public Note[] listNotes(Long userId, Long parentId) {
+		NoteDoExample example = new NoteDoExample();
+		NoteDoExample.Criteria criteria = example.createCriteria().andUserIdEqualTo(userId);
+		if (parentId == null) {
+			criteria.andParentIdIsNull();
+		} else {
+			criteria.andParentIdEqualTo(parentId);
+		}
+		List<NoteDo> noteDos = noteDoMapper.selectByExample(example);
+		Note[] notes = new Note[noteDos.size()];
+		for (int i = 0; i < notes.length; i++) {
+			Note note = new Note();
+			BeanUtils.copyProperties(noteDos.get(i), note);
+			notes[i] = note;
+		}
+
+		return notes;
+	}
+
+	@Override
+	public void saveNote(Long userId, Long noteId, String content) {
+		NoteDo noteDo = noteDoMapper.selectByPrimaryKey(noteId);
+		if (noteDo == null || !noteDo.getUserId().equals(userId)) {
+			throw new NoteRuntimeException("Cannot find the note for id '" + noteId + "'.");
+		}
+
+		if (StringUtils.isBlank(noteDo.getFileKey())) {
+			throw new NoteRuntimeException("The fileKey for the note[id='" + noteId + "'] is blank.");
+		}
+
+		File noteFile = new File(noteRootDir, noteDo.getFileKey());
+		try {
+			FileWriter fw = new FileWriter(noteFile);
+			fw.write(content);
+			fw.close();
+		} catch (IOException e) {
+			throw new NoteRuntimeException("Save note fail.", e);
+		}
+	}
+
+	@Override
+	public String readNote(Long userId, Long noteId) {
+		NoteDo noteDo = noteDoMapper.selectByPrimaryKey(noteId);
+		if (noteDo == null || !noteDo.getUserId().equals(userId)) {
+			throw new NoteRuntimeException("Cannot find the note for id '" + noteId + "'.");
+		}
+
+		if (StringUtils.isBlank(noteDo.getFileKey())) {
+			throw new NoteRuntimeException("The fileKey for the note[id='" + noteId + "'] is blank.");
+		}
+
+		File noteFile = new File(noteRootDir, noteDo.getFileKey());
+		if (!noteFile.exists()) {
+			return null;
+		}
+
+		CharBuffer buf = CharBuffer.allocate((int) noteFile.length() + 1);
+		try {
+			FileReader fr = new FileReader(noteFile);
+			int c = 0;
+			while ((c = fr.read(buf)) != -1) {
+			}
+			fr.close();
+		} catch (IOException e) {
+			throw new NoteRuntimeException("Read note fail.", e);
+		}
+		buf.flip();
+		return buf.toString();
+	}
+
+	@Override
+	public void renameNote(Long userId, Long noteId, String name) {
+		NoteDo noteDo = noteDoMapper.selectByPrimaryKey(noteId);
+		if (noteDo == null || !noteDo.getUserId().equals(userId)) {
+			throw new NoteRuntimeException("Cannot find the note for id '" + noteId + "'.");
+		}
+		
+		if (StringUtils.isBlank(noteDo.getFileKey())) {
+			throw new NoteRuntimeException("The fileKey for the note[id='" + noteId + "'] is blank.");
+		}
+		
+		Date date = new Date();
+		NoteDo newDo = new NoteDo();
+		newDo.setId(noteDo.getId());
+		String newFileKey = generateFileKey(name, date);
+		newDo.setFileKey(newFileKey);
+		newDo.setLastModifyTimestamp(date);
+		noteDoMapper.updateByPrimaryKeySelective(newDo);
+		
+		File f = new File(noteRootDir, noteDo.getFileKey());
+		if (f.exists()) {
+			f.renameTo(new File(noteRootDir, newFileKey));
+		}
+	}
+
+	@Override
+	public void deleteNote(Long userId, Long noteId) {
+		NoteDo noteDo = noteDoMapper.selectByPrimaryKey(noteId);
+		if (noteDo == null || !noteDo.getUserId().equals(userId)) {
+			throw new NoteRuntimeException("Cannot find the note for id '" + noteId + "'.");
+		}
+		noteDoMapper.deleteByPrimaryKey(noteId);
 	}
 	
-	if (StringUtils.isBlank(noteDo.getFileKey())) {
-	    throw new NoteRuntimeException("The fileKey for the note[id='" + noteId + "'] is blank.");
-	}
-	
-	File noteFile = new File(noteRootDir, noteDo.getFileKey());
-	try {
-	    FileWriter fw = new FileWriter(noteFile);
-	    fw.write(content);
-	    fw.close();
-	} catch (IOException e) {
-	    throw new NoteRuntimeException("Save note fail.", e);
-	}
-    }
-
-    @Override
-    public String readNote(Long userId, Long noteId) {
-	NoteDo noteDo = noteDoMapper.selectByPrimaryKey(noteId);
-	if (noteDo == null || !noteDo.getUserId().equals(userId)) {
-	    throw new NoteRuntimeException("Cannot find the note for id '" + noteId + "'.");
-	}
-	
-	if (StringUtils.isBlank(noteDo.getFileKey())) {
-	    throw new NoteRuntimeException("The fileKey for the note[id='" + noteId + "'] is blank.");
-	}
-	
-	File noteFile = new File(noteRootDir, noteDo.getFileKey());
-	if (!noteFile.exists()) {
-	    return null;
-	}
-	
-	CharBuffer buf = CharBuffer.allocate((int)noteFile.length() + 1);
-	try {
-	    FileReader fr = new FileReader(noteFile);
-	    int c = 0;
-	    while ((c = fr.read(buf)) != -1) {}
-	    fr.close();
-	} catch (IOException e) {
-	    throw new NoteRuntimeException("Read note fail.", e);
-	}
-	buf.flip();
-	return buf.toString();
-    }
-    
-    
-
 }

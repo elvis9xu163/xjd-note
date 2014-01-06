@@ -23,7 +23,7 @@
 			<iframe id="nav" src="<c:url value='/note/nav'/>"></iframe>
 		</div>
 		<div class="content-item content-body">
-			<iframe id="body" src="<c:url value='/note/body?isNoteBook=false'/>"></iframe>
+			<iframe id="body" src="<c:url value='/note/body'/>"></iframe>
 		</div>
 	</div>
 	<div class="content-divider"></div>

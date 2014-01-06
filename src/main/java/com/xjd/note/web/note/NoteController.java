@@ -1,6 +1,7 @@
 package com.xjd.note.web.note;
 
 import java.nio.charset.Charset;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
@@ -64,11 +65,23 @@ public class NoteController {
 		return "/note/save-result";
 	}
 
-	@RequestMapping("/openNote")
-	public String openNote(@RequestParam("id") String id, @ModelAttribute("user") Auth auth, Map<String, Object> map) {
-		String content = noteService.readNote(auth.getUser().getId(), Long.valueOf(id));
-		map.put("content", content == null ? "" : content);
-		return "/note/body-editor";
+	@RequestMapping("/rename")
+	@ResponseBody
+	public Map<String, Object> renameNote(@RequestParam("id") String id, @RequestParam("name") String name, @ModelAttribute("user") Auth auth) {
+		name = new String(name.getBytes(Charset.forName("ISO-8859-1")), Charset.forName("UTF-8"));
+		noteService.renameNote(auth.getUser().getId(), Long.valueOf(id), name);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("result", true);
+		return map;
+	}
+	
+	@RequestMapping("/delete")
+	@ResponseBody
+	public Map<String, Object> deleteNote(@RequestParam("id") String id, @ModelAttribute("user") Auth auth) {
+		noteService.deleteNote(auth.getUser().getId(), Long.valueOf(id));
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("result", true);
+		return map;
 	}
 	
 	@RequestMapping("/readNote")

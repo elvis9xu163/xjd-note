@@ -38,9 +38,9 @@
 		  <ul class="dropdown-menu" role="menu">
 		    <li><a href="javascript:newNote(true)">新建笔记本</a></li>
 		    <li><a href="javascript:newNote(false)">新建笔记</a></li>
-		    <li><a href="#">重命名</a></li>
+		    <li><a href="javascript:renameNote()">重命名</a></li>
 		    <li class="divider"></li>
-		    <li><a href="#">删除</a></li>
+		    <li><a href="javascript:deleteNote()">删除</a></li>
 		  </ul>
 		</div>
 	</div>
@@ -111,6 +111,8 @@
 		var listNotesUrl = "<c:url value='/note/listNodes'/>";
 		var newNoteUrl = "<c:url value='/note/newNote'/>";
 		var noteBodyUrl = "<c:url value='/note/body'/>";
+		var noteRenameUrl = "<c:url value='/note/rename'/>";
+		var noteDeleteUrl = "<c:url value='/note/delete'/>";
 	</script>
 </body>
 </html>
