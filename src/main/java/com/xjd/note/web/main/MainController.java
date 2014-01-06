@@ -23,38 +23,35 @@ import com.xjd.note.biz.model.Auth;
 @SessionAttributes("user")
 public class MainController {
 
-    /**
-     * <pre>
-     * 进入主页面
-     * </pre>
-     * 
-     * @return
-     * @author elvis.xu
-     * @since Dec 18, 2013 4:09:25 PM
-     */
-    @RequestMapping("/main")
-    public String main(@ModelAttribute("user") Auth auth, Map<String, Object> map) {
-	if (auth != null && auth.getUser() != null) {
-	    map.put("username", auth.getUser().getUsername());
+	/**
+	 * <pre>
+	 * 进入主页面
+	 * </pre>
+	 * 
+	 * @return
+	 * @author elvis.xu
+	 * @since Dec 18, 2013 4:09:25 PM
+	 */
+	@RequestMapping("/main")
+	public String main(@ModelAttribute("user") Auth auth, Map<String, Object> map) {
+		if (auth != null && auth.getUser() != null) {
+			map.put("username", auth.getUser().getUsername());
+		}
+		return "/note/main";
 	}
-	return "/note/main";
-    }
 
-    @RequestMapping("/note/nav")
-    public String nav() {
-	return "/note/nav";
-    }
-
-    @RequestMapping("/note/body")
-    public String body(@RequestParam("isNoteBook") boolean isNoteBook, @RequestParam(value="id", required=false) String id) {
-	if (StringUtils.isBlank(id)) {
-	    return "/note/body-dir";
-	} else {
-	    if (isNoteBook) {
-		return "/note/body-dir";
-	    } else {
-		return "forward:/note/openNote";
-	    }
+	@RequestMapping("/note/nav")
+	public String nav() {
+		return "/note/nav";
 	}
-    }
+
+	@RequestMapping("/note/body")
+	public String body(@RequestParam("isNoteBook") boolean isNoteBook,
+			@RequestParam(value = "id", required = false) String id) {
+		if (isNoteBook) {
+			return "/note/body-dir";
+		} else {
+			return "/note/body-editor";
+		}
+	}
 }

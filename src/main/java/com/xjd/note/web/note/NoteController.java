@@ -30,61 +30,70 @@ import com.xjd.note.biz.service.NoteService;
 @RequestMapping("/note")
 public class NoteController {
 
-    @Autowired
-    NoteService noteService;
+	@Autowired
+	NoteService noteService;
 
-    @RequestMapping("/listNodes")
-    @ResponseBody
-    public NoteView[] listNodes(@RequestParam(value = "id", required = false) String id,
-	    @RequestParam(value = "name", required = false) String name,
-	    @RequestParam(value = "level", required = false) String level,
-	    @ModelAttribute("user") Auth auth) {
+	@RequestMapping("/listNodes")
+	@ResponseBody
+	public NoteView[] listNodes(@RequestParam(value = "id", required = false) String id,
+			@RequestParam(value = "name", required = false) String name,
+			@RequestParam(value = "level", required = false) String level, @ModelAttribute("user") Auth auth) {
 
-	Note[] notes = noteService.listNotes(auth.getUser().getId(), StringUtils.isBlank(id) ? null : Long.valueOf(id));
+		Note[] notes = noteService.listNotes(auth.getUser().getId(), StringUtils.isBlank(id) ? null : Long.valueOf(id));
 
-	NoteView[] views = new NoteView[notes.length];
-	for (int i = 0; i < notes.length; i++) {
-	    NoteView view = new NoteView();
-	    BeanUtils.copyProperties(notes[i], view);
-	    views[i] = view;
+		NoteView[] views = new NoteView[notes.length];
+		for (int i = 0; i < notes.length; i++) {
+			NoteView view = new NoteView();
+			BeanUtils.copyProperties(notes[i], view);
+			views[i] = view;
+		}
+
+		return views;
 	}
 
-	return views;
-    }
-
-    @RequestMapping("/saveNote")
-    public String saveNote(@RequestParam("id") String id, @RequestParam("editorContent") String content, @ModelAttribute("user") Auth auth,
-	    Map<String, Object> map) {
-	if (StringUtils.isBlank(id)) {
-	    map.put("result", false);
-	    //TODO reason
-	} else {
-	    noteService.saveNote(auth.getUser().getId(), Long.valueOf(id), content);
-	    map.put("result", true);
+	@RequestMapping("/saveNote")
+	public String saveNote(@RequestParam("id") String id, @RequestParam("editorContent") String content,
+			@ModelAttribute("user") Auth auth, Map<String, Object> map) {
+		if (StringUtils.isBlank(id)) {
+			map.put("result", false);
+			// TODO reason
+		} else {
+			noteService.saveNote(auth.getUser().getId(), Long.valueOf(id), content);
+			map.put("result", true);
+		}
+		return "/note/save-result";
 	}
-	return "/note/save-result";
-    }
-    
-    @RequestMapping("/openNote")
-    public String openNote(@RequestParam("id") String id, @ModelAttribute("user") Auth auth, Map<String, Object> map) {
-	String content = noteService.readNote(auth.getUser().getId(), Long.valueOf(id));
-	map.put("content", content == null ? "" : content);
-	return "/note/body-editor";
-    }
 
-    @RequestMapping("/newNote")
-    @ResponseBody
-    public NoteView newNote(@RequestParam(value = "id", required = false) String id, @RequestParam("value") String value,
-	    @RequestParam("isNoteBook") boolean isNoteBook, @ModelAttribute("user") Auth auth) {
-	value = new String(value.getBytes(Charset.forName("ISO-8859-1")), Charset.forName("UTF-8"));
-	Note note = null;
-	if (isNoteBook) {
-	    note = noteService.createNotebook(auth.getUser().getId(), StringUtils.isBlank(id) ? null : Long.valueOf(id), value);
-	} else {
-	    note = noteService.createNote(auth.getUser().getId(), StringUtils.isBlank(id) ? null : Long.valueOf(id), value);
+	@RequestMapping("/openNote")
+	public String openNote(@RequestParam("id") String id, @ModelAttribute("user") Auth auth, Map<String, Object> map) {
+		String content = noteService.readNote(auth.getUser().getId(), Long.valueOf(id));
+		map.put("content", content == null ? "" : content);
+		return "/note/body-editor";
 	}
-	NoteView view = new NoteView();
-	BeanUtils.copyProperties(note, view);
-	return view;
-    }
+	
+	@RequestMapping("/readNote")
+	@ResponseBody
+	public String readNote(@RequestParam("id") String id, @ModelAttribute("user") Auth auth, Map<String, Object> map) {
+		String content = noteService.readNote(auth.getUser().getId(), Long.valueOf(id));
+		return content;
+	}
+
+	@RequestMapping("/newNote")
+	@ResponseBody
+	public NoteView newNote(@RequestParam(value = "id", required = false) String id,
+			@RequestParam("value") String value, @RequestParam("isNoteBook") boolean isNoteBook,
+			@ModelAttribute("user") Auth auth) {
+		value = new String(value.getBytes(Charset.forName("ISO-8859-1")), Charset.forName("UTF-8"));
+		Note note = null;
+		if (isNoteBook) {
+			note = noteService.createNotebook(auth.getUser().getId(),
+					StringUtils.isBlank(id) ? null : Long.valueOf(id), value);
+		} else {
+			note = noteService.createNote(auth.getUser().getId(), StringUtils.isBlank(id) ? null : Long.valueOf(id),
+					value);
+		}
+		NoteView view = new NoteView();
+		BeanUtils.copyProperties(note, view);
+		return view;
+	}
 }

@@ -1,3 +1,15 @@
+window.openNote = function(id, isNoteBook) {
+	if (isNoteBook) {
+		$("#editorDiv").hide();
+	} else {
+		$("#editorDiv").show();
+		$("input[name='id']").val(id);
+		$.get(readNoteUrl + "?" + $.param({id: id}), function(data) {
+			ue.setContent(data);
+		});
+	}
+}
+
 window.saveNoteResult = function(result) {
 	if (result) {
 		$("#saveSuccessTemplate").clone().appendTo($("#edui2").append()).fadeIn("slow").delay(1000).fadeOut("slow").delay(2000).fadeIn("slow").delay(1000).fadeOut("slow", function() {
@@ -31,9 +43,6 @@ $(function() {
 	window.ue = UE.getEditor('editor');
 	
 	ue.addListener("ready", function() {
-		if (editorContent) {
-			ue.setContent(editorContent);
-		}
 		window.parent.editorReady = true;
 		$(window.parent).resize();
 		/*

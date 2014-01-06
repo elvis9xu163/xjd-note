@@ -5,7 +5,8 @@ function  selectItem($item) {
 	var id = $item.attr("nid");
 	var isNoteBook = $item.hasClass("node");
 	
-	$("#body", window.parent.document).attr("src", noteBodyUrl + "?" + $.param({id: id, isNoteBook: isNoteBook}));
+	$("#body", window.parent.document)[0].contentWindow.openNote(id, isNoteBook);
+	//$("#body", window.parent.document).attr("src", noteBodyUrl + "?" + $.param({id: id, isNoteBook: isNoteBook}));
 }
 
 function getSelectedItem() {

@@ -15,10 +15,10 @@
 	<link rel="stylesheet" href="<c:url value='/assets/css/body-editor.css'/>">
 </head>
 <body>
-	<div id="editorDiv" style="height:100%; overflow:hidden; padding: 0px 20px">
+	<div id="editorDiv" style="overflow:hidden; padding: 0px 20px; display: none;">
 		<form action="<c:url value='/note/saveNote'/>" target="forSubmit" method="post">
 			<script id="editor" name="editorContent" type="text/plain" style="width:100%; height:100%;"></script>
-			<input type="hidden" name="id" value="${param.id }">
+			<input type="hidden" name="id" value="">
 			<button id="btnSave" type="button" class="btn btn-primary">保存</button>
 		</form>
 	</div>
@@ -39,7 +39,7 @@
 	<script type="text/javascript" src="<c:url value='/assets/lang/zh-cn/zh-cn.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/assets/js/body-editor.js'/>"></script>
 	<script type="text/javascript">
-		var editorContent = '${content }';
+		var readNoteUrl = "<c:url value='/note/readNote'/>";
 	</script>
 </body>
 </html>
