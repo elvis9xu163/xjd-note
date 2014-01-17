@@ -50,6 +50,9 @@ function newNote(isNoteBook) {
 		defaultVal = "新目录";
 	}
 	var val = prompt(msg, defaultVal);
+	if (!val) {
+		return;
+	}
 	var $selectedNode = getSelectedNode();
 	var id = "";
 	if ($selectedNode) {
@@ -83,14 +86,32 @@ function newNote(isNoteBook) {
 	});
 }
 
-
 function renameNote() {
-	var selItem = getSelectedItem();
-	if (selItem) {
-		//TODO 重命名
-		
-	} else {
-		//TODO 提示先选择元素
+	$selectedItem = getSelectedItem();
+	if ($selectedItem) {
+		var val = prompt("请输入新名称！", $selectedItem.find(".tree-item-title").html());
+		if (!val) {
+			return;
+		}
+		$.post(noteRenameUrl + "?" + $.param({"id":$selectedItem.attr("nid"), "name":val}), function(data) {
+			$selectedItem.find(".tree-item-title").html(val);
+		});
+	}
+}
+
+function deleteNote() {
+	$selectedItem = getSelectedItem();
+	if ($selectedItem.hasClass("node")) {
+		alert("不能删除目录！");
+		return;
+	}
+	if ($selectedItem) {
+		if (!confirm("确认要删除吗！")) {
+			return;
+		}
+		$.post(noteDeleteUrl + "?" + $.param({"id":$selectedItem.attr("nid")}), function(data) {
+			$selectedItem.remove();
+		});
 	}
 }
 

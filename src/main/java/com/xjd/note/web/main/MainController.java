@@ -46,12 +46,7 @@ public class MainController {
 	}
 
 	@RequestMapping("/note/body")
-	public String body(@RequestParam("isNoteBook") boolean isNoteBook,
-			@RequestParam(value = "id", required = false) String id) {
-		if (isNoteBook) {
-			return "/note/body-dir";
-		} else {
-			return "/note/body-editor";
-		}
+	public String body() {
+		return "/note/body-editor";
 	}
 }

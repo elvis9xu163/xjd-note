@@ -20,4 +20,8 @@ public interface NoteService {
     void saveNote(Long userId, Long noteId, String content);
     
     String readNote(Long userId, Long noteId);
+    
+    void renameNote(Long userId, Long noteId, String name);
+    
+    void deleteNote(Long userId, Long noteId);
 }
