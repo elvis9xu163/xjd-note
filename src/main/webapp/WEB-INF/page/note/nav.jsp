@@ -38,7 +38,7 @@
 		  <ul class="dropdown-menu" role="menu">
 		    <li><a href="javascript:newNote(true)">新建笔记本</a></li>
 		    <li><a href="javascript:newNote(false)">新建笔记</a></li>
-		    <li><a href="#">重命名</a></li>
+		    <li><a href="javascript:renameNote()">重命名</a></li>
 		    <li class="divider"></li>
 		    <li><a href="#">删除</a></li>
 		  </ul>

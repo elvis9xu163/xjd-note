@@ -83,21 +83,15 @@ function newNote(isNoteBook) {
 	});
 }
 
-function selectedNode() {
-	$selectedItem = $(".tree-item-selected");
-	if ($selectedItem[0]) {
-		if ($selectedItem.hasClass("node")) {
-			return $selectedItem;
-		} else {
-			$selectedNodeBody = $selectedItem.parent();
-			if ($selectedNodeBody[0]) {
-				if ($selectedNodeBody.hasClass("tree-item-body")) {
-					return $selectedNodeBody.prev();
-				}
-			}
-		}
+
+function renameNote() {
+	var selItem = getSelectedItem();
+	if (selItem) {
+		//TODO 重命名
+		
+	} else {
+		//TODO 提示先选择元素
 	}
-	return null;
 }
 
 //===============nav-item-oper]]

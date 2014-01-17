@@ -12,15 +12,17 @@ hr {
 
 .navbar .brand {
 	color: white;
-	line-height: 30px;
+	line-height: 50px;
+	font-size: 16px;
 }
 
 .navbar-inner {
-	background-image: url(../img/header-bar.png);
+	background-image: linear-gradient(#58B553, #54A954);
 	background-color: rgba(0, 0, 0, 0);
 	height: 50px;
-	line-height: 40px;
+	line-height: 50px;
 	vertical-align: middle;
+	padding: 0px 15px;
 }
 
 .main {
@@ -157,26 +159,19 @@ hr {
 	box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
 }
 
-.input-append {
-	width: 100%;
-}
-
-.input-append .add-on {
-	width: 30%;
+.input-group .form-control {
 	height: 40px;
-	line-height: 40px;
 }
 
-.input-append input {
-	height: 40px;
-	width: 60%;
-}
-
-#login-div div {
+#login-div .row {
 	margin-bottom: 30px;
 }
 
-#login-div div:first-child {
+#login-div > .row:first-child > div:first-child {
+	margin-bottom: 30px;
+}
+
+#login-div > div:first-child {
 	margin-top: 25px;
 }
 

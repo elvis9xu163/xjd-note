@@ -28,10 +28,10 @@
 			<input name="username" value="${param.username }" />
 		</form>
 	</div>
-	<div class="navbar navbar-static-top">
+	<div class="navbar navbar-static-top head">
 		<div class="navbar-inner">
 			<a class="brand" href="#"><fmt:message key="xjd_note" /></a>
-			<div class="btn-group pull-right">
+			<div class="input-group pull-right">
 				<a class="btn btn-success dropdown-toggle" data-toggle="dropdown" href="#"> <fmt:message key="language_select"/> <span class="caret"></span> </a>
 				<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
 					<li><a tabindex="-1" href="javascript:changeLanguage('zh_CN');"><img width="32" src='<c:url value="/assets/img/flags/cn_46.png"/>' />中文</a></li>
@@ -52,16 +52,16 @@
 					</c:if>
 				</div>
 				<hr/>
-				<div class="row-fluid">
-					<div class="span6">
+				<div class="row">
+					<div class="col-md-6">
 						<div style="width: 100%; padding-top: 150px; font-size: 26px; color: gray;">
 							<fmt:message key="advertisement"/>
 						</div>
 					</div>
-					<div class="span6 form-wrapper" style="background-color: rgb(245, 245, 245);">
+					<div class="col-md-6 form-wrapper" style="background-color: rgb(245, 245, 245);">
 						<form action="<c:url value='/auth/login'/>" method="post">
-							<div class="row-fluid">
-								<div id="login-div" class="span10 offset1">
+							<div class="row">
+								<div id="login-div" class="col-md-10 col-md-offset-1">
 									<c:if test="${requestScope.errorMsg != null}">
 									<div>
 										<h5 class="form-signin-heading text-center text-error">
@@ -69,25 +69,27 @@
 										</h5>
 									</div>
 									</c:if>
-									<div class="input-append">
-										<input type="text" name="username" required placeholder='<fmt:message key="username_or_mail"/>' value="${param.username }"/>
-										<span class="add-on"><fmt:message key="account"/></span>
+									<div class="row">
+										<div class="input-group">
+											<input class="form-control" type="text" name="username" required placeholder='<fmt:message key="username_or_mail"/>' value="${param.username }"/>
+											<span class="input-group-addon"><fmt:message key="account"/></span>
+										</div>
+										<div class="input-group">
+											<input class="form-control" type="password" name="password" required placeholder='<fmt:message key="password"/>'/>
+											<span class="input-group-addon"><fmt:message key="password"/></span>
+										</div>
 									</div>
-									<div class="input-append">
-										<input type="password" name="password" required placeholder='<fmt:message key="password"/>'/>
-										<span class="add-on"><fmt:message key="password"/></span>
-									</div>
-									<div class="row-fluid">
-										<span class="span7 checkbox muted">
+									<div class="row">
+										<div class="checkbox muted">
 											<input type="checkbox" name="rememberme" value="remember-me"/><fmt:message key="remember_me_one_week"/>
-										</span>
-										<span class="span5 text-right">
-											<a href=""><fmt:message key="forget_password"/></a>
-										</span>
+											<span class="pull-right">
+												<a href=""><fmt:message key="forget_password"/></a>
+											</span>
+										</div>
 									</div>
-									<div class="row-fluid">
-										<button class="btn btn-success btn-large span6" type="submit"><i class="fa fa-sign-in"></i><fmt:message key="login"/></button>
-										<button class="btn btn-info btn-large span6"><i class="fa fa-pencil-square-o"></i><fmt:message key="register"/></button>
+									<div class="row">
+										<button class="btn btn-success btn-large col-md-5" type="submit"><i class="fa fa-sign-in"></i><fmt:message key="login"/></button>
+										<button class="btn btn-info btn-large col-md-5 col-md-offset-2"><i class="fa fa-pencil-square-o"></i><fmt:message key="register"/></button>
 									</div>
 								</div>
 							</div>
@@ -109,8 +111,7 @@
 	</div>
 
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script type="text/javascript" src="<c:url value='/js/jquery-1.9.1.min.js'/>"></script>
-	<script type="text/javascript" src="<c:url value='/js/bootstrap.min.js'/>"></script>
+	<jsp:include page="../common/js-common.jsp" />
 	<script type="text/javascript" src="<c:url value='/assets/js/login.js'/>"></script>
 </body>
 </html>

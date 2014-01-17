@@ -64,12 +64,12 @@ public class NoteController {
 		return "/note/save-result";
 	}
 
-	@RequestMapping("/openNote")
-	public String openNote(@RequestParam("id") String id, @ModelAttribute("user") Auth auth, Map<String, Object> map) {
-		String content = noteService.readNote(auth.getUser().getId(), Long.valueOf(id));
-		map.put("content", content == null ? "" : content);
-		return "/note/body-editor";
-	}
+//	@RequestMapping("/openNote")
+//	public String openNote(@RequestParam("id") String id, @ModelAttribute("user") Auth auth, Map<String, Object> map) {
+//		String content = noteService.readNote(auth.getUser().getId(), Long.valueOf(id));
+//		map.put("content", content == null ? "" : content);
+//		return "/note/body-editor";
+//	}
 	
 	@RequestMapping("/readNote")
 	@ResponseBody
@@ -95,5 +95,12 @@ public class NoteController {
 		NoteView view = new NoteView();
 		BeanUtils.copyProperties(note, view);
 		return view;
+	}
+	
+	@RequestMapping("/renameNote")
+	@ResponseBody
+	public Map<String, Object> renameNote(@RequestParam(value="id") String id, @ModelAttribute("user") Auth auth) {
+		//TODO
+		return null;
 	}
 }
