@@ -32,5 +32,6 @@
 	<%-- js --%>
 	<jsp:include page="../common/js-common.jsp" />
 	<script type="text/javascript" src="<c:url value='/assets/js/main.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/assets/js/head-common.js'/>"></script>
 </body>
 </html>

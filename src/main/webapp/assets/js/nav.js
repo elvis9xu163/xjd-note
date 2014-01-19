@@ -101,18 +101,22 @@ function renameNote() {
 
 function deleteNote() {
 	$selectedItem = getSelectedItem();
-	if ($selectedItem.hasClass("node")) {
-		alert("不能删除目录！");
+	if (!$selectedItem) {
+		alert("请先选择要删除的目录或日记！");
 		return;
 	}
-	if ($selectedItem) {
+	if ($selectedItem.hasClass("node")) {
+		if (!confirm("删除目录会删除其下的所有日记，确认要删除吗！")) {
+			return;
+		}
+	} else {
 		if (!confirm("确认要删除吗！")) {
 			return;
 		}
-		$.post(noteDeleteUrl + "?" + $.param({"id":$selectedItem.attr("nid")}), function(data) {
-			$selectedItem.remove();
-		});
 	}
+	$.post(noteDeleteUrl + "?" + $.param({"id":$selectedItem.attr("nid")}), function(data) {
+		$selectedItem.remove();
+	});
 }
 
 //===============nav-item-oper]]

@@ -110,10 +110,4 @@ public class NoteController {
 		return view;
 	}
 	
-	@RequestMapping("/renameNote")
-	@ResponseBody
-	public Map<String, Object> renameNote(@RequestParam(value="id") String id, @ModelAttribute("user") Auth auth) {
-		//TODO
-		return null;
-	}
 }
