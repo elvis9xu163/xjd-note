@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2014/1/5 22:59:42                            */
+/* Created on:     2014/2/15 12:06:42                           */
 /*==============================================================*/
 
 
@@ -113,6 +113,7 @@ create table note
    create_timestamp     timestamp comment '创建时间',
    last_modify_timestamp timestamp comment '上一次修改的时间',
    user_id              bigint(11) not null,
+   deleted              tinyint(1) not null default 0 comment '是否删除状态',
    primary key (id)
 );
 

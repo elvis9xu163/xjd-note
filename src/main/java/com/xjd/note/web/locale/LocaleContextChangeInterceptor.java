@@ -34,6 +34,9 @@ public class LocaleContextChangeInterceptor extends HandlerInterceptorAdapter {
 		if (locale != null) {
 			LocaleContextHolder.setLocale(locale);
 		}
+		
+		//便于页面获取
+		request.setAttribute("locale", locale.toString());
 
 		return true;
 	}

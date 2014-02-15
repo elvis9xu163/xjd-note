@@ -10,6 +10,7 @@
     <result column="create_timestamp" property="createTimestamp" jdbcType="TIMESTAMP" />
     <result column="last_modify_timestamp" property="lastModifyTimestamp" jdbcType="TIMESTAMP" />
     <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="deleted" property="deleted" jdbcType="BIT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -71,7 +72,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, note_name, is_dir, parent_id, file_key, create_timestamp, last_modify_timestamp, 
-    user_id
+    user_id, deleted
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xjd.note.dao.model.NoteDoExample" >
     select
@@ -109,10 +110,10 @@
     </selectKey>
     insert into note (note_name, is_dir, parent_id, 
       file_key, create_timestamp, last_modify_timestamp, 
-      user_id)
+      user_id, deleted)
     values (#{noteName,jdbcType=VARCHAR}, #{isDir,jdbcType=BIT}, #{parentId,jdbcType=BIGINT}, 
       #{fileKey,jdbcType=VARCHAR}, #{createTimestamp,jdbcType=TIMESTAMP}, #{lastModifyTimestamp,jdbcType=TIMESTAMP}, 
-      #{userId,jdbcType=BIGINT})
+      #{userId,jdbcType=BIGINT}, #{deleted,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="com.xjd.note.dao.model.NoteDo" >
     <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
@@ -141,6 +142,9 @@
       <if test="userId != null" >
         user_id,
       </if>
+      <if test="deleted != null" >
+        deleted,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="noteName != null" >
@@ -163,6 +167,9 @@
       </if>
       <if test="userId != null" >
         #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="deleted != null" >
+        #{deleted,jdbcType=BIT},
       </if>
     </trim>
   </insert>
@@ -199,6 +206,9 @@
       <if test="record.userId != null" >
         user_id = #{record.userId,jdbcType=BIGINT},
       </if>
+      <if test="record.deleted != null" >
+        deleted = #{record.deleted,jdbcType=BIT},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -213,7 +223,8 @@
       file_key = #{record.fileKey,jdbcType=VARCHAR},
       create_timestamp = #{record.createTimestamp,jdbcType=TIMESTAMP},
       last_modify_timestamp = #{record.lastModifyTimestamp,jdbcType=TIMESTAMP},
-      user_id = #{record.userId,jdbcType=BIGINT}
+      user_id = #{record.userId,jdbcType=BIGINT},
+      deleted = #{record.deleted,jdbcType=BIT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -242,6 +253,9 @@
       <if test="userId != null" >
         user_id = #{userId,jdbcType=BIGINT},
       </if>
+      <if test="deleted != null" >
+        deleted = #{deleted,jdbcType=BIT},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -253,7 +267,8 @@
       file_key = #{fileKey,jdbcType=VARCHAR},
       create_timestamp = #{createTimestamp,jdbcType=TIMESTAMP},
       last_modify_timestamp = #{lastModifyTimestamp,jdbcType=TIMESTAMP},
-      user_id = #{userId,jdbcType=BIGINT}
+      user_id = #{userId,jdbcType=BIGINT},
+      deleted = #{deleted,jdbcType=BIT}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

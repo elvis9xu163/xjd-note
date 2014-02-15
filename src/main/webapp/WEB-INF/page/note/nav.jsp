@@ -45,7 +45,7 @@
 		</div>
 	</div>
 	<div class="nav-item-body">
-		<div class="tree-item node" id="1">
+		<!-- <div class="tree-item node" id="1">
 			<span class="tree-item-ind glyphicon glyphicon-chevron-down"></span>
 			<span class="tree-item-icon glyphicon glyphicon-book"></span>
 			<span class="tree-item-title">图片</span>
@@ -83,20 +83,19 @@
 					<span class="tree-item-title">图片</span>
 				</div>
 			</div>
-		</div>
+		</div> -->
 	</div>
 	<div class="nav-item">
 		<span class="nav-item-ind glyphicon glyphicon-chevron-down"></span>
-		<span class="nav-item-title">标签</span>
+		<span class="nav-item-title">回收站</span>
 		<div class="btn-group pull-right nav-item-oper">
 		  <button type="button" class="btn btn-default btn-xs btn-xxs dropdown-toggle" data-toggle="dropdown">
 		    <span class="caret"></span>
 		  </button>
 		  <ul class="dropdown-menu" role="menu">
-		    <li><a href="#">新建笔记本</a></li>
-		    <li><a href="#">新建笔记</a></li>
-		    <li><a href="#">重命名</a></li>
+		    <li><a href="#">还原笔记</a></li>
 		    <li class="divider"></li>
+		    <li><a href="#">清空回收站</a></li>
 		    <li><a href="#">删除</a></li>
 		  </ul>
 		</div>

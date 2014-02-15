@@ -191,3 +191,7 @@ hr {
 .btn i {
 	margin-right: 5px;
 }
+
+.selectedLang {
+	border: 1px solid;
+}

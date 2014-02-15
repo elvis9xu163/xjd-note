@@ -1,11 +1,19 @@
 window.openNote = function(id, isNoteBook) {
 	if (isNoteBook) {
+		$EDITORUI["edui6"]._onClick();
 		$("#editorDiv").hide();
 	} else {
 		$("#editorDiv").show();
 		$("input[name='id']").val(id);
 		$.get(readNoteUrl + "?" + $.param({id: id}), function(data) {
 			ue.setContent(data);
+			if (data.length != 0) {
+				$EDITORUI["edui7"]._onClick();
+				$("#edui6").prev().css("text-align", "center").html("<button type='button' onclick='return $EDITORUI[\"edui6\"]._onClick();'>启用编辑</button>");
+				$("#edui6_body").remove();
+			} else {
+				$EDITORUI["edui6"]._onClick();
+			}
 		});
 	}
 }
@@ -50,6 +58,7 @@ $(function() {
 		 * this.parent.adjustUIHeight(); });
 		 */
 	});
+	
 	
 	$("#btnSave").click(function() {
 		this.form.submit();

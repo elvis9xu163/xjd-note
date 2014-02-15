@@ -19,12 +19,16 @@
 					<span class="glyphicon glyphicon-user"></span> elvis9xu@163.com <span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu">
-					<li><a href="#">设置</a></li>
+					<li><a id="settingLink" href="#">设置</a></li>
 					<li class="divider"></li>
-					<li><a href="#">退出</a></li>
+					<li><a id="exitLink" href="#">退出</a></li>
 				</ul>
 			</li>
 		</ul>
 	</div>
 </div>
+
+<script type="text/javascript">
+	var quitUrl = '<c:url value="/auth/logout"/>';
+</script>
 	

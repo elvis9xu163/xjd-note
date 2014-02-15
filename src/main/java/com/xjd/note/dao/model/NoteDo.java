@@ -20,6 +20,8 @@ public class NoteDo extends BaseDo {
 
     private Long userId;
 
+    private Boolean deleted;
+
     public Long getId() {
         return id;
     }
@@ -82,5 +84,13 @@ public class NoteDo extends BaseDo {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
 }

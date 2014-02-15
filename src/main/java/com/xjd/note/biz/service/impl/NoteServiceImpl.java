@@ -88,7 +88,7 @@ public class NoteServiceImpl implements NoteService {
 	}
 
 	protected String generateFileKey(String name, Date date) {
-		return name + "_" + format.format(date);
+		return name + "_" + format.format(date) + ".htm";
 	}
 
 	@Override
@@ -100,6 +100,7 @@ public class NoteServiceImpl implements NoteService {
 		} else {
 			criteria.andParentIdEqualTo(parentId);
 		}
+		criteria.andDeletedEqualTo(Boolean.FALSE);
 		List<NoteDo> noteDos = noteDoMapper.selectByExample(example);
 		Note[] notes = new Note[noteDos.size()];
 		for (int i = 0; i < notes.length; i++) {
@@ -122,7 +123,7 @@ public class NoteServiceImpl implements NoteService {
 			throw new NoteRuntimeException("The fileKey for the note[id='" + noteId + "'] is blank.");
 		}
 
-		File noteFile = new File(noteRootDir, noteDo.getFileKey());
+		File noteFile = getNoteFile(userId, noteDo.getFileKey());
 		try {
 			FileWriter fw = new FileWriter(noteFile);
 			fw.write(content);
@@ -143,7 +144,7 @@ public class NoteServiceImpl implements NoteService {
 			throw new NoteRuntimeException("The fileKey for the note[id='" + noteId + "'] is blank.");
 		}
 
-		File noteFile = new File(noteRootDir, noteDo.getFileKey());
+		File noteFile = getNoteFile(userId, noteDo.getFileKey());
 		if (!noteFile.exists()) {
 			return null;
 		}
@@ -168,11 +169,11 @@ public class NoteServiceImpl implements NoteService {
 		if (noteDo == null || !noteDo.getUserId().equals(userId)) {
 			throw new NoteRuntimeException("Cannot find the note for id '" + noteId + "'.");
 		}
-		
+
 		if (StringUtils.isBlank(noteDo.getFileKey())) {
 			throw new NoteRuntimeException("The fileKey for the note[id='" + noteId + "'] is blank.");
 		}
-		
+
 		Date date = new Date();
 		NoteDo newDo = new NoteDo();
 		newDo.setId(noteDo.getId());
@@ -180,10 +181,10 @@ public class NoteServiceImpl implements NoteService {
 		newDo.setFileKey(newFileKey);
 		newDo.setLastModifyTimestamp(date);
 		noteDoMapper.updateByPrimaryKeySelective(newDo);
-		
-		File f = new File(noteRootDir, noteDo.getFileKey());
+
+		File f = getNoteFile(userId, noteDo.getFileKey());
 		if (f.exists()) {
-			f.renameTo(new File(noteRootDir, newFileKey));
+			f.renameTo(getNoteFile(userId, newDo.getFileKey()));
 		}
 	}
 
@@ -193,7 +194,16 @@ public class NoteServiceImpl implements NoteService {
 		if (noteDo == null || !noteDo.getUserId().equals(userId)) {
 			throw new NoteRuntimeException("Cannot find the note for id '" + noteId + "'.");
 		}
-		noteDoMapper.deleteByPrimaryKey(noteId);
+		noteDo.setDeleted(true);
+		noteDo.setLastModifyTimestamp(new Date());
+		noteDoMapper.updateByPrimaryKey(noteDo);
 	}
-	
+
+	protected File getNoteFile(Long userId, String key) {
+		File userDir = new File(noteRootDir, userId + "");
+		if (!userDir.isDirectory()) {
+			userDir.mkdirs();
+		}
+		return new File(userDir, key);
+	}
 }

@@ -89,7 +89,7 @@
                 'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts', '|',
                 'print', 'preview', 'searchreplace', 'help', 'drafts']
         ]*/
-        , toolbars:[['undo', 'redo', '|', 'formatmatch', 'removeformat', 'autotypeset', '|', 'fontfamily', 'fontsize', 'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', '|'
+        , toolbars:[['preview', 'source', '|', 'undo', 'redo', '|', 'formatmatch', 'removeformat', 'autotypeset', '|', 'fontfamily', 'fontsize', 'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', '|'
           , 'forecolor', 'backcolor', 'fontborder', '|', 'insertorderedlist', 'insertunorderedlist', 'indent', '|', 'inserttable', 'insertcode', 'link', 'attachment', 'insertimage', '|']
         ]
         //当鼠标放在工具栏上时显示的tooltip提示,留空支持自动多语言配置，否则以配置值为准
@@ -301,6 +301,8 @@
         // 代码高亮时需要加载的第三方插件的路径
         // ,highlightJsUrl:URL + "third-party/SyntaxHighlighter/shCore.js"
         // ,highlightCssUrl:URL + "third-party/SyntaxHighlighter/shCoreDefault.css"
+        ,highlightJsUrl:URL + "third-party/SyntaxHighlighter/shCore.js"
+        ,highlightCssUrl:URL + "third-party/SyntaxHighlighter/shCoreDefault.css"
 
         //tab
         //点击tab键时移动的距离,tabSize倍数，tabNode什么字符做为单位

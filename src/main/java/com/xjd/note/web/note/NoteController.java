@@ -68,7 +68,7 @@ public class NoteController {
 	@RequestMapping("/rename")
 	@ResponseBody
 	public Map<String, Object> renameNote(@RequestParam("id") String id, @RequestParam("name") String name, @ModelAttribute("user") Auth auth) {
-		name = new String(name.getBytes(Charset.forName("ISO-8859-1")), Charset.forName("UTF-8"));
+		//name = new String(name.getBytes(Charset.forName("ISO-8859-1")), Charset.forName("UTF-8"));
 		noteService.renameNote(auth.getUser().getId(), Long.valueOf(id), name);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("result", true);

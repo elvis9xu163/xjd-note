@@ -26,17 +26,15 @@
 			<input name="locale" />
 			<input name="targetPath" value="${param.targetPath }"/>
 			<input name="username" value="${param.username }" />
+			<input name="password" value="${param.password }" />
 		</form>
 	</div>
 	<div class="navbar navbar-static-top head">
 		<div class="navbar-inner">
 			<a class="brand" href="#"><fmt:message key="xjd_note" /></a>
 			<div class="input-group pull-right">
-				<a class="btn btn-success dropdown-toggle" data-toggle="dropdown" href="#"> <fmt:message key="language_select"/> <span class="caret"></span> </a>
-				<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-					<li><a tabindex="-1" href="javascript:changeLanguage('zh_CN');"><img width="32" src='<c:url value="/assets/img/flags/cn_46.png"/>' />中文</a></li>
-					<li><a tabindex="-1" href="javascript:changeLanguage('en_US');"><img width="32" src='<c:url value="/assets/img/flags/us_46.png"/>' />English(US)</a></li>
-				</ul>
+				<a tabindex="-1" href="javascript:changeLanguage('zh_CN');"><img width="32" type="lang" name="zh_CN" <c:if test="${locale == 'zh_CN'}">class="selectedLang"</c:if> src='<c:url value="/assets/img/flags/cn_46.png"/>' /></a>
+				<a tabindex="-1" href="javascript:changeLanguage('en_US');"><img width="32" type="lang" name="en_US" <c:if test="${locale == 'en_US'}">class="selectedLang"</c:if> src='<c:url value="/assets/img/flags/us_46.png"/>' /></a>
 			</div>
 		</div>
 	</div>
@@ -53,12 +51,12 @@
 				</div>
 				<hr/>
 				<div class="row">
-					<div class="col-md-6">
-						<div style="width: 100%; padding-top: 150px; font-size: 26px; color: gray;">
-							<fmt:message key="advertisement"/>
+					<div class="col-md-6 col-xs-6">
+						<div style="width: 100%; padding-top: 130px; vertical-align: middle;">
+							<span style="font-size: 26px; color: gray;"><fmt:message key="advertisement"/></span>
 						</div>
 					</div>
-					<div class="col-md-6 form-wrapper" style="background-color: rgb(245, 245, 245);">
+					<div class="col-md-6 col-xs-6 form-wrapper" style="background-color: rgb(245, 245, 245);">
 						<form action="<c:url value='/auth/login'/>" method="post">
 							<div class="row">
 								<div id="login-div" class="col-md-10 col-md-offset-1">
@@ -71,11 +69,11 @@
 									</c:if>
 									<div class="row">
 										<div class="input-group">
-											<input class="form-control" type="text" name="username" required placeholder='<fmt:message key="username_or_mail"/>' value="${param.username }"/>
+											<input id="nameFd" class="form-control" type="text" name="username" required placeholder='<fmt:message key="username_or_mail"/>' value="${param.username }"/>
 											<span class="input-group-addon"><fmt:message key="account"/></span>
 										</div>
 										<div class="input-group">
-											<input class="form-control" type="password" name="password" required placeholder='<fmt:message key="password"/>'/>
+											<input id="passFd" class="form-control" type="password" name="password" required placeholder='<fmt:message key="password"/>' value="${param.username }"/>
 											<span class="input-group-addon"><fmt:message key="password"/></span>
 										</div>
 									</div>
@@ -83,13 +81,13 @@
 										<div class="checkbox muted">
 											<input type="checkbox" name="rememberme" value="remember-me"/><fmt:message key="remember_me_one_week"/>
 											<span class="pull-right">
-												<a href=""><fmt:message key="forget_password"/></a>
+												<a id="findPassLink" href="#"><fmt:message key="forget_password"/></a>
 											</span>
 										</div>
 									</div>
 									<div class="row">
-										<button class="btn btn-success btn-large col-md-5" type="submit"><i class="fa fa-sign-in"></i><fmt:message key="login"/></button>
-										<button class="btn btn-info btn-large col-md-5 col-md-offset-2"><i class="fa fa-pencil-square-o"></i><fmt:message key="register"/></button>
+										<button id="loginBtn" class="btn btn-success btn-large col-md-5" type="submit"><i class="fa fa-sign-in"></i><fmt:message key="login"/></button>
+										<button id="registerBtn" class="btn btn-info btn-large col-md-5 col-md-offset-2"><i class="fa fa-pencil-square-o"></i><fmt:message key="register"/></button>
 									</div>
 								</div>
 							</div>

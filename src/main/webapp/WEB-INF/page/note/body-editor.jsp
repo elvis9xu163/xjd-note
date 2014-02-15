@@ -38,6 +38,7 @@
 	<script type="text/javascript" src="<c:url value='/assets/ueditor/ueditor.all.min.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/assets/lang/zh-cn/zh-cn.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/assets/js/body-editor.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/assets/js/debug.js'/>"></script>
 	<script type="text/javascript">
 		var readNoteUrl = "<c:url value='/note/readNote'/>";
 	</script>
